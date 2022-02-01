@@ -1,0 +1,54 @@
+#pageheader {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 43px;
+}
+#pageheader nav {
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+
+
+#pageheader nav #pageheader-nav-left {
+    width: min-content;
+    height: 100%;
+}
+#pageheader nav #pageheader-nav-left #pageheader-nav-left-logo {
+    width: 172px;
+    height: 43px;
+}
+#pageheader nav #pageheader-nav-left #pageheader-nav-left-logo #pageheader-nav-left-logo-img {
+    height: 60%;
+}
+#pageheader nav #pageheader-nav-left .pageheader-nav-left-item {
+    margin: 7px;
+    width: 72px;
+    height: 29px;
+    transition: 0.2s;
+    color: #546E7A;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#pageheader nav #pageheader-nav-left .pageheader-nav-left-item:hover {
+    color: #263238;
+}
+
+
+
+#pageheader nav #pageheader-nav-right {
+    width: min-content;
+    height: 100%;
+}
+#pageheader nav #pageheader-nav-right .pageheader-nav-right-item {
+    width: 43px;
+    height: 43px;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-icon {
+    margin-right: 25px;
+    height: 50%;
+}
