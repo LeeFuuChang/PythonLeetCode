@@ -8,20 +8,6 @@
     <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
 </head>
 <body>
-    <h1>aaa</h1>
-    <button></button>
+    <div></div>
 </body>
-<script>
-    const c = document.querySelector("h1");
-    document.querySelector("button").onclick = function(){
-        c.innerText = "waiting"
-        fetch("http://127.0.0.1:5000/", {
-            method:"POST"
-        }).then(res => {
-            return res.text();
-        }).then(result => {
-            c.innerText = result;
-        });
-    }
-</script>
 </html>

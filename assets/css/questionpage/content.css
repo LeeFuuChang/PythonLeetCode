@@ -16,6 +16,7 @@
     left: 0;
     width: 100%;
     height: 40px;
+    z-index: 1000;
 }
 #content #content-header nav {
     justify-content: space-between;
@@ -81,18 +82,22 @@
     padding: 0 10px 0 20px;
     width: 50%;
     height: 100%;
-    overflow-y: auto;
+    overflow: hidden;
 }
 #content #content-content #content-content-inner .content-content-inner-type {
+    position: relative;
     display: none;
-    overflow-y: scroll;
     width: 100%;
     height: calc(100% - 52px);
     background: #FFFFFF;
+    z-index: -1000;
 }
 #content #content-content #content-content-inner .active.content-content-inner-type {
     display: unset;
 }
+
+
+
 #content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-header {
     padding: 14px 0;
     width: 100%;
@@ -148,6 +153,84 @@
     height: 1px;
     background: #C4C4C4;
 }
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content {
+    width: 100%;
+    height: min-content;
+    font-family: 'Roboto', sans-serif;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-question {
+    padding-bottom: 40px;
+    width: 100%;
+    height: min-content;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-question .content-content-inner-description-content-question-line {
+    padding-bottom: 12px;
+    width: 100%;
+    height: min-content;
+    font-size: 14px;
+    line-height: 24px;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example {
+    padding-bottom: 26px;
+    width: 100%;
+    height: min-content;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example:last-child {
+    padding-bottom: 56px;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example .content-content-inner-description-content-example-title {
+    padding-bottom: 10px;
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example .content-content-inner-description-content-example-frame {
+    padding: 10px 20px;
+    width: 100%;
+    height: min-content;
+    background: #F5F5F5;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example .content-content-inner-description-content-example-frame p {
+    width: 100%;
+    height: 27px;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 1px;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example .content-content-inner-description-content-example-frame p span {
+    margin-left: 10px;
+    width: max-content;
+    height: 100%;
+    font-weight: 400;
+    letter-spacing: unset;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-constraints {
+    padding-top: 20px;
+    width: 100%;
+    height: min-content;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-constraints #content-content-inner-description-content-constraints-title {
+    width: 100%;
+    height: 20px;
+    font-size: 14px;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-constraints #content-content-inner-description-content-constraints-list {
+    padding: 0 40px;
+    width: 100%;
+    height: min-content;
+}
+#content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content #content-content-inner-description-content-constraints #content-content-inner-description-content-constraints-list .content-content-inner-description-content-constraints-list-item {
+    margin: 5px 0;
+    padding: 0 5px;
+    width: max-content;
+    height: 20px;
+    font-size: 13px;
+    letter-spacing: 1px;
+    font-weight: 500;
+}
+
+
+
 #content #content-content #content-content-inner #content-content-inner-footer {
     position: absolute;
     padding: 10px 20px;
@@ -157,6 +240,7 @@
     width: 100%;
     height: 52px;
     background: #FFFFFF;
+    z-index: 1000;
 }
 #content #content-content #content-content-inner #content-content-inner-footer nav {
     justify-content: space-between;

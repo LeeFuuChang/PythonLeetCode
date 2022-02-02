@@ -1,6 +1,6 @@
 const code = document.querySelector("#content-content-editor-inner-code");
 const codeEditor = document.querySelector("#content-content-editor-inner-code-input");
-codeEditor.default = "class Solution(): #don't change class name\n    def main(self, a, b): #don't change function name";
+codeEditor.default = `class Solution(): #don't change class name\n    def main(self, ${QUESTION.var.join(", ")}): #don't change function name`;
 codeEditor.renderedEditor = undefined;
 codeEditor.render = function(_font, _theme, _bind, _text){
     code.querySelectorAll(".CodeMirror").forEach(cm => {
