@@ -1,37 +1,62 @@
-var QUESTION = {
-    "id":"2",
-    "name":"Add Two Numbers",
-    "difficulty":"Medium",
-    "likes":16132,
-    "dislikes":3451,
+const pageTitle = document.querySelector("head").querySelector("title");
+var QUESTION = undefined;
+fetch(
+    `${pageTitle.innerText}/get`, {method:"GET"}
+).then(res => {
+    return res.json();
+}).then(res => {
+    QUESTION = res;
+    Load_Question_Description(QUESTION);
+    codeEditor.default = `class Solution(): #don't change class name\n    def main(self, ${QUESTION.var.join(", ")}): #don't change function name`;
+    codeEditor.render(
+        CurrentsEditorOptions.font,
+        CurrentsEditorOptions.theme.toLowerCase(), 
+        CurrentsEditorOptions.bind.toLowerCase(),
+        codeEditor.default
+    );
+})
+QUESTION = {
+    "id":"4",
+    "name":"Excel Sheet Column Number",
+    "difficulty":"Easy",
+    "likes":2309,
+    "dislikes":230,
     "description":[
-        "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
-        "You may assume the two numbers do not contain any leading zero, except the number 0 itself."
+        "Given a string that represents the column title as appear in an Excel sheet, return its corresponding column number.",
+        "For example:",
+        "A -> 1<br>B -> 2<br>C -> 3<br>...<br>Z -> 26<br>AA -> 27<br>AB -> 28<br>..."
     ],
     "var":[
-        "l1",
-        "l2"
+        "columnTitle"
     ],
     "example":{
         "ex1":{
-            "input":"l1 = [2,4,3], l2 = [5,6,4]",
-            "output":"[7,0,8]",
-            "explain":"342 + 465 = 807."
+            "input":"columnTitle = 'A'",
+            "output":"1",
+            "explain":null
         },
         "ex2":{
-            "input":"l1 = [0], l2 = [0]",
-            "output":"[0]",
+            "input":"columnTitle = 'AB'",
+            "output":"28",
             "explain":null
         },
         "ex3":{
-            "input":"l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
-            "output":"[8,9,9,9,0,0,0,1]",
+            "input":"columnTitle = 'ZY'",
+            "output":"701",
             "explain":null
         }
     },
     "constraints":[
-        "The number of nodes in each linked list is in the range [1, 100].",
-        "0 <= Node.val <= 9",
-        "It is guaranteed that the list represents a number that does not have leading zeros."
+        "1 <= columnTitle.length <= 7",
+        "columnTitle consists only of uppercase English letters.",
+        "columnTitle is in the range ['A', 'FXSHRXW']."
     ]
 }
+Load_Question_Description(QUESTION);
+codeEditor.default = `class Solution(): #don't change class name\n    def main(self, ${QUESTION.var.join(", ")}): #don't change function name`;
+codeEditor.render(
+    CurrentsEditorOptions.font,
+    CurrentsEditorOptions.theme.toLowerCase(), 
+    CurrentsEditorOptions.bind.toLowerCase(),
+    codeEditor.default
+);

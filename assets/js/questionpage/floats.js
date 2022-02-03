@@ -97,7 +97,7 @@ const Supports = {
         "Vim"
     ]
 }
-var Currents = {
+var CurrentsEditorOptions = {
     "font":14,
     "theme":"eclipse",
     "bind":"Sublime"
@@ -116,30 +116,37 @@ editor_settings_float.load = function(){
         option.innerText = `${fs}px`;
         editor_settings_font_select.appendChild(option);
     })
-    editor_settings_font_select.value = Currents.font;
+    editor_settings_font_select.value = CurrentsEditorOptions.font;
     Supports.theme.forEach(the => {
         let option = document.createElement("option");
         option.value = the.toLowerCase();
         option.innerText = the;
         editor_settings_theme_select.appendChild(option);
     })
-    editor_settings_theme_select.value = Currents.theme.toLowerCase();
+    editor_settings_theme_select.value = CurrentsEditorOptions.theme.toLowerCase();
     Supports.bind.forEach(bd => {
         let option = document.createElement("option");
         option.value = bd.toLowerCase();
         option.innerText = bd;
         editor_settings_bind_select.appendChild(option);
     })
-    editor_settings_bind_select.value = Currents.bind.toLowerCase();
+    editor_settings_bind_select.value = CurrentsEditorOptions.bind.toLowerCase();
+
+    codeEditor.render(
+        CurrentsEditorOptions.font,
+        CurrentsEditorOptions.theme.toLowerCase(), 
+        CurrentsEditorOptions.bind.toLowerCase(),
+        codeEditor.renderedEditor.getValue()
+    );
 }
 editor_settings_float.load();
 
 editor_settings_button.addEventListener("click", function(){
     if(editor_settings_float.classList.contains("show")) return;
     editor_settings_float.classList.add("show");
-    editor_settings_font_select.value = Currents.font;
-    editor_settings_theme_select.value = Currents.theme.toLowerCase();
-    editor_settings_bind_select.value = Currents.bind.toLowerCase();
+    editor_settings_font_select.value = CurrentsEditorOptions.font;
+    editor_settings_theme_select.value = CurrentsEditorOptions.theme.toLowerCase();
+    editor_settings_bind_select.value = CurrentsEditorOptions.bind.toLowerCase();
 })
 
 editor_settings_content_footer_cancel.addEventListener("click", function(){
@@ -150,9 +157,9 @@ editor_settings_content_footer_confirm.addEventListener("click", function(){
     let selected_font = editor_settings_font_select.value;
     let selected_theme = editor_settings_theme_select.value;
     let selected_bind = editor_settings_bind_select.value;
-    Currents.font = selected_font;
-    Currents.theme = selected_theme.charAt(0).toUpperCase() + selected_theme.slice(1);
-    Currents.bind = selected_bind.charAt(0).toUpperCase() + selected_bind.slice(1);
+    CurrentsEditorOptions.font = selected_font;
+    CurrentsEditorOptions.theme = selected_theme.charAt(0).toUpperCase() + selected_theme.slice(1);
+    CurrentsEditorOptions.bind = selected_bind.charAt(0).toUpperCase() + selected_bind.slice(1);
     codeEditor.render(
         selected_font,
         selected_theme,
@@ -201,7 +208,7 @@ run_test_content_footer_confirm.addEventListener("click", function(){
             code = codeEditor.removeComment(code);
             inputDefinition = codeEditor.removeComment(inputDefinition);
             fetch(
-                `http://127.0.0.1:5000/submit/test?id=${problem_id}&inputDefinition=`+inputDefinition + `&code=`+code,
+                `/submit/test?id=${problem_id}&inputDefinition=`+inputDefinition + `&code=`+code,
                 {
                     method:"GET"
                 }

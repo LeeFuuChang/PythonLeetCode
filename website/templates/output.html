@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{problem_id}}</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/questionpage/globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/theme/__import__.css')}}">
+</head>
+<body>
+    <header id="pageheader">
+        <nav id="pageheader-nav" class="df aic">
+            <div id="pageheader-nav-left" class="df aic jcc">
+                <a id="pageheader-nav-left-logo"  class="df aic jcc pageheader-nav-left-logo" href="#">
+                    <img id="pageheader-nav-left-logo-img" src="{{url_for('static', filename='assets/images/logo/logo.png')}}" alt="">
+                </a>
+                <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-problems-text">Problems</span>
+                </a>
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-ranks-text">Ranks</span>
+                </a>
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-submissions-text">Submissions</span>
+                </a>
+            </div>
+            <div id="pageheader-nav-right" class="df aic jcc">
+                <div id="pageheader-nav-right-user" class="df aic jcc pageheader-nav-right-item">
+                    <img id="pageheader-nav-right-user-icon" src="{{url_for('static', filename='assets/images/svgs/person-circle.svg')}}" alt="">
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div id="content" class="df">
+        <header id="content-header">
+            <nav id="content-header-nav" class="df aic">
+                <div id="content-header-nav-left" class="df aic jcc">
+                    <a id="content-header-nav-left-description" class="df aic jcc content-header-nav-left-item active" aria-label="description">
+                        <span id="content-header-nav-left-description-text" class="df aic jcc">
+                            <img class="content-header-nav-left-item-icon" src="{{url_for('static', filename='assets/images/svgs/text-paragraph.svg')}}" alt="">
+                            Description
+                        </span>
+                    </a>
+                    <a id="content-header-nav-left-discuss" class="df aic jcc content-header-nav-left-item" aria-label="discuss">
+                        <span id="content-header-nav-left-discuss-text" class="df aic jcc">
+                            <img class="content-header-nav-left-item-icon" src="{{url_for('static', filename='assets/images/svgs/chat-left-text.svg')}}" alt="">
+                            Discuss
+                        </span>
+                    </a>
+                    <a id="content-header-nav-left-submissions" class="df aic jcc content-header-nav-left-item" aria-label="submissions">
+                        <span id="content-header-nav-left-submissions-text" class="df aic jcc">
+                            <img class="content-header-nav-left-item-icon" src="{{url_for('static', filename='assets/images/svgs/clock.svg')}}" alt="">
+                            Submissions
+                        </span>
+                    </a>
+                </div>
+                <div id="content-header-nav-right" class="df aic jcc">
+                    <a id="content-header-nav-right-reset" class="df aic jcc content-header-nav-right-item">
+                        <span id="content-header-nav-right-reset-icon" class="df aic jcc">
+                            <img class="content-header-nav-right-item-icon" src="{{url_for('static', filename='assets/images/svgs/arrow-clockwise.svg')}}" alt="">
+                        </span>
+                    </a>
+                    <a id="content-header-nav-right-settings" class="df aic jcc content-header-nav-right-item">
+                        <span id="content-header-nav-right-settings-icon" class="df aic jcc">
+                            <img class="content-header-nav-right-item-icon" src="{{url_for('static', filename='assets/images/svgs/gear.svg')}}" alt="">
+                        </span>
+                    </a>
+                </div>
+            </nav>
+        </header>
+        <div id="content-content" class="df aic jcc">
+            <div id="content-content-inner">
+                <div id="content-content-inner-description" class="active content-content-inner-type">
+                    <header id="content-content-inner-description-header">
+                        <h1 id="content-content-inner-description-header-title" class="df aic">
+                            <span id="content-content-inner-description-header-title-id"></span>
+                            . 
+                            <span id="content-content-inner-description-header-title-name"></span>
+                        </h1>
+                        <nav id="content-content-inner-description-header-nav" class="df aic">
+                            <span id="content-content-inner-description-header-nav-difficulty" class="df aic jcc content-content-inner-description-header-nav-item"></span>
+                            <a id="content-content-inner-description-header-nav-like" class="df aic jcc content-content-inner-description-header-nav-item" href="#">
+                                <img src="{{url_for('static', filename='assets/images/svgs/hand-thumbs-up.svg')}}" alt="">
+                            </a>
+                            <a id="content-content-inner-description-header-nav-dislike" class="df aic jcc content-content-inner-description-header-nav-item" href="#">
+                                <img src="{{url_for('static', filename='assets/images/svgs/hand-thumbs-down.svg')}}" alt="">
+                            </a>
+                            <a id="content-content-inner-description-header-nav-favorite" class="df aic jcc content-content-inner-description-header-nav-item" href="#">
+                                <img src="{{url_for('static', filename='assets/images/svgs/heart.svg')}}" alt="">
+                                Keep
+                            </a>
+                            <a id="content-content-inner-description-header-nav-share" class="df aic jcc content-content-inner-description-header-nav-item" href="#">
+                                <img src="{{url_for('static', filename='assets/images/svgs/share.svg')}}" alt="">
+                                Share
+                            </a>
+                        </nav>
+                    </header>
+                    <div id="content-content-inner-description-hr"></div>
+                    <div id="content-content-inner-description-content">
+                        <div id="content-content-inner-description-content-question">
+                        </div>
+                        <div class="content-content-inner-description-content-example">
+                            <h2 class="df aic content-content-inner-description-content-example-title">
+                                Example 1
+                            </h2>
+                            <div class="content-content-inner-description-content-example-frame">
+                            </div>
+                        </div>
+                        <div class="content-content-inner-description-content-example">
+                            <h2 class="df aic content-content-inner-description-content-example-title">
+                                Example 2
+                            </h2>
+                            <div class="content-content-inner-description-content-example-frame">
+                            </div>
+                        </div>
+                        <div class="content-content-inner-description-content-example">
+                            <h2 class="df aic content-content-inner-description-content-example-title">
+                                Example 3
+                            </h2>
+                            <div class="content-content-inner-description-content-example-frame">
+                            </div>
+                        </div>
+                        <div id="content-content-inner-description-content-constraints">
+                            <h2 id="content-content-inner-description-content-constraints-title" class="df aic">
+                                Constraints
+                            </h2>
+                            <ul id="content-content-inner-description-content-constraints-list"></ul>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-content-inner-discuss" class="content-content-inner-type">
+
+                </div>
+                <div id="content-content-inner-submissions" class="content-content-inner-type">
+
+                </div>
+                <footer id="content-content-inner-footer">
+                    <nav id="content-content-inner-footer-nav" class="df aic">
+                        <div id="content-content-inner-footer-nav-left" class="df aic jcc">
+                            <a id="content-content-inner-footer-nav-left-problems" class="df aic jcc content-content-inner-footer-nav-left-item" href="#">
+                                <img id="content-content-inner-footer-nav-left-problems-img" src="{{url_for('static', filename='assets/images/svgs/list-ul.svg')}}" alt="">
+                                Problems
+                            </a>
+                        </div>
+                        <div id="content-content-inner-footer-nav-right" class="df aic jcc">
+                            <a id="content-content-inner-footer-nav-right-random" class="df aic jcc content-content-inner-footer-nav-right-item" href="#">
+                                <img id="content-content-inner-footer-nav-right-random-img" src="{{url_for('static', filename='assets/images/svgs/shuffle.svg')}}" alt="">
+                                Random
+                            </a>
+                            <a id="content-content-inner-footer-nav-right-prev" class="df aic jcc content-content-inner-footer-nav-right-item" href="#">
+                                <img id="content-content-inner-footer-nav-right-prev-img" src="{{url_for('static', filename='assets/images/svgs/caret-left.svg')}}" alt="">
+                                Prev
+                            </a>
+                            <a id="content-content-inner-footer-nav-right-next" class="df aic jcc content-content-inner-footer-nav-right-item" href="#">
+                                <img id="content-content-inner-footer-nav-right-next-img" src="{{url_for('static', filename='assets/images/svgs/caret-right.svg')}}" alt="">
+                                Next
+                            </a>
+                        </div>
+                    </nav>
+                </footer>
+            </div>
+            <div id="content-content-editor">
+                <div id="content-content-editor-inner">
+                    <form id="content-content-editor-inner-code" method="POST" action="http://127.0.0.1:5000">
+                        <input id="questionID" name="question" type="text" value="h081" style="display:none"> <!-- change input value to corresponse questionID-->
+                        <textarea id="content-content-editor-inner-code-input" name="code"></textarea>
+                    </form>
+                </div>
+                <footer id="content-content-editor-footer">
+                    <nav id="content-content-editor-footer-nav" class="df aic">
+                        <div id="content-content-editor-footer-nav-left" class="df aic jcc">
+                        </div>
+                        <div id="content-content-editor-footer-nav-right" class="df aic jcc">
+                            <a id="content-content-editor-footer-nav-right-test" class="df aic jcc content-content-editor-footer-nav-right-item">
+                                <img src="{{url_for('static', filename='assets/images/svgs/caret-right-fill.svg')}}" alt="">
+                                Run Code
+                            </a>
+                            <a id="content-content-editor-footer-nav-right-submit" class="df aic jcc content-content-editor-footer-nav-right-item" href="">
+                                Submit
+                            </a>
+                        </div>
+                    </nav>
+                </footer>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    <div id="editor-reset" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="editor-reset-content">
+                    <h1 id="editor-reset-content-title" class="df aic">
+                        <img id="editor-reset-content-title-icon" src="{{url_for('static', filename='assets/images/svgs/exclamation-circle-fill.svg')}}" alt="">
+                        Restore Default Code
+                    </h1>
+                    <p id="editor-reset-content-description" class="df aic">
+                        Your code will be discarded and reset to the default code!
+                    </p>
+                    <footer id="editor-reset-content-footer" class="df aic">
+                        <a id="editor-reset-content-footer-cancel" class="df aic jcc editor-reset-content-footer-button">Cancel</a>
+                        <a id="editor-reset-content-footer-confirm" class="df aic jcc editor-reset-content-footer-button">Confirm</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="editor-settings" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="editor-settings-content">
+                    <div class="df aic editor-settings-content-item">
+                        <div class="df jcc editor-settings-content-item-info">
+                            <h1 class="editor-settings-content-item-info-title">
+                                Font size
+                            </h1>
+                            <p class="editor-settings-content-item-info-description">
+                                Choose your preferred font size for the code editor.
+                            </p>
+                        </div>
+                        <select id="editor-settings-font-select" class="df aic editor-settings-content-item-select">
+                        </select>
+                    </div>
+                    <div class="df aic editor-settings-content-item">
+                        <div class="df jcc editor-settings-content-item-info">
+                            <h1 class="editor-settings-content-item-info-title">
+                                Theme
+                            </h1>
+                            <p class="editor-settings-content-item-info-description">
+                                Tired of the white background? Try different styles and syntax highlighting.
+                            </p>
+                        </div>
+                        <select id="editor-settings-theme-select" class="df aic editor-settings-content-item-select">
+                        </select>
+                    </div>
+                    <div class="df aic editor-settings-content-item">
+                        <div class="df jcc editor-settings-content-item-info">
+                            <h1 class="editor-settings-content-item-info-title">
+                                Key binding
+                            </h1>
+                            <p class="editor-settings-content-item-info-description">
+                                Want to practice Vim or Emacs? We have these key binding options available for you.
+                            </p>
+                        </div>
+                        <select id="editor-settings-bind-select" class="df aic editor-settings-content-item-select">
+                        </select>
+                    </div>
+                    <footer id="editor-settings-content-footer" class="df aic">
+                        <a id="editor-settings-content-footer-cancel" class="df aic jcc editor-settings-content-footer-button">Cancel</a>
+                        <a id="editor-settings-content-footer-confirm" class="df aic jcc editor-settings-content-footer-button">Confirm</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="run-test" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="run-test-content">
+                    <form id="run-test-content-cases">
+                        <div class="df aic jcc run-test-content-cases-item">
+                            <div class="df jcc run-test-content-cases-item-left">
+                                <h1 class="df aic run-test-content-cases-item-left-title">Case 1</h1>
+                                <div class="run-test-content-cases-item-left-var">
+                                    <textarea class="run-test-content-cases-item-left-var-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                            <div class="df jcc run-test-content-cases-item-right">
+                                <h1 class="run-test-content-cases-item-right-title">Result</h1>
+                                <div class="run-test-content-cases-item-right-output">
+                                    <textarea class="run-test-content-cases-item-right-output-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="df aic jcc run-test-content-cases-item">
+                            <div class="df jcc run-test-content-cases-item-left">
+                                <h1 class="df aic run-test-content-cases-item-left-title">Case 2</h1>
+                                <div class="run-test-content-cases-item-left-var">
+                                    <textarea class="run-test-content-cases-item-left-var-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                            <div class="df jcc run-test-content-cases-item-right">
+                                <h1 class="run-test-content-cases-item-right-title">Result</h1>
+                                <div class="run-test-content-cases-item-right-output">
+                                    <textarea class="run-test-content-cases-item-right-output-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="df aic jcc run-test-content-cases-item">
+                            <div class="df jcc run-test-content-cases-item-left">
+                                <h1 class="df aic run-test-content-cases-item-left-title">Case 3</h1>
+                                <div class="run-test-content-cases-item-left-var">
+                                    <textarea class="run-test-content-cases-item-left-var-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                            <div class="df jcc run-test-content-cases-item-right">
+                                <h1 class="run-test-content-cases-item-right-title">Result</h1>
+                                <div class="run-test-content-cases-item-right-output">
+                                    <textarea class="run-test-content-cases-item-right-output-textarea" name=""></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                    <footer id="run-test-content-footer" class="df aic">
+                        <a id="run-test-content-footer-cancel" class="df aic jcc run-test-content-footer-button">Cancel</a>
+                        <a id="run-test-content-footer-confirm" class="df aic jcc run-test-content-footer-button">Run Test</a>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<style>
+</style>
+<script src="{{url_for('static', filename='assets/js/jquery-3.6.0.min.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/comment/comment.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/selection/active-line.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/sublime.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/hint/show-hint.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/mode/python/python.js')}}"></script> 
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/lint.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/javascript-lint.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldcode.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldgutter.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/brace-fold.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/indent-fold.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/comment-fold.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/closebrackets.js')}}"></script>
+<script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/matchbrackets.js')}}"></script>
+
+<script src="{{url_for('static', filename='assets/js/questionpage/onload.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/questionpage/inner.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/questionpage/editor.js')}}"></script>
+<script src="{{url_for('static', filename='assets/js/questionpage/floats.js')}}"></script>
+</html>

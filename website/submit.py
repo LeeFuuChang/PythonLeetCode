@@ -14,6 +14,11 @@ states = {
     6:("CE", "Compile Error")
 }
 
+def CE_RE_Error_CleanUP(s):
+    while((start:=s.find("<"))>0 and (end:=s.find(">"))>0):
+        s = s[:start] + s[end+1:]
+    return s
+
 @submit.route("/submit", methods=["GET"])
 def submit_submit():
     Args = request.args.to_dict()
@@ -36,7 +41,6 @@ def submit_test():
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
         inputDefinition = inputDefinition.replace(val, key)
-    print(code)
 
     #prevent evil imports
     if "import" in code:
@@ -47,10 +51,18 @@ def submit_test():
 
 
     #run imports and define inputs
+    codeed = {}
     judger = {}
     inputs = {}
     exec(inputDefinition, inputs)
-    exec(f"from website.judger.problem_{problem_id} import *\n{code}", judger)
+    exec(f"from website.judger.problem_{problem_id} import *", judger)
+    try:
+        exec(f"{code}", codeed)
+    except Exception as e:
+        result = {
+            "time":0.0, "memory":0.0, "result":"CE", "output":f"Compile Error: {CE_RE_Error_CleanUP(str(e))}"
+        }
+        return result
     maxTime = float(judger["maxTime"])
     maxMemory = float(judger["maxMemory"])
     inputs = judger["Input_Pre_Processor"](list(inputs.values())[1:])
@@ -62,14 +74,14 @@ def submit_test():
     memoryTracer.start()
     curMem = memoryTracer.get_traced_memory()[0] / 10**3
     try:
-        if "Solution" not in judger.keys(): 
+        if "Solution" not in codeed.keys(): 
             result["result"] = str(states[5][0])
             result["output"] = f"{str(states[5][1])}: 'Solution' is not defined"
         else:
-            output = judger["Solution"]().main(*inputs)
+            output = codeed["Solution"]().main(*inputs)
     except Exception as e:
         result["result"] = str(states[5][0])
-        result["output"] = str(e)
+        result["output"] = f"Compile Error: {CE_RE_Error_CleanUP(str(e))}"
     endT = Timer.time()
     endMem = memoryTracer.get_traced_memory()[0] / 10**3
     memoryTracer.stop()
@@ -88,7 +100,6 @@ def submit_test():
             correct = not judger["Output_Classifier"](inputs, output)
             result["result"] = str(states[correct+1][0])
             result["output"] = str(states[correct+1][1])
-    print("\n\n\n\n", result)
     return result
 
 

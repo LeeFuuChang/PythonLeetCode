@@ -15,4 +15,4 @@ def Output_Pre_Processor(output):
 
 def Output_Classifier(inputs, output):
     answer = Output_Pre_Processor(Problem_Solver(*inputs))
-    return answer == Output_Pre_Processor(output)
+    return set(answer) == set(Output_Pre_Processor(output))

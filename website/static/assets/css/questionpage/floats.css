@@ -1,0 +1,267 @@
+.floatfixed {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.floatfixed.show {
+    display: unset;
+    z-index: 2000;
+}
+.floatfixed .floatfixed-dim {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: #1919194d;
+    z-index: 3000;
+}
+.floatfixed .floatfixed-dim .floatfixed-dim-content {
+    position: relative;
+    width: min-content;
+    height: min-content;
+    z-index: 4000;
+}
+
+
+
+
+
+#editor-reset #editor-reset-content {
+    padding: 10px;
+    width: 520px;
+    height: min-content;
+    font-family: 'Roboto', sans-serif;
+    background: #FFFFFF;
+}
+#editor-reset #editor-reset-content-title {
+    padding: 20px;
+    width: 100%;
+    height: 64px;
+    color: #02203C;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+#editor-reset #editor-reset-content-title #editor-reset-content-title-icon {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+#editor-reset #editor-reset-content-description {
+    padding: 0 20px 20px 20px;
+    width: 100%;
+    height: 41px;
+    color: #445D6E;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#editor-reset #editor-reset-content-footer {
+    justify-content: flex-end;
+    padding: 0 20px 10px 20px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#editor-reset #editor-reset-content-footer .editor-reset-content-footer-button {
+    margin-left: 20px;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+    transition: 0.2s;
+}
+#editor-reset #editor-reset-content-footer #editor-reset-content-footer-cancel {
+    border: 1px solid #D2D2D2;
+    color: #4D4D4D;
+    background: #FFFFFF;
+}
+#editor-reset #editor-reset-content-footer #editor-reset-content-footer-cancel:hover {
+    border: 1px solid #404040;
+    color: #191919;
+    background: #ECECEC;
+}
+#editor-reset #editor-reset-content-footer #editor-reset-content-footer-confirm {
+    color: #FFFFFF;
+    background: #455A64;
+}
+#editor-reset #editor-reset-content-footer #editor-reset-content-footer-confirm:hover {
+    background: #63737C;
+}
+
+
+
+
+
+#editor-settings #editor-settings-content {
+    padding: 20px;
+    width: 600px;
+    height: min-content;
+    background: #FFFFFF;
+}
+#editor-settings #editor-settings-content .editor-settings-content-item {
+    justify-content: space-between;
+    padding: 20px 0;
+    width: 100%;
+    height: 100px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#editor-settings #editor-settings-content .editor-settings-content-item .editor-settings-content-item-info {
+    flex-direction: column;
+    margin-right: 40px;
+    width: 340px;
+    height: 100%;
+}
+#editor-settings #editor-settings-content .editor-settings-content-item .editor-settings-content-item-info .editor-settings-content-item-info-title {
+    height: 21px;
+    font-size: 14px;
+    color: #212121;
+}
+#editor-settings #editor-settings-content .editor-settings-content-item .editor-settings-content-item-info .editor-settings-content-item-info-description {
+    height: 21px;
+    font-size: 14px;
+    color: #9E9E9E;
+}
+#editor-settings #editor-settings-content .editor-settings-content-item .editor-settings-content-item-select {
+    padding: 0 10px;
+    width: 180px;
+    height: 40px;
+    font-size: 14px;
+    color: #546E7A;
+}
+#editor-settings #editor-settings-content-footer {
+    justify-content: flex-end;
+    padding: 10px 20px;
+    width: 100%;
+    height: min-content;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#editor-settings #editor-settings-content-footer .editor-settings-content-footer-button {
+    margin-left: 20px;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+    transition: 0.2s;
+}
+#editor-settings #editor-settings-content-footer #editor-settings-content-footer-cancel {
+    border: 1px solid #D2D2D2;
+    color: #4D4D4D;
+    background: #FFFFFF;
+}
+#editor-settings #editor-settings-content-footer #editor-settings-content-footer-cancel:hover {
+    border: 1px solid #404040;
+    color: #191919;
+    background: #ECECEC;
+}
+#editor-settings #editor-settings-content-footer #editor-settings-content-footer-confirm {
+    color: #FFFFFF;
+    background: #455A64;
+}
+#editor-settings #editor-settings-content-footer #editor-settings-content-footer-confirm:hover {
+    background: #63737C;
+}
+
+
+
+
+
+/* #run-test */
+#run-test #run-test-content {
+    padding: 20px;
+    width: 600px;
+    height: min-content;
+    background: #FFFFFF;
+}
+#run-test #run-test-content #run-test-content-cases {
+    width: 100%;
+    height: min-content;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item {
+    padding: 10px 0;
+    width: 100%;
+    height: 120px;
+    font-family: 'Roboto', sans-serif;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left {
+    padding: 0 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    height: 100%;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-title {
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    color: #4D4D4D;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-var {
+    padding: 5px 0;
+    width: 100%;
+    height: 100%;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-var .run-test-content-cases-item-left-var-textarea {
+    padding: 5px 10px;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right {
+    padding: 0 10px;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 50%;
+    height: 100%;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-title {
+    width: 100%;
+    height: 20px;
+    font-size: 16px;
+    color: #4D4D4D;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-output {
+    padding: 5px 0;
+    width: 100%;
+    height: 100%;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-output .run-test-content-cases-item-right-output-textarea {
+    padding: 5px 10px;
+    width: 100%;
+    height: 100%;
+    background: #F5F5F5;
+}
+#run-test #run-test-content-footer {
+    justify-content: flex-end;
+    padding: 10px 20px;
+    width: 100%;
+    height: min-content;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#run-test #run-test-content-footer .run-test-content-footer-button {
+    margin-left: 20px;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+    transition: 0.2s;
+}
+#run-test #run-test-content-footer #run-test-content-footer-cancel {
+    border: 1px solid #D2D2D2;
+    color: #4D4D4D;
+    background: #FFFFFF;
+}
+#run-test #run-test-content-footer #run-test-content-footer-cancel:hover {
+    border: 1px solid #404040;
+    color: #191919;
+    background: #ECECEC;
+}
+#run-test #run-test-content-footer #run-test-content-footer-confirm {
+    color: #FFFFFF;
+    background: #455A64;
+}
+#run-test #run-test-content-footer #run-test-content-footer-confirm:hover {
+    background: #63737C;
+}
