@@ -1,19 +1,11 @@
-p = """
-class a():
-    def __init__(self, a, b):
-        self.a = a
-        self.b = b
-class z():
-    def add(self, c, d):
-        self.k = a(c, d)
-        return self.k.a + self.k.b
-"""
+from typing import List
 
 
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
 
-a = 10
-def g():
-    k = {}
-    exec(p, k)
-    print(k["z"]().add(1, 50))
-g()
+a = ListNode(4, ListNode(3))
+b = ListNode(4, ListNode(3))
+print([4, 3] == [4, 3])

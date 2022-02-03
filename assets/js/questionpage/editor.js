@@ -27,3 +27,20 @@ codeEditor.render = function(_font, _theme, _bind, _text){
     })
 }
 codeEditor.render(14, "eclipse", "sublime", codeEditor.default);
+
+codeEditor.StringReplacement = {
+    "\n":";1;",
+    "+":";2;"
+}
+
+codeEditor.removeComment = function(s){
+    let last = 0;
+    while(true){
+        let cur1 = s.indexOf("#");
+        let cur2 = s.indexOf(";1;", last);
+        if(cur1<0)break;
+        s = s.substring(0, cur1) + s.slice(cur2);
+        last = cur2;
+    }
+    return s;
+}

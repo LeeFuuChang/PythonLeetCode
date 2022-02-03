@@ -169,6 +169,8 @@
     height: min-content;
     font-size: 14px;
     line-height: 24px;
+    word-spacing: 1px;
+    font-family: 'Roboto Slab', serif;
 }
 #content #content-content #content-content-inner #content-content-inner-description #content-content-inner-description-content .content-content-inner-description-content-example {
     padding-bottom: 26px;

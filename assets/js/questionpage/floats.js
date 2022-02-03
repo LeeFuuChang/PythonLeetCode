@@ -189,5 +189,30 @@ run_test_content_footer_cancel.addEventListener("click", function(){
     run_test_float.classList.remove("show");
 })
 run_test_content_footer_confirm.addEventListener("click", function(){
-    run_test_float.classList.remove("show");
+    let problem_id = QUESTION.id;
+    let code = codeEditor.renderedEditor.getValue().toString();
+    run_test_content_cases.querySelectorAll(".run-test-content-cases-item").forEach(
+        case_item => {
+            let inputDefinition = case_item.querySelector(".run-test-content-cases-item-left-var-textarea").value.toString();
+            Object.keys(codeEditor.StringReplacement).forEach(key => {
+                code = code.replaceAll(key, codeEditor.StringReplacement[key]);
+                inputDefinition = inputDefinition.replaceAll(key, codeEditor.StringReplacement[key]);
+            })
+            code = codeEditor.removeComment(code);
+            inputDefinition = codeEditor.removeComment(inputDefinition);
+            fetch(
+                `http://127.0.0.1:5000/submit/test?id=${problem_id}&inputDefinition=`+inputDefinition + `&code=`+code,
+                {
+                    method:"GET"
+                }
+            ).then(res => {
+                return res.json()
+            }).then(res => {
+                let result = res.result;
+                let output = res.output;
+                case_item.querySelector(".run-test-content-cases-item-right-title").innerText = result;
+                case_item.querySelector(".run-test-content-cases-item-right-output-textarea").value = output;
+            })
+        }
+    )
 })

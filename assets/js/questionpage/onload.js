@@ -1,39 +1,37 @@
 var QUESTION = {
-    "id":"1",
-    "name":"Two Sum",
-    "difficulty":"Easy",
-    "likes":28753,
-    "dislikes":923,
+    "id":"2",
+    "name":"Add Two Numbers",
+    "difficulty":"Medium",
+    "likes":16132,
+    "dislikes":3451,
     "description":[
-        "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.<br>",
-        "You may assume that each input would have exactly one solution, and you may not use the same element twice.<br>",
-        "You can return the answer in any order.<br>"
+        "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
+        "You may assume the two numbers do not contain any leading zero, except the number 0 itself."
     ],
     "var":[
-        "nums",
-        "target"
+        "l1",
+        "l2"
     ],
     "example":{
         "ex1":{
-            "input":"nums = [2,7,11,15], target = 9",
-            "output":"[0,1]",
-            "explain":"Because nums[0] + nums[1] == 9, we return [0, 1]."
+            "input":"l1 = [2,4,3], l2 = [5,6,4]",
+            "output":"[7,0,8]",
+            "explain":"342 + 465 = 807."
         },
         "ex2":{
-            "input":"nums = [3,2,4], target = 6",
-            "output":"[1,2]",
+            "input":"l1 = [0], l2 = [0]",
+            "output":"[0]",
             "explain":null
         },
         "ex3":{
-            "input":"nums = [3,3], target = 6",
-            "output":"[0,1]",
+            "input":"l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
+            "output":"[8,9,9,9,0,0,0,1]",
             "explain":null
         }
     },
     "constraints":[
-        "2 <= nums.length <= 10<sup>4</sup>",
-        "-10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>",
-        "-10<sup>9</sup> <= target <= 10<sup>9</sup>",
-        "Only one valid answer exists."
+        "The number of nodes in each linked list is in the range [1, 100].",
+        "0 <= Node.val <= 9",
+        "It is guaranteed that the list represents a number that does not have leading zeros."
     ]
 }
