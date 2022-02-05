@@ -2,6 +2,32 @@ const inner = document.querySelector("#content-content-inner");
 
 
 
+
+
+//Update Scroll hint
+Update_Scroll_hint = function(type){
+    type.style.top = '0px';
+    let current = 0;
+    let currentH = 0;
+    for(let i=0; i<type.children.length; i++){
+        currentH += type.children[i].offsetHeight;
+    }
+
+    let top = Math.min(Math.max(Math.min(current, 0), window.innerHeight-160-currentH), 0);
+
+    if(top != 0){
+        document.documentElement.style.setProperty("--scroll-up-hint-display", "unset");
+    }else{
+        document.documentElement.style.setProperty("--scroll-up-hint-display", "none");
+    }
+    if(top != window.innerHeight-160-currentH && window.innerHeight-160-currentH<0){
+        document.documentElement.style.setProperty("--scroll-down-hint-display", "unset");
+    }else{
+        document.documentElement.style.setProperty("--scroll-down-hint-display", "none");
+    }
+}
+
+
 // inner header nav (Problem description / Problem discuss / Problem submissions)
 const inner_nav = document.querySelector("#content-header-nav-left");
 
@@ -15,6 +41,8 @@ inner_nav.querySelectorAll(".content-header-nav-left-item").forEach(nav => {
             active.classList.remove("active");
         })
         inner.querySelector(`#content-content-inner-${nav.ariaLabel}`).classList.add("active");
+
+        Update_Scroll_hint(inner.querySelector(`#content-content-inner-${nav.ariaLabel}`));
     }
 })
 
@@ -22,7 +50,41 @@ inner_nav.querySelectorAll(".content-header-nav-left-item").forEach(nav => {
 
 
 
-// Question description
+// inner Conetent Scroll
+const inner_type = inner.querySelectorAll(".content-content-inner-type");
+inner_type.forEach(type => {
+    type.addEventListener("wheel", function(e){
+        let currentTop = type.style.top.substring(0, type.style.top.length-2);
+        let current = undefined;
+        if(currentTop==""){current=0;}else{current=parseInt(currentTop)}
+        current = (e.deltaY*-0.25 + current)
+        let currentH = 0;
+        for(let i=0; i<type.children.length; i++){
+            currentH += type.children[i].offsetHeight;
+        }
+
+        let top = Math.min(Math.max(Math.min(current, 0), window.innerHeight-160-currentH), 0);
+
+        if(top != 0){
+            document.documentElement.style.setProperty("--scroll-up-hint-display", "unset");
+        }else{
+            document.documentElement.style.setProperty("--scroll-up-hint-display", "none");
+        }
+        if(top != window.innerHeight-160-currentH && window.innerHeight-160-currentH<0){
+            document.documentElement.style.setProperty("--scroll-down-hint-display", "unset");
+        }else{
+            document.documentElement.style.setProperty("--scroll-down-hint-display", "none");
+        }
+
+        type.style.top = Math.min(Math.max(Math.min(current, 0), window.innerHeight-160-currentH), 0) + "px";
+    })
+})
+
+
+
+
+
+// inner Question description
 function Load_Question_Description(QUESTION){
     const content_ontent_inner_description = document.querySelector("#content-content-inner-description");
     content_ontent_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
@@ -92,29 +154,17 @@ function Load_Question_Description(QUESTION){
             `
         )
     })
+
+    Update_Scroll_hint(inner.querySelector("#content-content-inner-description"));
 }
 
 
 
-//Question description scroll
-const inner_type = inner.querySelectorAll(".content-content-inner-type");
-inner_type.forEach(type => {
-    type.addEventListener("wheel", function(e){
-        let currentTop = type.style.top.substring(0, type.style.top.length-2);
-        let current = undefined;
-        if(currentTop==""){current=0;}else{current=parseInt(currentTop)}
-        current = (e.deltaY*-0.25 + current)
-
-        let currentH = 0;
-        for(let i=0; i<type.children.length; i++){
-            currentH += type.children[i].offsetHeight;
-        }
-        type.style.top = Math.min(Math.max(Math.min(current, 0), window.innerHeight-160-currentH), 0) + "px";
-    })
-})
 
 
 
 
 
-// Question footer nav (Go Problems page / Random Problem / Prev Problem / Next Problem)
+
+
+// inner footer nav (Go Problems page / Random Problem / Prev Problem / Next Problem)

@@ -5,10 +5,18 @@
 @import url("footer.css");
 @import url("floats.css");
 
+:root {
+    --case-passed-green: #009688;
+    --case-failed-red: #c62928;
+    --case-waiting-black: #263238;
+}
+
 * {
     padding: 0;
     margin: 0;
     box-sizing: border-box;
+    word-spacing: 1px;
+    letter-spacing: 0.5px;
 }
 
 .df {
@@ -37,4 +45,19 @@ a {
     cursor: pointer;
     text-decoration: none;
     color: #000000;
+}
+
+table, th, td {
+    color: #424242;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #C4C4C4;
+    border-collapse: collapse;
+}
+th {
+    color: #212121;
+
+}
+td {
+    color: #424242;
 }

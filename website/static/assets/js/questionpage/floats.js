@@ -28,6 +28,7 @@ const Supports = {
         "3024-night",
         "abbott",
         "abcdef",
+        "ambiance-mobile",
         "ambiance",
         "ayu-dark",
         "ayu-mirage",
@@ -190,6 +191,11 @@ run_test_button.addEventListener("click", function(){
     run_test_content_cases.querySelectorAll(".run-test-content-cases-item-right-output-textarea").forEach(tt => {
         tt.value = "";
     })
+    
+    run_test_content_cases.querySelectorAll(".run-test-content-cases-item-right").forEach(resultArea => {
+        if(resultArea.classList.contains("run-test-content-case-passed")) resultArea.classList.remove("run-test-content-case-passed");
+        if(resultArea.classList.contains("run-test-content-case-failed")) resultArea.classList.remove("run-test-content-case-failed");
+    })
 })
 run_test_content_footer_cancel.addEventListener("click", function(){
     run_test_float.classList.remove("show");
@@ -216,8 +222,16 @@ run_test_content_footer_confirm.addEventListener("click", function(){
             }).then(res => {
                 let result = res.result;
                 let output = res.output;
-                case_item.querySelector(".run-test-content-cases-item-right-title").innerText = result;
-                case_item.querySelector(".run-test-content-cases-item-right-output-textarea").value = output;
+                let resultArea = case_item.querySelector(".run-test-content-cases-item-right");
+                if(resultArea.classList.contains("run-test-content-case-passed")) resultArea.classList.remove("run-test-content-case-passed");
+                if(resultArea.classList.contains("run-test-content-case-failed")) resultArea.classList.remove("run-test-content-case-failed");
+                if(result=="AC"){
+                    resultArea.classList.add("run-test-content-case-passed");
+                }else{
+                    resultArea.classList.add("run-test-content-case-failed");
+                }
+                resultArea.querySelector(".run-test-content-cases-item-right-title").innerText = result;
+                resultArea.querySelector(".run-test-content-cases-item-right-output-textarea").value = output;
             })
         }
     )

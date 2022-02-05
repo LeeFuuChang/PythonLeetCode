@@ -184,6 +184,7 @@
     width: 100%;
     height: 120px;
     font-family: 'Roboto', sans-serif;
+    color: #4D4D4D;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left {
     padding: 0 10px;
@@ -191,23 +192,26 @@
     align-items: flex-start;
     width: 50%;
     height: 100%;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-title {
     width: 100%;
     height: 20px;
     font-size: 16px;
-    color: #4D4D4D;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-var {
     padding: 5px 0;
     width: 100%;
     height: 100%;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-left .run-test-content-cases-item-left-var .run-test-content-cases-item-left-var-textarea {
     padding: 5px 10px;
     width: 100%;
     height: 100%;
     background: #F5F5F5;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right {
     padding: 0 10px;
@@ -215,22 +219,31 @@
     align-items: flex-start;
     width: 50%;
     height: 100%;
+    color: inherit;
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-case-passed.run-test-content-cases-item-right {
+    color: var(--case-passed-green);
+}
+#run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-case-failed.run-test-content-cases-item-right {
+    color: var(--case-failed-red);
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-title {
     width: 100%;
     height: 20px;
     font-size: 16px;
-    color: #4D4D4D;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-output {
     padding: 5px 0;
     width: 100%;
     height: 100%;
+    color: inherit;
 }
 #run-test #run-test-content #run-test-content-cases .run-test-content-cases-item .run-test-content-cases-item-right .run-test-content-cases-item-right-output .run-test-content-cases-item-right-output-textarea {
     padding: 5px 10px;
     width: 100%;
     height: 100%;
+    color: inherit;
     background: #F5F5F5;
 }
 #run-test #run-test-content-footer {

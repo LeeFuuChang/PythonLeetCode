@@ -1,0 +1,188 @@
+{
+    "template":{
+        "id":"1",
+        "name":"Two Sum",
+        "difficulty":"Easy",
+        "likes":28753,
+        "dislikes":923,
+        "description":[
+            "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+            "You may assume that each input would have exactly one solution, and you may not use the same element twice.",
+            "You can return the answer in any order."
+        ],
+        "var":[
+            "nums",
+            "target"
+        ],
+        "example":{
+            "ex1":{
+                "input":"nums = [2,7,11,15], target = 9",
+                "output":"[0,1]",
+                "explain":"Because nums[0] + nums[1] == 9, we return [0, 1]."
+            },
+            "ex2":{
+                "input":"nums = [3,2,4], target = 6",
+                "output":"[1,2]",
+                "explain":null
+            },
+            "ex3":{
+                "input":"nums = [3,3], target = 6",
+                "output":"[0,1]",
+                "explain":null
+            }
+        },
+        "constraints":[
+            "2 <= nums.length <= 10<sup>4</sup>",
+            "-10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>",
+            "-10<sup>9</sup> <= target <= 10<sup>9</sup>",
+            "Only one valid answer exists."
+        ]
+    },
+    "1":{
+        "id":"1",
+        "name":"Two Sum",
+        "difficulty":"Easy",
+        "likes":28753,
+        "dislikes":923,
+        "description":[
+            "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
+            "You may assume that each input would have exactly one solution, and you may not use the same element twice.",
+            "You can return the answer in any order."
+        ],
+        "var":[
+            "nums",
+            "target"
+        ],
+        "example":{
+            "ex1":{
+                "input":"nums = [2,7,11,15], target = 9",
+                "output":"[0,1]",
+                "explain":"Because nums[0] + nums[1] == 9, we return [0, 1]."
+            },
+            "ex2":{
+                "input":"nums = [3,2,4], target = 6",
+                "output":"[1,2]",
+                "explain":null
+            },
+            "ex3":{
+                "input":"nums = [3,3], target = 6",
+                "output":"[0,1]",
+                "explain":null
+            }
+        },
+        "constraints":[
+            "2 <= nums.length <= 10<sup>4</sup>",
+            "-10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>",
+            "-10<sup>9</sup> <= target <= 10<sup>9</sup>",
+            "Only one valid answer exists."
+        ]
+    },
+    "2":{
+        "id":"2",
+        "name":"Add Two Numbers",
+        "difficulty":"Medium",
+        "likes":16132,
+        "dislikes":3451,
+        "description":[
+            "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
+            "You may assume the two numbers do not contain any leading zero, except the number 0 itself."
+        ],
+        "var":[
+            "l1",
+            "l2"
+        ],
+        "example":{
+            "ex1":{
+                "input":"l1 = [2,4,3], l2 = [5,6,4]",
+                "output":"[7,0,8]",
+                "explain":"342 + 465 = 807."
+            },
+            "ex2":{
+                "input":"l1 = [0], l2 = [0]",
+                "output":"[0]",
+                "explain":null
+            },
+            "ex3":{
+                "input":"l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
+                "output":"[8,9,9,9,0,0,0,1]",
+                "explain":null
+            }
+        },
+        "constraints":[
+            "The number of nodes in each linked list is in the range [1, 100].",
+            "0 <= Node.val <= 9",
+            "It is guaranteed that the list represents a number that does not have leading zeros."
+        ]
+    },
+    "3":{
+        "id":"3",
+        "name":"Reverse Integer",
+        "difficulty":"Medium",
+        "likes":6492,
+        "dislikes":9220,
+        "description":[
+            "Given a signed 32-bit integer x, return x with its digits reversed. If reversing x causes the value to go outside the signed 32-bit integer range [-231, 231 - 1], then return 0."
+        ],
+        "var":[
+            "x"
+        ],
+        "example":{
+            "ex1":{
+                "input":"x = 123",
+                "output":"321",
+                "explain":null
+            },
+            "ex2":{
+                "input":"x = -123",
+                "output":"-321",
+                "explain":null
+            },
+            "ex3":{
+                "input":"x = 120",
+                "output":"21",
+                "explain":null
+            }
+        },
+        "constraints":[
+            "-2<sup>31</sup> <= x <= 2<sup>31</sup> - 1",
+            "Assume the environment does not allow you to store 64-bit integers (signed or unsigned)."
+        ]
+    },
+    "4":{
+        "id":"4",
+        "name":"Excel Sheet Column Number",
+        "difficulty":"Easy",
+        "likes":2309,
+        "dislikes":230,
+        "description":[
+            "Given a string that represents the column title as appear in an Excel sheet, return its corresponding column number.",
+            "For example:",
+            "A -> 1<br>B -> 2<br>C -> 3<br>...<br>Z -> 26<br>AA -> 27<br>AB -> 28<br>..."
+        ],
+        "var":[
+            "columnTitle"
+        ],
+        "example":{
+            "ex1":{
+                "input":"columnTitle = 'A'",
+                "output":"1",
+                "explain":null
+            },
+            "ex2":{
+                "input":"columnTitle = 'AB'",
+                "output":"28",
+                "explain":null
+            },
+            "ex3":{
+                "input":"columnTitle = 'ZY'",
+                "output":"701",
+                "explain":null
+            }
+        },
+        "constraints":[
+            "1 <= columnTitle.length <= 7",
+            "columnTitle consists only of uppercase English letters.",
+            "columnTitle is in the range ['A', 'FXSHRXW']."
+        ]
+    }
+}
