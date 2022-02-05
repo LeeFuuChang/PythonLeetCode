@@ -50,6 +50,7 @@
     height: 43px;
 }
 #pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-icon {
+    cursor: pointer;
     margin-right: 25px;
     height: 50%;
 }

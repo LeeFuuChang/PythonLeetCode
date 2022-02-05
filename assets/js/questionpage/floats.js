@@ -1,3 +1,9 @@
+// float
+const all_floats = document.querySelectorAll(".floatfixed");
+
+
+
+
 // editor-reset
 const editor_reset_button = document.querySelector("#content-header-nav-right-reset");
 const editor_reset_float = document.querySelector("#editor-reset");
@@ -235,4 +241,98 @@ run_test_content_footer_confirm.addEventListener("click", function(){
             })
         }
     )
+})
+
+
+
+
+
+// login
+const login_float = document.querySelector("#login-float");
+const login_float_close = login_float.querySelector("#login-float-content-header-close");
+const login_float_username = login_float.querySelector("#login-float-content-username");
+const login_float_password = login_float.querySelector("#login-float-content-password");
+const login_float_submit = login_float.querySelector("#login-float-content-submit");
+const login_float_signup = login_float.querySelector("#login-float-content-noaccount-signup");
+// signup
+const signup_float = document.querySelector("#signup-float");
+const signup_float_close = signup_float.querySelector("#signup-float-content-header-close");
+const signup_float_email = signup_float.querySelector("#signup-float-content-email");
+const signup_float_username = signup_float.querySelector("#signup-float-content-username");
+const signup_float_password = signup_float.querySelector("#signup-float-content-password");
+const signup_float_confirm = signup_float.querySelector("#signup-float-content-confirm");
+const signup_float_submit = signup_float.querySelector("#signup-float-content-submit");
+const signup_float_login = signup_float.querySelector("#signup-float-content-noaccount-login");
+// listeners
+document.querySelector("#pageheader-nav-right-user-icon").addEventListener("click", function(){
+    login_float.classList.add("show");
+})
+
+login_float_close.addEventListener("click", function(){
+    if(login_float.classList.contains("show")){
+        login_float.classList.remove("show");
+    }
+})
+login_float_submit.addEventListener("click", function(){
+    let username = login_float_username.value;
+    let password = login_float_password.value;
+    fetch(
+        `/account/login?username=${username}&password=${password}`, {
+            method:"GET"
+        }
+    ).then(res => {
+        return res.json()
+    }).then(result => {
+        console.log(result);
+        if(result["state"]){
+            all_floats.forEach(float => {
+                if(float.classList.contains("show")){
+                    float.classList.remove("show");
+                }
+            })
+        }else{
+            alert("Invalid E-mail or Username or Password");
+        }
+    })
+})
+login_float_signup.addEventListener("click", function(){
+    all_floats.forEach(float => {
+        if(float.classList.contains("show")){
+            float.classList.remove("show");
+        }
+    })
+    signup_float.classList.add("show");
+})
+
+signup_float_close.addEventListener("click", function(){
+    if(signup_float.classList.contains("show")){
+        signup_float.classList.remove("show");
+    }
+})
+signup_float_submit.addEventListener("click", function(){
+    let email = signup_float_email.value;
+    let username = signup_float_username.value;
+    let password = signup_float_password.value;
+    let confirm = signup_float_confirm.value;
+    if(password == confirm){
+        fetch(
+            `/account/signup?email=${email}&username=${username}&password=${password}`, {
+                method:"GET"
+            }
+        ).then(res => {
+            return res.json()
+        }).then(result => {
+            console.log(result);
+        })
+    }else{
+
+    }
+})
+signup_float_login.addEventListener("click", function(){
+    all_floats.forEach(float => {
+        if(float.classList.contains("show")){
+            float.classList.remove("show");
+        }
+    })
+    login_float.classList.add("show");
 })

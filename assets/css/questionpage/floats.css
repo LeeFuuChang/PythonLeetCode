@@ -248,7 +248,7 @@
     color: inherit;
     background: #F5F5F5;
 }
-#run-test #run-test-content-footer {
+#run-test #run-test-content #run-test-content-footer {
     justify-content: flex-end;
     padding: 10px 20px;
     width: 100%;
@@ -256,28 +256,28 @@
     font-size: 14px;
     font-family: 'Roboto', sans-serif;
 }
-#run-test #run-test-content-footer .run-test-content-footer-button {
+#run-test #run-test-content #run-test-content-footer .run-test-content-footer-button {
     margin-left: 20px;
     border-radius: 4px;
     width: 76px;
     height: 40px;
     transition: 0.2s;
 }
-#run-test #run-test-content-footer #run-test-content-footer-cancel {
+#run-test #run-test-content #run-test-content-footer #run-test-content-footer-cancel {
     border: 1px solid #D2D2D2;
     color: #4D4D4D;
     background: #FFFFFF;
 }
-#run-test #run-test-content-footer #run-test-content-footer-cancel:hover {
+#run-test #run-test-content #run-test-content-footer #run-test-content-footer-cancel:hover {
     border: 1px solid #404040;
     color: #191919;
     background: #ECECEC;
 }
-#run-test #run-test-content-footer #run-test-content-footer-confirm {
+#run-test #run-test-content #run-test-content-footer #run-test-content-footer-confirm {
     color: #FFFFFF;
     background: #455A64;
 }
-#run-test #run-test-content-footer #run-test-content-footer-confirm:hover {
+#run-test #run-test-content #run-test-content-footer #run-test-content-footer-confirm:hover {
     background: #63737C;
 }
 
@@ -285,4 +285,149 @@
 
 
 
-/* login */
+/* login float */
+#login-float #login-float-content {
+    border-radius: 4px;
+    position: relative;
+    flex-direction: column;
+    padding: 0 30px;
+    width: 400px;
+    height: 480px;
+    background: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+#login-float #login-float-content #login-float-content-header {
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+}
+#login-float #login-float-content #login-float-content-header #login-float-content-header-close {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
+#login-float #login-float-content #login-float-content-logo {
+    margin-bottom: 30px;
+    padding: 0 90px;
+    width: 100%;
+    height: min-content;
+}
+#login-float #login-float-content #login-float-content-logo #login-float-content-logo-img {
+    width: 100%;
+}
+#login-float #login-float-content #login-float-content-username {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 340px;
+    height: 40px;
+}
+#login-float #login-float-content #login-float-content-password {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 340px;
+    height: 40px;
+}
+#login-float #login-float-content #login-float-content-submit {
+    border-radius: 4px;
+    padding: 5px 10px;
+    width: 340px;
+    height: 40px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background: #37474f;
+}
+#login-float #login-float-content #login-float-content-submit:hover {
+    background: #546e7a;
+}
+#login-float #login-float-content #login-float-content-noaccount {
+    align-items: flex-end;
+    justify-content: space-between;
+    width: 340px;
+    height: 40px;
+    font-size: 14px;
+}
+#login-float #login-float-content #login-float-content-noaccount #login-float-content-noaccount-forget {
+    width: max-content;
+    height: min-content;
+    color: #546e7a;
+}
+#login-float #login-float-content #login-float-content-noaccount #login-float-content-noaccount-signup {
+    width: max-content;
+    height: min-content;
+    color: #546e7a;
+}
+
+
+
+
+
+/* signup float */
+#signup-float #signup-float-content {
+    border-radius: 4px;
+    position: relative;
+    flex-direction: column;
+    padding: 0 30px;
+    width: 400px;
+    height: 600px;
+    background: #FFFFFF;
+    font-family: 'Roboto', sans-serif;
+}
+#signup-float #signup-float-content #signup-float-content-header {
+    justify-content: flex-end;
+    margin-bottom: 20px;
+    width: 100%;
+    height: 40px;
+}
+#signup-float #signup-float-content #signup-float-content-header #signup-float-content-header-close {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    right: 0;
+    padding: 5px;
+    width: 40px;
+    height: 40px;
+}
+#signup-float #signup-float-content #signup-float-content-logo {
+    margin-bottom: 30px;
+    padding: 0 90px;
+    width: 100%;
+    height: min-content;
+}
+#signup-float #signup-float-content #signup-float-content-logo #signup-float-content-logo-img {
+    width: 100%;
+}
+#signup-float #signup-float-content #signup-float-content-email,#signup-float-content-username,#signup-float-content-password,#signup-float-content-confirm {
+    margin-bottom: 20px;
+    padding: 5px 10px;
+    width: 340px;
+    height: 40px;
+}
+#signup-float #signup-float-content #signup-float-content-submit {
+    border-radius: 4px;
+    padding: 5px 10px;
+    width: 340px;
+    height: 40px;
+    font-size: 14px;
+    color: #FFFFFF;
+    background: #37474f;
+}
+#signup-float #signup-float-content #signup-float-content-submit:hover {
+    background: #546e7a;
+}
+#signup-float #signup-float-content #signup-float-content-noaccount {
+    align-items: flex-end;
+    justify-content: flex-end;
+    width: 340px;
+    height: 40px;
+    font-size: 14px;
+}
+#signup-float #signup-float-content #signup-float-content-noaccount #signup-float-content-noaccount-login {
+    width: max-content;
+    height: min-content;
+    color: #546e7a;
+}
