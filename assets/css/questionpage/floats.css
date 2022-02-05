@@ -28,6 +28,7 @@
 
 
 
+/* editor-reset */
 #editor-reset #editor-reset-content {
     padding: 10px;
     width: 520px;
@@ -94,6 +95,7 @@
 
 
 
+/* editor-settings */
 #editor-settings #editor-settings-content {
     padding: 20px;
     width: 600px;
@@ -168,7 +170,7 @@
 
 
 
-/* #run-test */
+/* run-test */
 #run-test #run-test-content {
     padding: 20px;
     width: 600px;
@@ -278,3 +280,9 @@
 #run-test #run-test-content-footer #run-test-content-footer-confirm:hover {
     background: #63737C;
 }
+
+
+
+
+
+/* login */
