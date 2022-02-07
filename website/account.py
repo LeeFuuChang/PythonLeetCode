@@ -48,13 +48,10 @@ def signup():
     with open(os.path.join(users_path, "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
 
-    idx = None
-    if username in list(users["account"]):
-        idx = list(users["account"]).index(username)
+    if email in list(users["account"]):
+        return {"state":-1}
     elif username in list(users["username"]):
-        idx = list(users["username"]).index(username)
-
-    if idx != None: return {"state":0}
+        return {"state":-2}
 
     with open(os.path.join(users_path, "users.csv"), "r") as f:
         Column_Title, Current_Data = Handle_CSV.Read_CSV(Data_File=f)

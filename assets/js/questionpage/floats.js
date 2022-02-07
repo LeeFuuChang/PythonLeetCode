@@ -284,14 +284,22 @@ login_float_submit.addEventListener("click", function(){
         return res.json()
     }).then(result => {
         console.log(result);
-        if(result["state"]){
-            all_floats.forEach(float => {
-                if(float.classList.contains("show")){
-                    float.classList.remove("show");
-                }
-            })
-        }else{
-            alert("Invalid E-mail or Username or Password");
+        switch(result["state"]){
+            case 1:
+                console.log("Login OK");
+                all_floats.forEach(float => {
+                    if(float.classList.contains("show")){
+                        float.classList.remove("show");
+                    }
+                })
+                USER.login = true;
+                USER["user_data"] = result["user_data"];
+                Load_User_Question_Submissions(USER["user_data"]);
+                break;
+            default:
+                console.log("Invalid E-mail or Username or Password");
+                alert("Invalid E-mail or Username or Password");
+                break;
         }
     })
 })
@@ -323,6 +331,26 @@ signup_float_submit.addEventListener("click", function(){
             return res.json()
         }).then(result => {
             console.log(result);
+            switch(result["state"]){
+                case 1:
+                    console.log("Register OK, Auto Login");
+                    all_floats.forEach(float => {
+                        if(float.classList.contains("show")){
+                            float.classList.remove("show");
+                        }
+                    })
+                    USER.login = true;
+                    USER["user_data"] = result["user_data"];
+                    break;
+                case -1:
+                    console.log("E-mail already existed");
+                    alert("E-mail already existed");
+                    break;
+                case -2:
+                    console.log("Username already existed");
+                    alert("Username already existed");
+                    break;
+            }
         })
     }else{
 

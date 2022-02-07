@@ -12,7 +12,7 @@ def p(subpath):
     if len(paths)>1:
         if paths[1] == "get":
             with open(os.path.join(os.path.dirname(__file__), "storage", "problems.json"), "r") as problems_data:
-                return json.load(problems_data)[f"{problem_id}"]
+                return {"question":json.load(problems_data)[f"{problem_id}"]}
 
     return render_template("output.html", problem_id=problem_id)
 

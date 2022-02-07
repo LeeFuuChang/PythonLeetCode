@@ -1,5 +1,26 @@
 {
     "email":"a0962014248gg@gmail.com",
     "username":"leefuuchang",
-    "password":"ivan930619"
+    "password":"ivan930619",
+    "problems":{
+        "1":{
+            "lastSubmission":{
+                "result":{
+                    "submit_time":"2022/02/04 13:29", "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+                },
+                "code":"class Solution(): #don't change class name\n    def main(self, nums, target): #don't change function name\n        for i in range(1, len(nums)):\n            for j in range(i):\n                if nums[i]+nums[j]==target: return [i, j]"
+            },
+            "recentSubmissions":[
+                {
+                    "submit_time":"2022/02/04 13:29", "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+                },
+                {
+                    "submit_time":"2022/02/04 13:29", "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+                },
+                {
+                    "submit_time":"2022/02/04 13:29", "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+                }
+            ]
+        }
+    }
 }

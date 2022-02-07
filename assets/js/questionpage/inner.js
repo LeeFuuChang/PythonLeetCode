@@ -30,7 +30,6 @@ Update_Scroll_hint = function(type){
 
 // inner header nav (Problem description / Problem discuss / Problem submissions)
 const inner_nav = document.querySelector("#content-header-nav-left");
-
 inner_nav.querySelectorAll(".content-header-nav-left-item").forEach(nav => {
     nav.onclick = function(){
         inner_nav.querySelectorAll(".active").forEach(active => {
@@ -85,16 +84,16 @@ inner_type.forEach(type => {
 
 
 // inner Question description
+const content_content_inner_description = document.querySelector("#content-content-inner-description");
 function Load_Question_Description(QUESTION){
-    const content_ontent_inner_description = document.querySelector("#content-content-inner-description");
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-title-name").textContent = QUESTION.name;
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").classList.add(QUESTION.difficulty.toLowerCase());
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").textContent = QUESTION.difficulty;
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-nav-like").insertAdjacentText("beforeend", QUESTION.likes);
-    content_ontent_inner_description.querySelector("#content-content-inner-description-header-nav-dislike").insertAdjacentText("beforeend", QUESTION.dislikes);
+    content_content_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
+    content_content_inner_description.querySelector("#content-content-inner-description-header-title-name").textContent = QUESTION.name;
+    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").classList.add(QUESTION.difficulty.toLowerCase());
+    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").textContent = QUESTION.difficulty;
+    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-like").insertAdjacentText("beforeend", QUESTION.likes);
+    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-dislike").insertAdjacentText("beforeend", QUESTION.dislikes);
     QUESTION.description.forEach(line => {
-        content_ontent_inner_description.querySelector("#content-content-inner-description-content-question").insertAdjacentHTML(
+        content_content_inner_description.querySelector("#content-content-inner-description-content-question").insertAdjacentHTML(
             "beforeend",
             `
             <p class="df aic content-content-inner-description-content-question-line">
@@ -103,7 +102,7 @@ function Load_Question_Description(QUESTION){
             `
         )
     })
-    let examples = content_ontent_inner_description.querySelectorAll(".content-content-inner-description-content-example-frame");
+    let examples = content_content_inner_description.querySelectorAll(".content-content-inner-description-content-example-frame");
     for(let i=0; i<3; i++){
         let Qexamples = QUESTION.example[`ex${i+1}`];
         if(Qexamples["input"]){
@@ -143,7 +142,7 @@ function Load_Question_Description(QUESTION){
             )
         }
     }
-    let constraints_ul = content_ontent_inner_description.querySelector("#content-content-inner-description-content-constraints-list");
+    let constraints_ul = content_content_inner_description.querySelector("#content-content-inner-description-content-constraints-list");
     QUESTION.constraints.forEach(cst => {
         constraints_ul.insertAdjacentHTML(
             "beforeend",
@@ -160,6 +159,69 @@ function Load_Question_Description(QUESTION){
 
 
 
+
+
+// inner Question submissions
+const content_content_inner_submissions = document.querySelector("#content-content-inner-submissions");
+const recentSubmissionsTableBody = content_content_inner_submissions.querySelector("#content-content-inner-submissions-recent-table-tbody");
+function Load_User_Question_Submissions(user_data){
+    let ResultReference = {
+        "AC":"Accepted", 
+        "WA":"Wrong Answer", 
+        "TLE":"Time Limit Exceed", 
+        "MLE":"Memory Limit Exceed", 
+        "RE":"Runtime Error", 
+        "CE":"Compile Error"
+    }
+
+    let lastest_submission_data = user_data["problems"][QUESTION.id]["lastSubmission"];
+    let lastest_submission_info_result = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-result-data");
+    let lastest_submission_info_runtime = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-runtime-data");
+    let lastest_submission_info_memory = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-memory-data");
+    if(user_data["problems"][QUESTION.id]["lastSubmission"]["result"]["result"] == "AC"){
+        lastest_submission_info_result.style.color = "var(--case-passed-green)";
+    }else{
+        lastest_submission_info_result.style.color = "var(--case-failed-red)";
+    }
+    lastest_submission_info_result.innerText = ResultReference[lastest_submission_data["result"]["result"]];
+    lastest_submission_info_runtime.innerHTML = `${lastest_submission_data["result"]["time"]} ms`;
+    lastest_submission_info_memory.innerHTML = `${lastest_submission_data["result"]["memory"]} MB`;
+    codeEditor.render(
+        CurrentsEditorOptions.font,
+        CurrentsEditorOptions.theme.toLowerCase(), 
+        CurrentsEditorOptions.bind.toLowerCase(),
+        user_data["problems"][QUESTION.id]["lastSubmission"]["code"]
+    );
+
+    let i = 0
+    user_data["problems"][QUESTION.id]["recentSubmissions"].forEach(submission => {
+        let case_result_class = submission.result=="AC" ? "content-content-inner-submissions-recent-case-passed" : "content-content-inner-submissions-recent-case-failed";
+        recentSubmissionsTableBody.insertAdjacentHTML(
+            "beforeend",
+            `
+            <tr class="content-content-inner-submissions-recent-table-tbody-tr">
+                <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                    ${i+1}
+                </td>
+                <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                    ${submission.submit_time}
+                </td>
+                <td class="content-content-inner-submissions-recent-table-tbody-tr-td ${case_result_class}">
+                    ${ResultReference[submission.result]}
+                </td>
+                <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                    ${submission.time} ms
+                </td>
+                <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                    ${submission.memory} MB
+                </td>
+            </tr>
+            `
+        )
+        i++;
+    })
+    
+}
 
 
 

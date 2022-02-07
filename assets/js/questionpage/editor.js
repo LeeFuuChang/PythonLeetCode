@@ -78,12 +78,13 @@ submit_button.addEventListener("click", function(){
 
         let problem_id = QUESTION.id;
         let code = codeEditor.renderedEditor.getValue().toString();
+        let submit_time = getNow()
         Object.keys(codeEditor.StringReplacement).forEach(key => {
             code = code.replaceAll(key, codeEditor.StringReplacement[key]);
         })
         code = codeEditor.removeComment(code);
         fetch(
-            `/submit/submit?id=${problem_id}&code=`+code,
+            `/submit/submit?st=${submit_time}&id=${problem_id}&code=`+code,
             {
                 method:"GET"
             }
@@ -103,10 +104,45 @@ submit_button.addEventListener("click", function(){
             }else{
                 result_data.style.color = "var(--case-failed-red)";
             }
-            runtime_data.textContent = `${parseInt(runtime*1000)}ms`;
-            memory_data.textContent = `${memory}MB`;
+            runtime_data.textContent = `${parseInt(runtime*1000)} ms`;
+            memory_data.textContent = `${memory} MB`;
+            submit_button.busy = false;
+            submit_button.style.cursor = "pointer";
+
+            let ResultReference = {
+                "AC":"Accepted", 
+                "WA":"Wrong Answer", 
+                "TLE":"Time Limit Exceed", 
+                "MLE":"Memory Limit Exceed", 
+                "RE":"Runtime Error", 
+                "CE":"Compile Error"
+            }
+            let case_result_class = result=="AC" ? "content-content-inner-submissions-recent-case-passed" : "content-content-inner-submissions-recent-case-failed";
+            recentSubmissionsTableBody.insertAdjacentHTML(
+                "afterbegin",
+                `
+                <tr class="content-content-inner-submissions-recent-table-tbody-tr">
+                    <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                        1
+                    </td>
+                    <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                        ${submit_time}
+                    </td>
+                    <td class="content-content-inner-submissions-recent-table-tbody-tr-td ${case_result_class}">
+                        ${ResultReference[result]}
+                    </td>
+                    <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                        ${parseInt(runtime*1000)} ms
+                    </td>
+                    <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
+                        ${memory} MB
+                    </td>
+                </tr>
+                `
+            )
+            for(let i=0; i<recentSubmissionsTableBody.children.length; i++){
+                recentSubmissionsTableBody.children[i].children[0].textContent = i+1;
+            }
         })
-        submit_button.busy = false;
-        submit_button.style.cursor = "pointer";
     }
 })
