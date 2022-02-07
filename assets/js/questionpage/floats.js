@@ -104,7 +104,7 @@ const Supports = {
     ]
 }
 var CurrentsEditorOptions = {
-    "font":14,
+    "font":"14",
     "theme":"eclipse",
     "bind":"Sublime"
 }
@@ -122,7 +122,7 @@ editor_settings_float.load = function(){
         option.innerText = `${fs}px`;
         editor_settings_font_select.appendChild(option);
     })
-    editor_settings_font_select.value = CurrentsEditorOptions.font;
+    editor_settings_font_select.value = parseInt(CurrentsEditorOptions.font);
     Supports.theme.forEach(the => {
         let option = document.createElement("option");
         option.value = the.toLowerCase();
@@ -139,7 +139,7 @@ editor_settings_float.load = function(){
     editor_settings_bind_select.value = CurrentsEditorOptions.bind.toLowerCase();
 
     codeEditor.render(
-        CurrentsEditorOptions.font,
+        parseInt(CurrentsEditorOptions.font),
         CurrentsEditorOptions.theme.toLowerCase(), 
         CurrentsEditorOptions.bind.toLowerCase(),
         codeEditor.renderedEditor.getValue()
@@ -150,7 +150,7 @@ editor_settings_float.load();
 editor_settings_button.addEventListener("click", function(){
     if(editor_settings_float.classList.contains("show")) return;
     editor_settings_float.classList.add("show");
-    editor_settings_font_select.value = CurrentsEditorOptions.font;
+    editor_settings_font_select.value = parseInt(CurrentsEditorOptions.font);
     editor_settings_theme_select.value = CurrentsEditorOptions.theme.toLowerCase();
     editor_settings_bind_select.value = CurrentsEditorOptions.bind.toLowerCase();
 })
@@ -163,7 +163,7 @@ editor_settings_content_footer_confirm.addEventListener("click", function(){
     let selected_font = editor_settings_font_select.value;
     let selected_theme = editor_settings_theme_select.value;
     let selected_bind = editor_settings_bind_select.value;
-    CurrentsEditorOptions.font = selected_font;
+    CurrentsEditorOptions.font = selected_font.toString();
     CurrentsEditorOptions.theme = selected_theme.charAt(0).toUpperCase() + selected_theme.slice(1);
     CurrentsEditorOptions.bind = selected_bind.charAt(0).toUpperCase() + selected_bind.slice(1);
     codeEditor.render(
@@ -172,6 +172,17 @@ editor_settings_content_footer_confirm.addEventListener("click", function(){
         selected_bind,
         codeEditor.renderedEditor.getValue()
     );
+    USER["user_data"]["editor"] = CurrentsEditorOptions;
+    if(USER.login){
+        fetch(
+            `/account/editor?username=${USER["user_data"]["username"]}&font=${selected_font}&theme=${selected_theme}&bind=${selected_bind}`,
+            {
+                method:"GET"
+            }
+        ).then(res => {
+            console.log("Update Editor Settings", res.json()["state"] ? "Success" : "Failed");
+        })
+    }
 })
 
 
@@ -295,6 +306,7 @@ login_float_submit.addEventListener("click", function(){
                 USER.login = true;
                 USER["user_data"] = result["user_data"];
                 Load_User_Question_Submissions(USER["user_data"]);
+                CurrentsEditorOptions = USER["user_data"]["editor"];
                 break;
             default:
                 console.log("Invalid E-mail or Username or Password");

@@ -5,9 +5,13 @@ import pandas as pd
 import json
 import os
 
+
+
 account = Blueprint("account", __name__)
 
-@account.route("/login")
+
+
+@account.route("/login", methods=["GET"])
 def login():
     Args = request.args.to_dict()
 
@@ -36,7 +40,9 @@ def login():
     else:
         return {"state":0}
 
-@account.route("/signup")
+
+
+@account.route("/signup", methods=["GET"])
 def signup():
     Args = request.args.to_dict()
 
@@ -62,7 +68,30 @@ def signup():
 
 
 
+@account.route("/editor", methods=["GET"])
+def editor():
+    Args = request.args.to_dict()
 
+    username = Args["username"]
+
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
+    with open(os.path.join(users_path, "users.csv"), "r") as f:
+        users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+
+    idx = None
+    if username in list(users["account"]):
+        idx = list(users["account"]).index(username)
+
+    if idx == None: return {"state":0}
+
+    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
+        user_data = json.load(f)
+    user_data["editor"]["font"] = Args["font"]
+    user_data["editor"]["theme"] = Args["theme"]
+    user_data["editor"]["bind"] = Args["bind"]
+    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
+        json.dump(user_data, f)
+    return {"state":1}
 
 
 

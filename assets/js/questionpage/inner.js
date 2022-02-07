@@ -1,4 +1,5 @@
 const inner = document.querySelector("#content-content-inner");
+const inner_nav = document.querySelector("#content-header-nav-left");
 
 
 
@@ -26,24 +27,6 @@ Update_Scroll_hint = function(type){
         document.documentElement.style.setProperty("--scroll-down-hint-display", "none");
     }
 }
-
-
-// inner header nav (Problem description / Problem discuss / Problem submissions)
-const inner_nav = document.querySelector("#content-header-nav-left");
-inner_nav.querySelectorAll(".content-header-nav-left-item").forEach(nav => {
-    nav.onclick = function(){
-        inner_nav.querySelectorAll(".active").forEach(active => {
-            active.classList.remove("active");
-        })
-        nav.classList.add("active");
-        inner.querySelectorAll(".active").forEach(active => {
-            active.classList.remove("active");
-        })
-        inner.querySelector(`#content-content-inner-${nav.ariaLabel}`).classList.add("active");
-
-        Update_Scroll_hint(inner.querySelector(`#content-content-inner-${nav.ariaLabel}`));
-    }
-})
 
 
 
@@ -84,6 +67,18 @@ inner_type.forEach(type => {
 
 
 // inner Question description
+const content_header_nav_left_description = document.querySelector("#content-header-nav-left-description");
+content_header_nav_left_description.addEventListener("click", function(){
+    inner_nav.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    content_header_nav_left_description.classList.add("active");
+    inner.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    inner.querySelector(`#content-content-inner-description`).classList.add("active");
+    Update_Scroll_hint(inner.querySelector(`#content-content-inner-description`));
+})
 const content_content_inner_description = document.querySelector("#content-content-inner-description");
 function Load_Question_Description(QUESTION){
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
@@ -161,7 +156,45 @@ function Load_Question_Description(QUESTION){
 
 
 
+// inner Question discuss
+const content_header_nav_left_discuss = document.querySelector("#content-header-nav-left-discuss");
+content_header_nav_left_discuss.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("show");
+        return
+    }
+    inner_nav.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    content_header_nav_left_discuss.classList.add("active");
+    inner.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    inner.querySelector(`#content-content-inner-discuss`).classList.add("active");
+    Update_Scroll_hint(inner.querySelector(`#content-content-inner-discuss`));
+})
+
+
+
+
+
 // inner Question submissions
+const content_header_nav_left_submissions = document.querySelector("#content-header-nav-left-submissions");
+content_header_nav_left_submissions.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("show");
+        return
+    }
+    inner_nav.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    content_header_nav_left_submissions.classList.add("active");
+    inner.querySelectorAll(".active").forEach(active => {
+        active.classList.remove("active");
+    })
+    inner.querySelector(`#content-content-inner-submissions`).classList.add("active");
+    Update_Scroll_hint(inner.querySelector(`#content-content-inner-submissions`));
+})
 const content_content_inner_submissions = document.querySelector("#content-content-inner-submissions");
 const recentSubmissionsTableBody = content_content_inner_submissions.querySelector("#content-content-inner-submissions-recent-table-tbody");
 function Load_User_Question_Submissions(user_data){

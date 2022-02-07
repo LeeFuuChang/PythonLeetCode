@@ -47,6 +47,10 @@ codeEditor.removeComment = function(s){
 
 const submit_button = document.querySelector("#content-content-editor-footer-nav-right-submit");
 submit_button.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("show");
+        return
+    }
     if(!submit_button.busy){
         submit_button.busy = true;
         submit_button.style.cursor = "not-allowed";
@@ -84,7 +88,7 @@ submit_button.addEventListener("click", function(){
         })
         code = codeEditor.removeComment(code);
         fetch(
-            `/submit/submit?st=${submit_time}&id=${problem_id}&code=`+code,
+            `/submit/submit?username=${USER["user_data"]["username"]}&st=${submit_time}&id=${problem_id}&code=`+code,
             {
                 method:"GET"
             }
@@ -104,7 +108,7 @@ submit_button.addEventListener("click", function(){
             }else{
                 result_data.style.color = "var(--case-failed-red)";
             }
-            runtime_data.textContent = `${parseInt(runtime*1000)} ms`;
+            runtime_data.textContent = `${runtime} ms`;
             memory_data.textContent = `${memory} MB`;
             submit_button.busy = false;
             submit_button.style.cursor = "pointer";
@@ -132,7 +136,7 @@ submit_button.addEventListener("click", function(){
                         ${ResultReference[result]}
                     </td>
                     <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
-                        ${parseInt(runtime*1000)} ms
+                        ${runtime} ms
                     </td>
                     <td class="content-content-inner-submissions-recent-table-tbody-tr-td">
                         ${memory} MB

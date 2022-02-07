@@ -4,6 +4,8 @@ import time as Timer
 import json
 import os
 
+
+
 submit = Blueprint("submit", __name__)
 states = {
     1:("AC", "Accepted"), 
@@ -14,10 +16,33 @@ states = {
     6:("CE", "Compile Error")
 }
 
+
+
+def Save_Submit_Result(problem_id, code, result, username):
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
+    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
+        user_data = json.load(f)
+    user_data["problems"][f"{problem_id}"]["lastSubmission"]["code"] = code
+    result["time"] = int(result["time"]*1000)
+    result["memory"] = round(result["memory"], 3)
+    user_data["problems"][f"{problem_id}"]["lastSubmission"]["result"] = result
+    user_data["problems"][f"{problem_id}"]["recentSubmissions"].insert(0, result)
+    if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
+        user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
+    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
+        json.dump(user_data, f, indent=4)
+    return result
+
+
+
 def CE_RE_Error_CleanUP(s):
     while((start:=s.find("<"))>0 and (end:=s.find(">"))>0):
         s = s[:start] + s[end+1:]
     return s
+
+
+
+
 
 @submit.route("/submit", methods=["GET"])
 def submit_submit():
@@ -25,6 +50,8 @@ def submit_submit():
 
 
     #args
+    username = Args["username"]
+    submit_time = Args["st"]
     with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
         StringReplacement = json.load(replacement)
     problem_id = int(Args["id"])
@@ -35,13 +62,12 @@ def submit_submit():
         eval_cases = json.load(eval_cases_data)["cases"]
 
 
-
     #prevent evil imports
     if "import" in code:
         result = {
-            "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
         }
-        return result
+        return Save_Submit_Result(problem_id, code, result, username)
 
 
     #run imports and define inputs
@@ -55,14 +81,14 @@ def submit_submit():
         exec(code, codeed)
     except Exception as e:
         result = {
-            "time":0.0, "memory":0.0, "result":str(states[6][0]), "output":f"{str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[6][0]), "output":f"{str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
         }
-        return result
+        return Save_Submit_Result(problem_id, code, result, username)
     if "Solution" not in codeed.keys(): 
         result = {
-            "time":-1, "memory":-1, "result":str(states[5][0]), "output":f"{str(states[5][1])}: 'Solution' is not defined"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[5][0]), "output":f"{str(states[5][1])}: 'Solution' is not defined"
         }
-        return result
+        return Save_Submit_Result(problem_id, code, result, username)
 
 
     #run judge
@@ -76,35 +102,41 @@ def submit_submit():
         result = {}
         curT = Timer.time()
         memoryTracer.start()
-        curMem = memoryTracer.get_traced_memory()[0] / 10**3
+        curMem = memoryTracer.get_traced_memory()[0] / 10**4
         try:
             output = codeed["Solution"]().main(*inputs)
         except Exception as e:
             result = {
-                "time":-1, "memory":-1, "result":str(states[5][0]), "output":f"{str(states[5][1])}: {CE_RE_Error_CleanUP(str(e))}"
+                "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[5][0]), "output":f"{str(states[5][1])}: {CE_RE_Error_CleanUP(str(e))}"
             }
-            return result
+            return Save_Submit_Result(problem_id, code, result, username)
         endT = Timer.time()
-        endMem = memoryTracer.get_traced_memory()[0] / 10**3
+        endMem = memoryTracer.get_traced_memory()[0] / 10**4
         memoryTracer.stop()
 
+        result["submit_time"] = submit_time
         result["time"] = CurrentMaxTime = max(CurrentMaxTime, endT-curT)
         result["memory"] = CurrentMaxMemory = max(CurrentMaxMemory, endMem-curMem)
 
         if result["time"] > maxTime:
             result["result"] = str(states[3][0])
             result["output"] = str(states[3][1])
-            return result
+            return Save_Submit_Result(problem_id, code, result, username)
         elif result["memory"] > maxMemory:
             result["result"] = str(states[4][0])
             result["output"] = str(states[4][1])
-            return result
+            return Save_Submit_Result(problem_id, code, result, username)
         else:
             failed = not judger["Output_Classifier"](inputs, output)
             result["result"] = str(states[failed+1][0])
             result["output"] = str(states[failed+1][1])
-            if failed: return result
-    return result
+            if failed: return Save_Submit_Result(problem_id, code, result, username)
+
+    return Save_Submit_Result(problem_id, code, result, username)
+
+
+
+
 
 @submit.route("/test", methods=["GET"])
 def submit_test():
