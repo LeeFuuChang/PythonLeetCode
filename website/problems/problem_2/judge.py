@@ -1,6 +1,6 @@
 
-maxTime = 5
-maxMemory = 50
+maxTime = 1
+maxMemory = 15
 
 class ListNode:
     def __init__(self, val, next=None):

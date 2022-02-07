@@ -7,13 +7,5 @@
         "theme": "eclipse",
         "bind": "sublime"
     },
-    "problems": {
-        "1": {
-            "lastSubmission": {
-                "result": {},
-                "code": ""
-            },
-            "recentSubmissions": []
-        }
-    }
+    "problems": {}
 }

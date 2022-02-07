@@ -1,16 +1,48 @@
-import json, time
+import time, threading
 
-with open("problem_2.json", "r") as f:
-    d = json.load(f)
+code = """
+class Solution():
+    def main(self, l1, l2):
+        while(a:=True) :
+            pass
+"""
 
-def sol(l1, l2):
-    n1, n2 = [str(_) for _ in l1[::-1]], [str(_) for _ in l2[::-1]]
-    return [int(_) for _ in str(int("".join(n1)) + int("".join(n2)))[::-1]]
+def FixInfiniteWhile(code):
+    now = 0
+    while(True):
+        finding = "while("
+        idx = code.find(finding, now)
+        if idx < 0 or idx > len(code): break
+        inserting = "(self.GetTimeFunction() - self.RuntimeStartTime < self.RuntimeMaxTime) and ("
+        code = code[:idx+len(finding)] + inserting + code[idx+len(finding):]
+        now = idx+len(finding)+len(inserting)
 
-for case in d["cases"]:
-    a = time.time()
-    print(*case)
-    print(sol(
-[3, 4, 7, 4, 0, 9, 1, 1, 2, 6, 8, 0, 2, 7],
-[7, 5, 5, 9, 4, 5, 0, 0, 7, 9, 2, 1, 5, 5]), time.time()-a)
-    print("\n\n\n")
+        _now = now
+        while(True):
+            ending = code.find(":", _now)
+            if code[ending+1] == "=": 
+                _now = ending+1
+                continue
+            code = code[:ending] + ")" + code[ending:]
+            now = ending+2
+            break
+    return code
+code = FixInfiniteWhile(code)
+print(code)
+
+
+def a():
+    z = {}
+    exec(code, z)
+    setattr(z["Solution"], "RuntimeMaxTime", 5)
+    setattr(z["Solution"], "GetTimeFunction", time.time)
+    setattr(z["Solution"], "RuntimeStartTime", time.time())
+    setattr(z["Solution"], "RuntimeMaxTime", 10)
+    setattr(z["Solution"], "GetTimeFunction", time.time)
+    setattr(z["Solution"], "RuntimeStartTime", time.time())
+    aa = time.time()
+    z["Solution"]().main(1, 1)
+    print("end", time.time()-aa)
+
+    
+a()

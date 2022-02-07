@@ -13,6 +13,8 @@
         "nums",
         "target"
     ],
+    "predefine":null,
+    "default":"#start coding below\nclass Solution(): #don't change class name\n    def main(self, nums, target): #don't change function name",
     "example":{
         "ex1":{
             "input":"nums = [2,7,11,15], target = 9",

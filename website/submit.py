@@ -56,6 +56,29 @@ def CE_RE_Error_CleanUP(s):
 
 
 
+def FixInfiniteWhile(code):
+    now = 0
+    while(True):
+        finding = "while("
+        idx = code.find(finding, now)
+        if idx < 0 or idx > len(code): break
+        inserting = "(self.GetTimeFunction() - self.RuntimeStartTime < self.RuntimeMaxTime) and ("
+        code = code[:idx+len(finding)] + inserting + code[idx+len(finding):]
+        now = idx+len(finding)+len(inserting)
+
+        _now = now
+        while(True):
+            ending = code.find(":", _now)
+            if code[ending+1] == "=": 
+                _now = ending+1
+                continue
+            code = code[:ending] + ")" + code[ending:]
+            now = ending+2
+            break
+    return code
+
+
+
 
 
 @submit.route("/submit", methods=["GET"])
@@ -92,7 +115,8 @@ def submit_submit():
     maxTime = float(judger["maxTime"])
     maxMemory = float(judger["maxMemory"])
     try:
-        exec(code, codeed)
+        fixed_code = FixInfiniteWhile(code)
+        exec(fixed_code, codeed)
     except Exception as e:
         result = {
             "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[6][0]), "output":f"{str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
@@ -118,6 +142,9 @@ def submit_submit():
         memoryTracer.start()
         curMem = memoryTracer.get_traced_memory()[0] / 10**3
         try:
+            setattr(codeed["Solution"], "RuntimeStartTime", curT)
+            setattr(codeed["Solution"], "RuntimeMaxTime", maxTime)
+            setattr(codeed["Solution"], "GetTimeFunction", Timer.time)
             output = codeed["Solution"]().main(*inputs)
         except Exception as e:
             result = {
