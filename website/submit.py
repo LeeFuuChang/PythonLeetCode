@@ -22,15 +22,29 @@ def Save_Submit_Result(problem_id, code, result, username):
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
     with open(os.path.join(users_path, f"{username}.json"), "r") as f:
         user_data = json.load(f)
+
+    if(not user_data["problems"].get(f"{problem_id}", False)):
+        user_data["problems"][f"{problem_id}"] = {
+            "lastSubmission": {
+                "result": {},
+                "code": ""
+            },
+            "recentSubmissions": []
+        }
+
     user_data["problems"][f"{problem_id}"]["lastSubmission"]["code"] = code
     result["time"] = int(result["time"]*1000)
     result["memory"] = round(result["memory"], 3)
     user_data["problems"][f"{problem_id}"]["lastSubmission"]["result"] = result
     user_data["problems"][f"{problem_id}"]["recentSubmissions"].insert(0, result)
+    user_data["problems"][f"{problem_id}"]["recentSubmissions"][0]["code"] = code
+
     if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
         user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
+
     with open(os.path.join(users_path, f"{username}.json"), "w") as f:
         json.dump(user_data, f, indent=4)
+
     return result
 
 
@@ -58,7 +72,7 @@ def submit_submit():
     code = Args["code"]
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
-    with open(os.path.join(os.path.dirname(__file__), "judger", "eval", f"problem_{problem_id}.json"), "r") as eval_cases_data:
+    with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "eval.json"), "r") as eval_cases_data:
         eval_cases = json.load(eval_cases_data)["cases"]
 
 
@@ -74,7 +88,7 @@ def submit_submit():
     codeed = {}
     judger = {}
     inputs = {}
-    exec(f"from website.judger.problem_{problem_id} import *", judger)
+    exec(f"from website.problems.problem_{problem_id}.judge import *", judger)
     maxTime = float(judger["maxTime"])
     maxMemory = float(judger["maxMemory"])
     try:
@@ -102,7 +116,7 @@ def submit_submit():
         result = {}
         curT = Timer.time()
         memoryTracer.start()
-        curMem = memoryTracer.get_traced_memory()[0] / 10**4
+        curMem = memoryTracer.get_traced_memory()[0] / 10**3
         try:
             output = codeed["Solution"]().main(*inputs)
         except Exception as e:
@@ -111,7 +125,7 @@ def submit_submit():
             }
             return Save_Submit_Result(problem_id, code, result, username)
         endT = Timer.time()
-        endMem = memoryTracer.get_traced_memory()[0] / 10**4
+        endMem = memoryTracer.get_traced_memory()[0] / 10**3
         memoryTracer.stop()
 
         result["submit_time"] = submit_time
@@ -166,7 +180,7 @@ def submit_test():
     codeed = {}
     judger = {}
     inputs = {}
-    exec(f"from website.judger.problem_{problem_id} import *", judger)
+    exec(f"from website.problems.problem_{problem_id}.judge import *", judger)
     maxTime = float(judger["maxTime"])
     maxMemory = float(judger["maxMemory"])
     try:

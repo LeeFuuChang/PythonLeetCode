@@ -207,25 +207,6 @@ function Load_User_Question_Submissions(user_data){
         "CE":"Compile Error"
     }
 
-    let lastest_submission_data = user_data["problems"][QUESTION.id]["lastSubmission"];
-    let lastest_submission_info_result = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-result-data");
-    let lastest_submission_info_runtime = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-runtime-data");
-    let lastest_submission_info_memory = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-memory-data");
-    if(user_data["problems"][QUESTION.id]["lastSubmission"]["result"]["result"] == "AC"){
-        lastest_submission_info_result.style.color = "var(--case-passed-green)";
-    }else{
-        lastest_submission_info_result.style.color = "var(--case-failed-red)";
-    }
-    lastest_submission_info_result.innerText = ResultReference[lastest_submission_data["result"]["result"]];
-    lastest_submission_info_runtime.innerHTML = `${lastest_submission_data["result"]["time"]} ms`;
-    lastest_submission_info_memory.innerHTML = `${lastest_submission_data["result"]["memory"]} MB`;
-    codeEditor.render(
-        CurrentsEditorOptions.font,
-        CurrentsEditorOptions.theme.toLowerCase(), 
-        CurrentsEditorOptions.bind.toLowerCase(),
-        user_data["problems"][QUESTION.id]["lastSubmission"]["code"]
-    );
-
     let i = 0
     user_data["problems"][QUESTION.id]["recentSubmissions"].forEach(submission => {
         let case_result_class = submission.result=="AC" ? "content-content-inner-submissions-recent-case-passed" : "content-content-inner-submissions-recent-case-failed";
@@ -253,6 +234,26 @@ function Load_User_Question_Submissions(user_data){
         )
         i++;
     })
+
+    if(i==0) return;
+    let lastest_submission_data = user_data["problems"][QUESTION.id]["lastSubmission"];
+    let lastest_submission_info_result = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-result-data");
+    let lastest_submission_info_runtime = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-runtime-data");
+    let lastest_submission_info_memory = content_content_inner_submissions.querySelector("#content-content-inner-submissions-lastest-info-memory-data");
+    if(user_data["problems"][QUESTION.id]["lastSubmission"]["result"]["result"] == "AC"){
+        lastest_submission_info_result.style.color = "var(--case-passed-green)";
+    }else{
+        lastest_submission_info_result.style.color = "var(--case-failed-red)";
+    }
+    lastest_submission_info_result.innerText = ResultReference[lastest_submission_data["result"]["result"]];
+    lastest_submission_info_runtime.innerHTML = `${lastest_submission_data["result"]["time"]} ms`;
+    lastest_submission_info_memory.innerHTML = `${lastest_submission_data["result"]["memory"]} MB`;
+    codeEditor.render(
+        CurrentsEditorOptions.font,
+        CurrentsEditorOptions.theme.toLowerCase(), 
+        CurrentsEditorOptions.bind.toLowerCase(),
+        user_data["problems"][QUESTION.id]["lastSubmission"]["code"]
+    );
     
 }
 

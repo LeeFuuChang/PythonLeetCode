@@ -2,32 +2,18 @@
     "email": "a0962014248gg@gmail.com",
     "username": "leefuuchang",
     "password": "ivan930619",
-    "editor":{
-        "font":"14",
-        "theme":"eclipse",
-        "bind":"Sublime"
+    "editor": {
+        "font": "14",
+        "theme": "eclipse",
+        "bind": "sublime"
     },
     "problems": {
         "1": {
             "lastSubmission": {
-                "result": {
-                    "submit_time": "2022/02/07 16:47",
-                    "time": 3641,
-                    "memory": 0.072,
-                    "result": "AC",
-                    "output": "Accepted"
-                },
-                "code": "class Solution(): \n    def main(self, nums, target): \n        for i in range(1, len(nums)):\n            for j in range(i):\n                if nums[i]+nums[j]==target: return [i, j]"
+                "result": {},
+                "code": ""
             },
-            "recentSubmissions": [
-                {
-                    "submit_time": "2022/02/07 16:47",
-                    "time": 3641,
-                    "memory": 0.072,
-                    "result": "AC",
-                    "output": "Accepted"
-                }
-            ]
+            "recentSubmissions": []
         }
     }
 }

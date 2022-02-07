@@ -180,7 +180,9 @@ editor_settings_content_footer_confirm.addEventListener("click", function(){
                 method:"GET"
             }
         ).then(res => {
-            console.log("Update Editor Settings", res.json()["state"] ? "Success" : "Failed");
+            return res.json()
+        }).then(res => {
+            console.log("Update Editor Settings", res["state"] ? "Success" : "Failed");
         })
     }
 })
@@ -307,6 +309,12 @@ login_float_submit.addEventListener("click", function(){
                 USER["user_data"] = result["user_data"];
                 Load_User_Question_Submissions(USER["user_data"]);
                 CurrentsEditorOptions = USER["user_data"]["editor"];
+                codeEditor.render(
+                    parseInt(CurrentsEditorOptions.font),
+                    CurrentsEditorOptions.theme.toLowerCase(), 
+                    CurrentsEditorOptions.bind.toLowerCase(),
+                    codeEditor.renderedEditor.getValue()
+                );
                 break;
             default:
                 console.log("Invalid E-mail or Username or Password");

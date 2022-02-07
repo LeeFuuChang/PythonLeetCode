@@ -79,8 +79,8 @@ def editor():
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
 
     idx = None
-    if username in list(users["account"]):
-        idx = list(users["account"]).index(username)
+    if username in list(users["username"]):
+        idx = list(users["username"]).index(username)
 
     if idx == None: return {"state":0}
 
@@ -90,7 +90,7 @@ def editor():
     user_data["editor"]["theme"] = Args["theme"]
     user_data["editor"]["bind"] = Args["bind"]
     with open(os.path.join(users_path, f"{username}.json"), "w") as f:
-        json.dump(user_data, f)
+        json.dump(user_data, f, indent=4)
     return {"state":1}
 
 
