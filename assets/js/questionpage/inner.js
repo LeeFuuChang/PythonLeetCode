@@ -81,6 +81,7 @@ content_header_nav_left_description.addEventListener("click", function(){
 })
 const content_content_inner_description = document.querySelector("#content-content-inner-description");
 function Load_Question_Description(QUESTION){
+    document.querySelector("title").innerText = `${QUESTION.id}. ${QUESTION.name}`;
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-name").textContent = QUESTION.name;
     content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").classList.add(QUESTION.difficulty.toLowerCase());

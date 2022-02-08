@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{problem_id}}</title>
+    <title>Question Page</title>
 
     <link rel="stylesheet" href="assets/css/questionpage/globals.css">
     <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
@@ -215,8 +215,8 @@
             </div>
             <div id="content-content-editor">
                 <div id="content-content-editor-inner">
-                    <form id="content-content-editor-inner-code" method="POST" action="http://127.0.0.1:5000">
-                        <input id="questionID" name="question" type="text" value="h081" style="display:none"> <!-- change input value to corresponse questionID-->
+                    <form id="content-content-editor-inner-code">
+                        <input id="question-id" name="question" type="text" value="{{problem_id}}" style="display:none"> <!-- change input value to corresponse questionID-->
                         <textarea id="content-content-editor-inner-code-input" name="code"></textarea>
                     </form>
                 </div>
@@ -424,7 +424,9 @@
 
 <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
 
+<script src="assets/plugin/codemirror/keymap/emacs.js"></script>
 <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+<script src="assets/plugin/codemirror/keymap/vim.js"></script>
 
 <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
 

@@ -1,4 +1,3 @@
-const pageTitle = document.querySelector("head").querySelector("title");
 function getNow(){
     let TIMER = new Date();
     let Year = TIMER.getFullYear().toString().padStart(4, "0");
@@ -13,22 +12,24 @@ var USER = {
     "login":false,
     "user_data":undefined
 }
-fetch(
-    `${pageTitle.innerText}/get`, {method:"GET"}
-).then(res => {
-    return res.json();
-}).then(res => {
-    if(res.user){
-        USER.login = true;
-        USER.user_data = res.user;
-    }
-    QUESTION = res.question;
-    Load_Question_Description(QUESTION);
-    codeEditor.default = (QUESTION.predefine ? `${QUESTION.predefine}\n\n` : "") + QUESTION.default;
-    codeEditor.render(
-        CurrentsEditorOptions.font,
-        CurrentsEditorOptions.theme.toLowerCase(), 
-        CurrentsEditorOptions.bind.toLowerCase(),
-        codeEditor.default
-    );
-})
+window.onload = function(){
+    fetch(
+        `${document.querySelector("#question-id").value}/get`, {method:"GET"}
+    ).then(res => {
+        return res.json();
+    }).then(res => {
+        if(res.user){
+            USER.login = true;
+            USER.user_data = res.user;
+        }
+        QUESTION = res.question;
+        Load_Question_Description(QUESTION);
+        codeEditor.default = (QUESTION.predefine ? `${QUESTION.predefine}\n\n` : "") + QUESTION.default;
+        codeEditor.render(
+            CurrentsEditorOptions.font,
+            CurrentsEditorOptions.theme.toLowerCase(), 
+            CurrentsEditorOptions.bind.toLowerCase(),
+            codeEditor.default
+        );
+    })
+}
