@@ -1,6 +1,6 @@
 
 maxTime = 5
-maxMemory = 0.5
+maxMemory = 15
 
 def Input_Pre_Processor(inputs):
     return inputs

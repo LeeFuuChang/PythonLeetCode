@@ -2,6 +2,7 @@ from flask import Blueprint, request
 import tracemalloc as memoryTracer
 import time as Timer
 import json
+import sys
 import os
 
 
@@ -98,7 +99,7 @@ def submit_submit():
     submit_time = Args.get("st", None)
     if not (code and username and problem_id and submit_time):
         result = {
-            "time":0, "memory":0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
+            "time":0.0, "memory":0.0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
         }
         return Save_Submit_Result(problem_id, code, result, username)
 
@@ -168,7 +169,7 @@ def submit_submit():
 
         result["submit_time"] = submit_time
         result["time"] = CurrentMaxTime = max(CurrentMaxTime, endT-curT)
-        result["memory"] = CurrentMaxMemory = max(CurrentMaxMemory, endMem-curMem)
+        result["memory"] = CurrentMaxMemory = max( CurrentMaxMemory, endMem-curMem + ( sys.getsizeof(code)/(1024**2) ) )
 
         if result["time"] > maxTime:
             result["result"] = states[3][0]
@@ -266,7 +267,7 @@ def submit_test():
     memoryTracer.stop()
 
     result["time"] = endT-curT
-    result["memory"] = endMem-curMem
+    result["memory"] =  endMem-curMem + ( sys.getsizeof(code)/(1024**2) )
 
     if(not result.get("result", False)):
         if result["time"] > maxTime:
