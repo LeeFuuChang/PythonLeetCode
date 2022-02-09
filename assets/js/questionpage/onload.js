@@ -30,8 +30,8 @@ window.onload = function(){
 
         if(res["user_data"]){
             all_floats.forEach(float => {
-                if(float.classList.contains("show")){
-                    float.classList.remove("show");
+                if(float.classList.contains("active")){
+                    float.classList.remove("active");
                 }
             })
             console.log("Login OK");

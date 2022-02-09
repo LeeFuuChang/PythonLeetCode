@@ -48,7 +48,7 @@ codeEditor.removeComment = function(s){
 const submit_button = document.querySelector("#content-content-editor-footer-nav-right-submit");
 submit_button.addEventListener("click", function(){
     if(!USER.login){
-        login_float.classList.add("show");
+        login_float.classList.add("active");
         return
     }
     if(!submit_button.busy){

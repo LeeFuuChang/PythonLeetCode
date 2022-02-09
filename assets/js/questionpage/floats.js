@@ -10,14 +10,14 @@ const editor_reset_float = document.querySelector("#editor-reset");
 const editor_reset_content_footer_cancel = editor_reset_float.querySelector("#editor-reset-content-footer-cancel");
 const editor_reset_content_footer_confirm = editor_reset_float.querySelector("#editor-reset-content-footer-confirm");
 editor_reset_button.addEventListener("click", function(){
-    if(editor_reset_float.classList.contains("show")) return;
-    editor_reset_float.classList.add("show");
+    if(editor_reset_float.classList.contains("active")) return;
+    editor_reset_float.classList.add("active");
 })
 editor_reset_content_footer_cancel.addEventListener("click", function(){
-    editor_reset_float.classList.remove("show");
+    editor_reset_float.classList.remove("active");
 })
 editor_reset_content_footer_confirm.addEventListener("click", function(){
-    editor_reset_float.classList.remove("show");
+    editor_reset_float.classList.remove("active");
 
     codeEditor.renderedEditor.setValue(codeEditor.default);
 })
@@ -148,18 +148,18 @@ editor_settings_float.load = function(){
 editor_settings_float.load();
 
 editor_settings_button.addEventListener("click", function(){
-    if(editor_settings_float.classList.contains("show")) return;
-    editor_settings_float.classList.add("show");
+    if(editor_settings_float.classList.contains("active")) return;
+    editor_settings_float.classList.add("active");
     editor_settings_font_select.value = parseInt(CurrentsEditorOptions.font);
     editor_settings_theme_select.value = CurrentsEditorOptions.theme.toLowerCase();
     editor_settings_bind_select.value = CurrentsEditorOptions.bind.toLowerCase();
 })
 
 editor_settings_content_footer_cancel.addEventListener("click", function(){
-    editor_settings_float.classList.remove("show");
+    editor_settings_float.classList.remove("active");
 })
 editor_settings_content_footer_confirm.addEventListener("click", function(){
-    editor_settings_float.classList.remove("show");
+    editor_settings_float.classList.remove("active");
     let selected_font = editor_settings_font_select.value;
     let selected_theme = editor_settings_theme_select.value;
     let selected_bind = editor_settings_bind_select.value;
@@ -198,8 +198,8 @@ const run_test_content_cases = document.querySelector("#run-test-content-cases")
 const run_test_content_footer_cancel = run_test_float.querySelector("#run-test-content-footer-cancel");
 const run_test_content_footer_confirm = run_test_float.querySelector("#run-test-content-footer-confirm");
 run_test_button.addEventListener("click", function(){
-    if(run_test_float.classList.contains("show")) return;
-    run_test_float.classList.add("show");
+    if(run_test_float.classList.contains("active")) return;
+    run_test_float.classList.add("active");
     let testCases = run_test_content_cases.querySelectorAll(".run-test-content-cases-item-left-var-textarea");
     for(let i=0; i<3; i++){
         testCases[i].value = QUESTION.example[`ex${i+1}`].input.split(", ").join("\n");
@@ -217,7 +217,7 @@ run_test_button.addEventListener("click", function(){
     })
 })
 run_test_content_footer_cancel.addEventListener("click", function(){
-    run_test_float.classList.remove("show");
+    run_test_float.classList.remove("active");
 })
 run_test_content_footer_confirm.addEventListener("click", function(){
     let problem_id = QUESTION.id;
@@ -278,11 +278,11 @@ const signup_float_submit = signup_float.querySelector("#signup-float-content-su
 const signup_float_login = signup_float.querySelector("#signup-float-content-noaccount-login");
 // listeners
 document.querySelector("#pageheader-nav-right-user-nav-n-login").addEventListener("click", function(){
-    login_float.classList.add("show");
+    login_float.classList.add("active");
 })
 login_float_close.addEventListener("click", function(){
-    if(login_float.classList.contains("show")){
-        login_float.classList.remove("show");
+    if(login_float.classList.contains("active")){
+        login_float.classList.remove("active");
     }
 })
 login_float_submit.addEventListener("click", function(){
@@ -300,8 +300,8 @@ login_float_submit.addEventListener("click", function(){
             case 1:
                 console.log("Login OK");
                 all_floats.forEach(float => {
-                    if(float.classList.contains("show")){
-                        float.classList.remove("show");
+                    if(float.classList.contains("active")){
+                        float.classList.remove("active");
                     }
                 })
                 USER.login = true;
@@ -325,19 +325,19 @@ login_float_submit.addEventListener("click", function(){
 })
 login_float_signup.addEventListener("click", function(){
     all_floats.forEach(float => {
-        if(float.classList.contains("show")){
-            float.classList.remove("show");
+        if(float.classList.contains("active")){
+            float.classList.remove("active");
         }
     })
-    signup_float.classList.add("show");
+    signup_float.classList.add("active");
 })
 
 document.querySelector("#pageheader-nav-right-user-nav-n-signup").addEventListener("click", function(){
-    signup_float.classList.add("show");
+    signup_float.classList.add("active");
 })
 signup_float_close.addEventListener("click", function(){
-    if(signup_float.classList.contains("show")){
-        signup_float.classList.remove("show");
+    if(signup_float.classList.contains("active")){
+        signup_float.classList.remove("active");
     }
 })
 signup_float_submit.addEventListener("click", function(){
@@ -358,8 +358,8 @@ signup_float_submit.addEventListener("click", function(){
                 case 1:
                     console.log("Register OK, Auto Login");
                     all_floats.forEach(float => {
-                        if(float.classList.contains("show")){
-                            float.classList.remove("show");
+                        if(float.classList.contains("active")){
+                            float.classList.remove("active");
                         }
                     })
                     USER.login = true;
@@ -381,9 +381,9 @@ signup_float_submit.addEventListener("click", function(){
 })
 signup_float_login.addEventListener("click", function(){
     all_floats.forEach(float => {
-        if(float.classList.contains("show")){
-            float.classList.remove("show");
+        if(float.classList.contains("active")){
+            float.classList.remove("active");
         }
     })
-    login_float.classList.add("show");
+    login_float.classList.add("active");
 })

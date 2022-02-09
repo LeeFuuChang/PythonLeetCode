@@ -161,7 +161,7 @@ function Load_Question_Description(QUESTION){
 const content_header_nav_left_discuss = document.querySelector("#content-header-nav-left-discuss");
 content_header_nav_left_discuss.addEventListener("click", function(){
     if(!USER.login){
-        login_float.classList.add("show");
+        login_float.classList.add("active");
         return
     }
     inner_nav.querySelectorAll(".active").forEach(active => {
@@ -183,7 +183,7 @@ content_header_nav_left_discuss.addEventListener("click", function(){
 const content_header_nav_left_submissions = document.querySelector("#content-header-nav-left-submissions");
 content_header_nav_left_submissions.addEventListener("click", function(){
     if(!USER.login){
-        login_float.classList.add("show");
+        login_float.classList.add("active");
         return
     }
     inner_nav.querySelectorAll(".active").forEach(active => {
