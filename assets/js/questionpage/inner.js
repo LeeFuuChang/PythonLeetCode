@@ -208,6 +208,7 @@ function Load_User_Question_Submissions(user_data){
         "CE":"Compile Error"
     }
 
+    if(!user_data["problems"][QUESTION.id]) return;
     let i = 0
     user_data["problems"][QUESTION.id]["recentSubmissions"].forEach(submission => {
         let case_result_class = submission.result=="AC" ? "content-content-inner-submissions-recent-case-passed" : "content-content-inner-submissions-recent-case-failed";

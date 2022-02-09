@@ -16,8 +16,10 @@ account = Blueprint("account", __name__)
 def login():
     Args = request.args.to_dict()
 
-    username = Args["username"]
-    password = Args["password"]
+    username = Args.get("username", None)
+    password = Args.get("password", None)
+
+    if not (username and password): return {"state":0}
 
     address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     users_path = os.path.join(os.path.dirname(__file__), "data")
@@ -50,13 +52,44 @@ def login():
 
 
 
+@account.route("logout", methods=["GET"])
+def logout():
+    Args = request.args.to_dict()
+
+    username = Args.get("username", None)
+
+    if not (username): return {"state":0}
+
+    address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    users_path = os.path.join(os.path.dirname(__file__), "data")
+    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
+        users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+
+    idx = None
+    if username in list(users["username"]):
+        idx = list(users["username"]).index(username)
+
+    if idx == None: return {"state":0}
+
+    with open(os.path.join(users_path, "current.json"), "r") as f:
+        current = json.load(f)
+    current = Handle_IP.Delete(address, current)
+    with open(os.path.join(users_path, "current.json"), "w") as f:
+        json.dump(current, f, indent=4)
+
+    return {"state":1}
+
+
+
 @account.route("/signup", methods=["GET"])
 def signup():
     Args = request.args.to_dict()
 
-    email = Args["email"]
-    username = Args["username"]
-    password = Args["password"]
+    email = Args.get("email", None)
+    username = Args.get("username", None)
+    password = Args.get("password", None)
+
+    if not (email and username and password): return {"state":0}
 
     users_path = os.path.join(os.path.dirname(__file__), "data")
     with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
@@ -80,7 +113,12 @@ def signup():
 def editor():
     Args = request.args.to_dict()
 
-    username = Args["username"]
+    username = Args.get("username", None)
+    font = Args.get("font", None)
+    theme = Args.get("theme", None)
+    bind = Args.get("bind", None)
+
+    if not (username and font and theme and bind): return {"state":0}
 
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
     with open(os.path.join(users_path, "users.csv"), "r") as f:
@@ -94,9 +132,9 @@ def editor():
 
     with open(os.path.join(users_path, f"{username}.json"), "r") as f:
         user_data = json.load(f)
-    user_data["editor"]["font"] = Args["font"]
-    user_data["editor"]["theme"] = Args["theme"]
-    user_data["editor"]["bind"] = Args["bind"]
+    user_data["editor"]["font"] = font
+    user_data["editor"]["theme"] = theme
+    user_data["editor"]["bind"] = bind
     with open(os.path.join(users_path, f"{username}.json"), "w") as f:
         json.dump(user_data, f, indent=4)
     return {"state":1}

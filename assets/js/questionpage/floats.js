@@ -221,7 +221,7 @@ run_test_content_footer_cancel.addEventListener("click", function(){
 })
 run_test_content_footer_confirm.addEventListener("click", function(){
     let problem_id = QUESTION.id;
-    let code = codeEditor.renderedEditor.getValue().toString();
+    let code = `${codeEditor.renderedEditor.getValue().toString()}\n`;
     run_test_content_cases.querySelectorAll(".run-test-content-cases-item").forEach(
         case_item => {
             let inputDefinition = case_item.querySelector(".run-test-content-cases-item-left-var-textarea").value.toString();
@@ -306,7 +306,7 @@ login_float_submit.addEventListener("click", function(){
                 })
                 USER.login = true;
                 USER["user_data"] = result["user_data"];
-                document.querySelector("#pageheader-nav-right-user-nav-n-favorite").insertAdjacentText("beforeend", USER["user_data"]["username"]);
+                document.querySelector("#pageheader-nav-right-user-nav-y-profile-username").innerText = USER["user_data"]["username"];
                 Load_User_Question_Submissions(USER["user_data"]);
                 CurrentsEditorOptions = USER["user_data"]["editor"];
                 codeEditor.render(

@@ -21,6 +21,7 @@ def Join(ip, current, username):
 
 
 def Delete(ip, current):
+    if not Search(ip, current): return current
     ip_node = ip.split(".")
     if len(current[ip_node[0]][ip_node[1]][ip_node[2]]) == 1:
         if len(current[ip_node[0]][ip_node[1]]) == 1:

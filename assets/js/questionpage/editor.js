@@ -81,7 +81,7 @@ submit_button.addEventListener("click", function(){
         }, 250)
 
         let problem_id = QUESTION.id;
-        let code = codeEditor.renderedEditor.getValue().toString();
+        let code = `${codeEditor.renderedEditor.getValue().toString()}\n`;
         let submit_time = getNow()
         Object.keys(codeEditor.StringReplacement).forEach(key => {
             code = code.replaceAll(key, codeEditor.StringReplacement[key]);

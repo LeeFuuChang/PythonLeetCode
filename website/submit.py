@@ -13,7 +13,8 @@ states = {
     3:("TLE", "Time Limit Exceed"), 
     4:("MLE", "Memory Limit Exceed"), 
     5:("RE", "Runtime Error"), 
-    6:("CE", "Compile Error")
+    6:("CE", "Compile Error"),
+    7:("SE", "Server Error")
 }
 
 
@@ -87,12 +88,18 @@ def submit_submit():
 
 
     #args
-    username = Args["username"]
-    submit_time = Args["st"]
+    code = Args.get("code", None)
+    username = Args.get("username", None)
+    problem_id = Args.get("id", None)
+    submit_time = Args.get("st", None)
+    if not (code and username and problem_id and submit_time):
+        result = {
+            "time":0, "memory":0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
+        }
+        return result
+
     with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
         StringReplacement = json.load(replacement)
-    problem_id = int(Args["id"])
-    code = Args["code"]
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
     with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "eval.json"), "r") as eval_cases_data:
@@ -102,7 +109,7 @@ def submit_submit():
     #prevent evil imports
     if "import" in code:
         result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[6][0], "output":f"{states[6][1]}: 'import' is not allowed"
         }
         return Save_Submit_Result(problem_id, code, result, username)
 
@@ -119,12 +126,12 @@ def submit_submit():
         exec(fixed_code, codeed)
     except Exception as e:
         result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[6][0]), "output":f"{str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[6][0], "output":f"{states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"
         }
         return Save_Submit_Result(problem_id, code, result, username)
     if "Solution" not in codeed.keys(): 
         result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[5][0]), "output":f"{str(states[5][1])}: 'Solution' is not defined"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[5][0], "output":f"{states[5][1]}: 'Solution' is not defined"
         }
         return Save_Submit_Result(problem_id, code, result, username)
 
@@ -148,7 +155,7 @@ def submit_submit():
             output = codeed["Solution"]().main(*inputs)
         except Exception as e:
             result = {
-                "submit_time":submit_time, "time":0.0, "memory":0.0, "result":str(states[5][0]), "output":f"{str(states[5][1])}: {CE_RE_Error_CleanUP(str(e))}"
+                "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[5][0], "output":f"{states[5][1]}: {CE_RE_Error_CleanUP(str(e))}"
             }
             return Save_Submit_Result(problem_id, code, result, username)
         endT = Timer.time()
@@ -160,17 +167,17 @@ def submit_submit():
         result["memory"] = CurrentMaxMemory = max(CurrentMaxMemory, endMem-curMem)
 
         if result["time"] > maxTime:
-            result["result"] = str(states[3][0])
-            result["output"] = str(states[3][1])
+            result["result"] = states[3][0]
+            result["output"] = states[3][1]
             return Save_Submit_Result(problem_id, code, result, username)
         elif result["memory"] > maxMemory:
-            result["result"] = str(states[4][0])
-            result["output"] = str(states[4][1])
+            result["result"] = states[4][0]
+            result["output"] = states[4][1]
             return Save_Submit_Result(problem_id, code, result, username)
         else:
             failed = not judger["Output_Classifier"](inputs, output)
-            result["result"] = str(states[failed+1][0])
-            result["output"] = str(states[failed+1][1])
+            result["result"] = states[failed+1][0]
+            result["output"] = states[failed+1][1]
             if failed: return Save_Submit_Result(problem_id, code, result, username)
 
     return Save_Submit_Result(problem_id, code, result, username)
@@ -185,11 +192,17 @@ def submit_test():
 
 
     #args
+    code = Args.get("code", None)
+    problem_id = Args.get("id", None)
+    inputDefinition = Args.get("inputDefinition", None)
+    if not (problem_id and code and inputDefinition):
+        result = {
+            "time":0, "memory":0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
+        }
+        return result
+
     with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
         StringReplacement = json.load(replacement)
-    problem_id = int(Args["id"])
-    code = Args["code"]
-    inputDefinition = Args["inputDefinition"]
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
         inputDefinition = inputDefinition.replace(val, key)
@@ -198,7 +211,7 @@ def submit_test():
     #prevent evil imports
     if "import" in code:
         result = {
-            "time":-1, "memory":-1, "result":"CE", "output":"Compile Error: 'import' is not allowed"
+            "time":0, "memory":0, "result":states[6][0], "output":f"{states[6][1]}: 'import' is not allowed"
         }
         return result
 
@@ -214,19 +227,19 @@ def submit_test():
         exec(inputDefinition, inputs)
     except Exception as e:
         result = {
-            "time":-1, "memory":-1, "result":str(states[6][0]), "output":f"Input {str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
+            "time":0, "memory":0, "result":states[6][0], "output":f"Input {states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"
         }
         return result
     try:
         exec(code, codeed)
     except Exception as e:
         result = {
-            "time":-1, "memory":-1, "result":str(states[6][0]), "output":f"Code {str(states[6][1])}: {CE_RE_Error_CleanUP(str(e))}"
+            "time":0, "memory":0, "result":states[6][0], "output":f"Code {states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"
         }
         return result
     if "Solution" not in codeed.keys(): 
         result = {
-            "time":-1, "memory":-1, "result":str(states[5][0]), "output":f"{str(states[5][1])}: 'Solution' is not defined"
+            "time":0, "memory":0, "result":states[5][0], "output":f"{states[5][1]}: 'Solution' is not defined"
         }
         return result
 
@@ -241,7 +254,7 @@ def submit_test():
         output = codeed["Solution"]().main(*inputs)
     except Exception as e:
         result = {
-            "time":-1, "memory":-1, "result":str(states[5][0]), "output":f"{str(states[5][1])}: {CE_RE_Error_CleanUP(str(e))}"
+            "time":0, "memory":0, "result":states[5][0], "output":f"{states[5][1]}: {CE_RE_Error_CleanUP(str(e))}"
         }
         return result
     endT = Timer.time()
@@ -253,15 +266,15 @@ def submit_test():
 
     if(not result.get("result", False)):
         if result["time"] > maxTime:
-            result["result"] = str(states[3][0])
-            result["output"] = str(states[3][1])
+            result["result"] = states[3][0]
+            result["output"] = states[3][1]
         elif result["memory"] > maxMemory:
-            result["result"] = str(states[4][0])
-            result["output"] = str(states[4][1])
+            result["result"] = states[4][0]
+            result["output"] = states[4][1]
         else:
             failed = not judger["Output_Classifier"](inputs, output)
-            result["result"] = str(states[failed+1][0])
-            result["output"] = str(states[failed+1][1])
+            result["result"] = states[failed+1][0]
+            result["output"] = states[failed+1][1]
     return result
 
 
