@@ -26,6 +26,7 @@ def Save_Submit_Result(problem_id, code, result, username):
 
     if(not user_data["problems"].get(f"{problem_id}", False)):
         user_data["problems"][f"{problem_id}"] = {
+            "passed":False,
             "lastSubmission": {
                 "result": {},
                 "code": ""
@@ -39,6 +40,9 @@ def Save_Submit_Result(problem_id, code, result, username):
     user_data["problems"][f"{problem_id}"]["lastSubmission"]["result"] = result
     user_data["problems"][f"{problem_id}"]["recentSubmissions"].insert(0, result)
     user_data["problems"][f"{problem_id}"]["recentSubmissions"][0]["code"] = code
+
+    if not user_data["problems"][f"{problem_id}"]["passed"]:
+        user_data["problems"][f"{problem_id}"]["passed"] = result["result"] == states[1][0]
 
     if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
         user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
@@ -96,7 +100,7 @@ def submit_submit():
         result = {
             "time":0, "memory":0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
         }
-        return result
+        return Save_Submit_Result(problem_id, code, result, username)
 
     with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
         StringReplacement = json.load(replacement)

@@ -205,7 +205,8 @@ function Load_User_Question_Submissions(user_data){
         "TLE":"Time Limit Exceed", 
         "MLE":"Memory Limit Exceed", 
         "RE":"Runtime Error", 
-        "CE":"Compile Error"
+        "CE":"Compile Error",
+        "SE":"Server Error"
     }
 
     if(!user_data["problems"][QUESTION.id]) return;
