@@ -1,5 +1,6 @@
 from flask import Blueprint, request
 from .modules import Handle_CSV
+from .modules import Handle_IP
 from io import StringIO
 import pandas as pd
 import json
@@ -18,8 +19,9 @@ def login():
     username = Args["username"]
     password = Args["password"]
 
-    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
-    with open(os.path.join(users_path, "users.csv"), "r") as f:
+    address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    users_path = os.path.join(os.path.dirname(__file__), "data")
+    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
 
     idx = None
@@ -32,7 +34,13 @@ def login():
 
     username = users.iloc[idx]["username"]
 
-    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
+    with open(os.path.join(users_path, "current.json"), "r") as f:
+        current = json.load(f)
+    current = Handle_IP.Join(address, current, username)
+    with open(os.path.join(users_path, "current.json"), "w") as f:
+        json.dump(current, f, indent=4)
+
+    with open(os.path.join(users_path, "users", f"{username}.json"), "r") as f:
         user_data = json.load(f)
 
     if password == user_data["password"]:
@@ -50,8 +58,8 @@ def signup():
     username = Args["username"]
     password = Args["password"]
 
-    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
-    with open(os.path.join(users_path, "users.csv"), "r") as f:
+    users_path = os.path.join(os.path.dirname(__file__), "data")
+    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
 
     if email in list(users["account"]):

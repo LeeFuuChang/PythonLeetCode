@@ -277,10 +277,9 @@ const signup_float_confirm = signup_float.querySelector("#signup-float-content-c
 const signup_float_submit = signup_float.querySelector("#signup-float-content-submit");
 const signup_float_login = signup_float.querySelector("#signup-float-content-noaccount-login");
 // listeners
-document.querySelector("#pageheader-nav-right-user-icon").addEventListener("click", function(){
+document.querySelector("#pageheader-nav-right-user-nav-n-login").addEventListener("click", function(){
     login_float.classList.add("show");
 })
-
 login_float_close.addEventListener("click", function(){
     if(login_float.classList.contains("show")){
         login_float.classList.remove("show");
@@ -307,6 +306,7 @@ login_float_submit.addEventListener("click", function(){
                 })
                 USER.login = true;
                 USER["user_data"] = result["user_data"];
+                document.querySelector("#pageheader-nav-right-user-nav-n-favorite").insertAdjacentText("beforeend", USER["user_data"]["username"]);
                 Load_User_Question_Submissions(USER["user_data"]);
                 CurrentsEditorOptions = USER["user_data"]["editor"];
                 codeEditor.render(
@@ -332,6 +332,9 @@ login_float_signup.addEventListener("click", function(){
     signup_float.classList.add("show");
 })
 
+document.querySelector("#pageheader-nav-right-user-nav-n-signup").addEventListener("click", function(){
+    signup_float.classList.add("show");
+})
 signup_float_close.addEventListener("click", function(){
     if(signup_float.classList.contains("show")){
         signup_float.classList.remove("show");

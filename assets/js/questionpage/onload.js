@@ -18,10 +18,6 @@ window.onload = function(){
     ).then(res => {
         return res.json();
     }).then(res => {
-        if(res.user){
-            USER.login = true;
-            USER.user_data = res.user;
-        }
         QUESTION = res.question;
         Load_Question_Description(QUESTION);
         codeEditor.default = (QUESTION.predefine ? `${QUESTION.predefine}\n\n` : "") + QUESTION.default;
@@ -31,5 +27,24 @@ window.onload = function(){
             CurrentsEditorOptions.bind.toLowerCase(),
             codeEditor.default
         );
+
+        if(res["user_data"]){
+            all_floats.forEach(float => {
+                if(float.classList.contains("show")){
+                    float.classList.remove("show");
+                }
+            })
+            console.log("Login OK");
+            USER.login = true;
+            USER["user_data"] = res["user_data"];
+            Load_User_Question_Submissions(USER["user_data"]);
+            CurrentsEditorOptions = USER["user_data"]["editor"];
+            codeEditor.render(
+                parseInt(CurrentsEditorOptions.font),
+                CurrentsEditorOptions.theme.toLowerCase(), 
+                CurrentsEditorOptions.bind.toLowerCase(),
+                codeEditor.renderedEditor.getValue()
+            );
+        }
     })
 }
