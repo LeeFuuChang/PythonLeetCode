@@ -37,5 +37,17 @@
         "-10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>",
         "-10<sup>9</sup> <= target <= 10<sup>9</sup>",
         "Only one valid answer exists."
-    ]
+    ],
+    "discussions":{
+        "0000000000000000":{
+            "id":"0000000000000000",
+            "title":"Two Sum O(n^2) Solution",
+            "author":"LeeFuuChang",
+            "time":"2022/02/11 00:04",
+            "likes":1116,
+            "views":55688,
+            "question":"1",
+            "content":""
+        }
+    }
 }
