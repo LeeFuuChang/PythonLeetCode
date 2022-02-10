@@ -159,6 +159,9 @@ function Load_Question_Description(QUESTION){
 
 // inner Question discuss
 const content_header_nav_left_discuss = document.querySelector("#content-header-nav-left-discuss");
+const content_content_inner_discuss = document.querySelector("#content-content-inner-discuss");
+const content_content_inner_discuss_header_nav = content_content_inner_discuss.querySelector("#content-content-inner-discuss-header-nav");
+const content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
 content_header_nav_left_discuss.addEventListener("click", function(){
     if(!USER.login){
         login_float.classList.add("active");
@@ -173,6 +176,104 @@ content_header_nav_left_discuss.addEventListener("click", function(){
     })
     inner.querySelector(`#content-content-inner-discuss`).classList.add("active");
     Update_Scroll_hint(inner.querySelector(`#content-content-inner-discuss`));
+})
+
+const content_content_inner_discuss_header_nav_search = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-search");
+content_content_inner_discuss_header_nav_search.addEventListener("input", function(){
+    let value = content_content_inner_discuss_header_nav_search.value.toLowerCase();
+    content_content_inner_discuss_posts.forEach(post => {
+        let title = post.querySelector(".content-content-inner-discuss-post-title").innerText.toLowerCase();
+        let username = post.querySelector(".content-content-inner-discuss-post-footer-left-username").innerText.toLowerCase();
+        let combine = title + username;
+
+        if( combine.indexOf(value)>=0 ){
+            post.style.display = "flex";
+        }else{
+            post.style.display = "none";
+        }
+    })
+})
+
+const content_content_inner_discuss_header_nav_filter = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-filter");
+const content_content_inner_discuss_header_nav_filter_option_item_function = {
+    "sort":{
+        "nto":function(){
+            let sort = function(a, b){
+                let t1_s = a.querySelector(".content-content-inner-discuss-post-footer-left-time").textContent;
+                let t1_st = t1_s.split(" ");
+                let t1_as = t1_st[0].split("/");
+                let t1_bs = t1_st[1].split(":");
+                let t1 = t1_as[0]*12*30*24*60 + t1_as[1]*30*24*60 + t1_as[2]*24*60 + t1_bs[0]*60 + t1_bs[1];
+                
+                let t2_s = b.querySelector(".content-content-inner-discuss-post-footer-left-time").textContent;
+                let t2_st = t2_s.split(" ");
+                let t2_as = t2_st[0].split("/");
+                let t2_bs = t2_st[1].split(":");
+                let t2 = t2_as[0]*12*30*24*60 + t2_as[1]*30*24*60 + t2_as[2]*24*60 + t2_bs[0]*60 + t2_bs[1];
+                
+                return t2 - t1;
+            }
+            let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+            for(let i=0; i<sorted.length; i++){
+                sorted[i].parentNode.appendChild(sorted[i]);
+            }
+        },
+        "vote":function(){
+            let sort = function(a, b){
+                let t1 = a.querySelector(".content-content-inner-discuss-post-footer-right-likes-text").textContent;
+                let t2 = b.querySelector(".content-content-inner-discuss-post-footer-right-likes-text").textContent;
+                return `${t2}`.localeCompare(`${t1}`);
+            }
+            let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+            for(let i=0; i<sorted.length; i++){
+                sorted[i].parentNode.appendChild(sorted[i]);
+            }
+        },
+        "view":function(){
+            let sort = function(a, b){
+                let t1 = a.querySelector(".content-content-inner-discuss-post-footer-right-views-text").textContent;
+                let t2 = b.querySelector(".content-content-inner-discuss-post-footer-right-views-text").textContent;
+                return `${t2}`.localeCompare(`${t1}`);
+            }
+            let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+            for(let i=0; i<sorted.length; i++){
+                sorted[i].parentNode.appendChild(sorted[i]);
+            }
+        }
+    }
+}
+content_content_inner_discuss_header_nav_filter.querySelectorAll(".content-content-inner-discuss-header-nav-filter-item").forEach(filter_item => {
+    let options = filter_item.querySelector(".content-content-inner-discuss-header-nav-filter-options");
+    options.addEventListener("mouseleave", function(){
+        options.classList.remove("active");
+    })
+    let button = filter_item.querySelector(".content-content-inner-discuss-header-nav-filter-button");
+    button.addEventListener("click", function(){
+        if(options.classList.contains("active")){
+            options.classList.remove("active");
+        }else{
+            options.classList.add("active");
+        }
+    })
+    let option_items = options.querySelectorAll(".content-content-inner-discuss-header-nav-filter-options-item");
+    option_items.forEach(option_item => {
+        option_item.addEventListener("click", function(){
+            option_items.forEach(item => {
+                if(item.classList.contains("active")) item.classList.remove("active");
+            })
+            option_item.classList.add("active");
+            options.classList.remove("active");
+
+            content_content_inner_discuss_header_nav_filter_option_item_function[filter_item.ariaLabel][option_item.ariaLabel]();
+        })
+    })
+})
+
+const content_content_inner_discuss_header_nav_new = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-new");
+content_content_inner_discuss_header_nav_new.addEventListener("click", function(){
+    if(!USER.login || !USER["user_data"]["problems"][QUESTION.id] || !USER["user_data"]["problems"][QUESTION.id]["passed"]){
+        alert("You need to PASS the problem before writing a Solution Report");
+    }
 })
 
 

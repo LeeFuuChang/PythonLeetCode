@@ -25,12 +25,14 @@ def login():
     users_path = os.path.join(os.path.dirname(__file__), "data")
     with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+        accounts_lower = [_.lower() for _ in users["account"]]
+        usernames_lower = [_.lower() for _ in users["username"]]
 
     idx = None
-    if username in list(users["account"]):
-        idx = list(users["account"]).index(username)
-    elif username in list(users["username"]):
-        idx = list(users["username"]).index(username)
+    if username.lower() in accounts_lower:
+        idx = accounts_lower.index(username.lower())
+    elif username.lower() in usernames_lower:
+        idx = usernames_lower.index(username.lower())
 
     if idx == None: return {"state":0}
 
@@ -64,10 +66,11 @@ def logout():
     users_path = os.path.join(os.path.dirname(__file__), "data")
     with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+        usernames_lower = [_.lower() for _ in users["username"]]
 
     idx = None
-    if username in list(users["username"]):
-        idx = list(users["username"]).index(username)
+    if username.lower() in usernames_lower:
+        idx = usernames_lower.index(username.lower())
 
     if idx == None: return {"state":0}
 
@@ -94,10 +97,12 @@ def signup():
     users_path = os.path.join(os.path.dirname(__file__), "data")
     with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+        accounts_lower = [_.lower() for _ in users["account"]]
+        usernames_lower = [_.lower() for _ in users["username"]]
 
-    if email in list(users["account"]):
+    if email.lower() in accounts_lower:
         return {"state":-1}
-    elif username in list(users["username"]):
+    elif username.lower() in usernames_lower:
         return {"state":-2}
 
     with open(os.path.join(users_path, "users.csv"), "r") as f:
@@ -123,10 +128,11 @@ def editor():
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
     with open(os.path.join(users_path, "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
+        usernames_lower = [_.lower() for _ in users["username"]]
 
     idx = None
-    if username in list(users["username"]):
-        idx = list(users["username"]).index(username)
+    if username.lower() in usernames_lower:
+        idx = usernames_lower.index(username.lower())
 
     if idx == None: return {"state":0}
 

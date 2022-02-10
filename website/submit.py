@@ -85,6 +85,39 @@ def FixInfiniteWhile(code):
 
 
 
+def FixLongFor(code):
+    now = 0
+    while(True):
+        now = code.find("for", now)
+        if now < 0 or now > len(code): break
+
+        indent = 0
+        tmp = now
+        while(True):
+            if code[tmp-4:tmp] != " "*4: break
+            indent += 1
+            tmp -= 4
+
+        while(True):
+            ending = code.find(":", now)
+            now = ending
+            if code[ending+1] != "=": break
+            continue
+
+        tmp = now+1
+        while(True):
+            if code[tmp] != " ":
+                code = code[:now+1] + code[tmp:]
+                break
+            tmp += 1
+        
+        adding = "\n" + " "*4*(indent+1) + "if(GetTimeFunction() - RuntimeStartTime > RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
+        code = code[:now+1] + adding + code[now+1:] + "\n"
+        now += len(adding)
+    return code
+
+
+
 
 
 @submit.route("/submit", methods=["GET"])
@@ -128,6 +161,7 @@ def submit_submit():
     maxMemory = float(judger["maxMemory"])
     try:
         fixed_code = FixInfiniteWhile(code)
+        fixed_code = FixLongFor(fixed_code)
         exec(fixed_code, codeed)
     except Exception as e:
         result = {
@@ -189,8 +223,6 @@ def submit_submit():
 
 
 
-
-
 @submit.route("/test", methods=["GET"])
 def submit_test():
     Args = request.args.to_dict()
@@ -236,7 +268,9 @@ def submit_test():
         }
         return result
     try:
-        exec(code, codeed)
+        fixed_code = FixInfiniteWhile(code)
+        fixed_code = FixLongFor(fixed_code)
+        exec(fixed_code, codeed)
     except Exception as e:
         result = {
             "time":0, "memory":0, "result":states[6][0], "output":f"Code {states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"

@@ -1,48 +1,48 @@
-import time, threading
+import time
 
-code = """
-class Solution():
-    def main(self, l1, l2):
-        while(a:=True) :
-            pass
+z = """
+for i in range(999999):for j in range(20)  :    for i in range(999999): pass
+for i in range(999999):
+    print("OMG")
 """
 
-def FixInfiniteWhile(code):
+def a(code):
     now = 0
     while(True):
-        finding = "while("
-        idx = code.find(finding, now)
-        if idx < 0 or idx > len(code): break
-        inserting = "(self.GetTimeFunction() - self.RuntimeStartTime < self.RuntimeMaxTime) and ("
-        code = code[:idx+len(finding)] + inserting + code[idx+len(finding):]
-        now = idx+len(finding)+len(inserting)
+        now = code.find("for", now)
+        if now < 0 or now > len(code): break
 
-        _now = now
+        indent = 0
+        tmp = now
         while(True):
-            ending = code.find(":", _now)
-            if code[ending+1] == "=": 
-                _now = ending+1
-                continue
-            code = code[:ending] + ")" + code[ending:]
-            now = ending+2
-            break
+            if code[tmp-4:tmp] != " "*4: break
+            indent += 1
+            tmp -= 4
+
+        while(True):
+            ending = code.find(":", now)
+            now = ending
+            if code[ending+1] != "=": break
+            continue
+
+        tmp = now+1
+        while(True):
+            if code[tmp] != " ":
+                code = code[:now+1] + code[tmp:]
+                break
+            tmp += 1
+        
+        adding = "\n" + " "*4*(indent+1) + "if(GetTimeFunction() - RuntimeStartTime > RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
+        code = code[:now+1] + adding + code[now+1:] + "\n"
+        now += len(adding)
     return code
-code = FixInfiniteWhile(code)
+
+
+
+
+code = a(z)
 print(code)
-
-
-def a():
-    z = {}
-    exec(code, z)
-    setattr(z["Solution"], "RuntimeMaxTime", 5)
-    setattr(z["Solution"], "GetTimeFunction", time.time)
-    setattr(z["Solution"], "RuntimeStartTime", time.time())
-    setattr(z["Solution"], "RuntimeMaxTime", 10)
-    setattr(z["Solution"], "GetTimeFunction", time.time)
-    setattr(z["Solution"], "RuntimeStartTime", time.time())
-    aa = time.time()
-    z["Solution"]().main(1, 1)
-    print("end", time.time()-aa)
-
-    
-a()
+s = time.time()
+j = {"GetTimeFunction":time.time, "RuntimeStartTime":s, "RuntimeMaxTime":5}
+exec(code, j)
+print(time.time()-s)
