@@ -6,7 +6,7 @@ import os
 views = Blueprint("views", __name__)
 
 @views.route("/problems/<path:subpath>")
-def p(subpath):
+def question(subpath):
     address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     paths = subpath.split("/")
     problem_id = paths[0]
@@ -24,6 +24,6 @@ def p(subpath):
                     user_data = json.load(f)
             return {"question":question, "user_data":user_data}
 
-    return render_template("output.html", problem_id=problem_id)
+    return render_template("question.html", problem_id=problem_id)
 
 

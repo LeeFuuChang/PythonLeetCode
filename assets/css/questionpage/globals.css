@@ -1,33 +1,7 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url("header.css");
 @import url("content.css");
 @import url("footer.css");
 @import url("floats.css");
-
-:root {
-    --case-passed-green: #009688;
-    --case-failed-red: #c62928;
-    --case-waiting-black: #263238;
-}
-
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    word-spacing: 1px;
-    letter-spacing: 0.5px;
-}
-
-.df {
-    display: flex;
-}
-.aic {
-    align-items: center;
-}
-.jcc {
-    justify-content: center;
-}
 
 body {
     position: relative;
@@ -35,16 +9,6 @@ body {
     height: 100%;
     min-height: 100vh;
     max-height: 100vh;
-}
-
-textarea {
-    resize: none;
-}
-
-a {
-    cursor: pointer;
-    text-decoration: none;
-    color: #000000;
 }
 
 table, th, td {

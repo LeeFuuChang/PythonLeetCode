@@ -50,3 +50,14 @@ window.onload = function(){
         }
     })
 }
+
+function LoginLoad(){
+    Load_User_Question_Submissions(USER["user_data"]);
+    CurrentsEditorOptions = USER["user_data"]["editor"];
+    codeEditor.render(
+        parseInt(CurrentsEditorOptions.font),
+        CurrentsEditorOptions.theme.toLowerCase(), 
+        CurrentsEditorOptions.bind.toLowerCase(),
+        codeEditor.renderedEditor.getValue()
+    );
+}

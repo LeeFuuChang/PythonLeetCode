@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="assets/css/_globals.css">
+    <link rel="stylesheet" href="assets/css/_header.css">
+    <link rel="stylesheet" href="assets/css/_floats.css">
+    <link rel="stylesheet" href="assets/css/landingpage/globals.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
+</head>
+<body>
+    <header id="pageheader">
+        <nav id="pageheader-nav" class="df aic">
+            <div id="pageheader-nav-left" class="df aic jcc">
+                <a id="pageheader-nav-left-logo"  class="df aic jcc pageheader-nav-left-logo" href="#">
+                    <img id="pageheader-nav-left-logo-img" src="assets/images/logo/logo.png" alt="">
+                </a>
+                <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-problems-text">題目列表</span>
+                </a>
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-ranks-text">解題排名</span>
+                </a>
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-submissions-text">解題動態</span>
+                </a>
+            </div>
+            <div id="pageheader-nav-right" class="df aic jcc">
+                <div id="pageheader-nav-right-user" class="df aic jcc pageheader-nav-right-item">
+                    <img id="pageheader-nav-right-user-icon" src="assets/images/svgs/person-circle.svg" alt="">
+                    <div id="pageheader-nav-right-user-nav">
+                        <div id="pageheader-nav-right-user-nav-y" class="df">
+                            <a id="pageheader-nav-right-user-nav-y-profile" class="df aic">
+                                <img src="assets/images/svgs/person-circle.svg" alt="">
+                                <span id="pageheader-nav-right-user-nav-y-profile-username"></span>
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-favorite" class="df aic">
+                                <img src="assets/images/svgs/bookmark-heart.svg" alt="">
+                                我的最愛
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-y-submissions" class="df aic">
+                                <img src="assets/images/svgs/clock.svg" alt="">
+                                提交紀錄
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-logout" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-left.svg" alt="">
+                                登出
+                            </a>
+                        </div>
+                        <div id="pageheader-nav-right-user-nav-n" class="df">
+                            <a id="pageheader-nav-right-user-nav-n-login" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-in-right.svg" alt="">
+                                登入
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-n-signup" class="df aic">
+                                <img src="assets/images/svgs/person-plus-fill.svg" alt="">
+                                註冊
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div id="content">
+        <header id="content-header" class="df aic jcc">
+            <div id="content-header-left" class="df aic jcc content-header-section">
+                <div id="content-header-left-frame">
+                    <textarea id="content-header-left-frame-animation" spellcheck="false" disabled></textarea>
+                </div>
+            </div>
+            <div id="content-header-right" class="df aic jcc content-header-section">
+                <img id="content-header-right-logo" src="assets/images/logo/icon-logo.png" alt="">
+            </div>
+        </header>
+        <div id="content-features" class="df aic jcc">
+            <div class="df aic jcc content-features-row">
+                <div class="df aic jcc content-features-row-section">
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/checklist.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">精選題庫</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            眾多精選題庫<br>物件導向、資料結構、演算法<br>競程練習、考古題庫
+                        </p>
+                    </div>
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/code-editor.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">在線編輯</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            在線即時編程、精選代碼主題<br>支援多種編輯器鍵位<br>物件導向編程練習
+                        </p>
+                    </div>
+                </div>
+                <div class="df aic jcc content-features-row-section">
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/compute.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">即時評測</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            自製 Python 專用 OJ<br>線上解題、即時評測<br>自訂測試資料、自動生成正解
+                        </p>
+                    </div>
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/idea.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">邏輯訓練</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            實作練習、邏輯訓練<br>快速學習編程<br>在燒腦實作中成為專家<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    <div id="login-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="login-float-content" class="df aic">
+                    <header id="login-float-content-header" class="df aic">
+                        <img id="login-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="login-float-content-logo" class="df aic jcc">
+                        <img id="login-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="login-float-content-username" type="text" placeholder="E-mail/Username">
+                    <input id="login-float-content-password" type="password" placeholder="Password">
+                    <a id="login-float-content-submit" class="df aic jcc">登入</a>
+                    <div id="login-float-content-noaccount" class="df">
+                        <a id="login-float-content-noaccount-forget">
+                            忘記密碼
+                        </a>
+                        <a id="login-float-content-noaccount-signup">
+                            註冊
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="signup-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="signup-float-content" class="df aic">
+                    <header id="signup-float-content-header" class="df aic">
+                        <img id="signup-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="signup-float-content-logo" class="df aic jcc">
+                        <img id="signup-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="signup-float-content-email" type="text" placeholder="E-mail">
+                    <input id="signup-float-content-username" type="text" placeholder="Username">
+                    <input id="signup-float-content-password" type="password" placeholder="Password">
+                    <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
+                    <a id="signup-float-content-submit" class="df aic jcc">註冊</a>
+                    <div id="signup-float-content-noaccount" class="df">
+                        <a id="signup-float-content-noaccount-login">
+                            登入
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+
+</script>
+<script src="assets/js/jquery-3.6.0.min.js"></script>
+
+<script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+
+<script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+
+<script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+
+<script src="assets/plugin/codemirror/keymap/emacs.js"></script>
+<script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+<script src="assets/plugin/codemirror/keymap/vim.js"></script>
+
+<script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+
+<script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+
+<script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
+<script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+
+<script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
+<script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
+<script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
+<script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
+<script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+
+<script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
+<script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+
+
+<!-- My Scripts -->
+<!-- Onload Script -->
+<script src="assets/js/landingpage/onload.js"></script>
+<!-- Global Scripts -->
+<script src="assets/js/_header.js"></script>
+<script src="assets/js/_floats.js"></script>
+<!-- Page Scripts -->
+<script src="assets/js/landingpage/animate.js"></script>
+
+</html>

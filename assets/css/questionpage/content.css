@@ -183,7 +183,8 @@
 #content #content-content #content-content-inner #content-content-inner-footer nav #content-content-inner-footer-nav-left .content-content-inner-footer-nav-left-item {
     border: 1px solid #d2d2d2;
     border-radius: 4px;
-    width: 90px;
+    padding: 0 10px;
+    width: max-content;
     height: 32px;
     transition: 0.2s;
     color: #000000;
@@ -209,7 +210,7 @@
     border-radius: 4px;
     padding: 0 10px;
     margin-right: 40px;
-    width: min-content;
+    width: max-content;
     height: 32px;
     transition: 0.2s;
     color: #000000;
