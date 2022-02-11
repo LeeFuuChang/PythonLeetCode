@@ -51,7 +51,7 @@ def Save_Submit_Result(problem_id, code, result, username):
     with open(os.path.join(users_path, f"{username}.json"), "w") as f:
         json.dump(user_data, f, indent=4)
 
-    return result
+    return {**result, "user_data":user_data}
 
 
 
@@ -111,7 +111,7 @@ def FixLongFor(code):
                 break
             tmp += 1
         
-        adding = "\n" + " "*4*(indent+1) + "if(GetTimeFunction() - RuntimeStartTime > RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
+        adding = "\n" + " "*4*(indent+1) + "if(self.GetTimeFunction() - self.RuntimeStartTime > self.RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
         code = code[:now+1] + adding + code[now+1:] + "\n"
         now += len(adding)
     return code
@@ -290,6 +290,9 @@ def submit_test():
     memoryTracer.start()
     curMem = memoryTracer.get_traced_memory()[0] / 10**3
     try:
+        setattr(codeed["Solution"], "RuntimeStartTime", curT)
+        setattr(codeed["Solution"], "RuntimeMaxTime", maxTime)
+        setattr(codeed["Solution"], "GetTimeFunction", Timer.time)
         output = codeed["Solution"]().main(*inputs)
     except Exception as e:
         result = {

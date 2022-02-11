@@ -160,6 +160,41 @@ function Load_Question_Description(QUESTION){
 // inner Question discuss
 const content_header_nav_left_discuss = document.querySelector("#content-header-nav-left-discuss");
 const content_content_inner_discuss = document.querySelector("#content-content-inner-discuss");
+content_content_inner_discuss.makePost = function(post_data){
+    content_content_inner_discuss.querySelector("#content-content-inner-discuss-posts").insertAdjacentHTML(
+        "afterbegin",
+        `
+        <div class="df content-content-inner-discuss-post">
+            <a class="content-content-inner-discuss-post-title" href="/discuss/visit/${post_data["question"]}">${post_data["title"]}</a>
+            <hr class="content-content-inner-discuss-post-hr">
+            <div class="df aic content-content-inner-discuss-post-footer">
+                <div class="df aic content-content-inner-discuss-post-footer-left">
+                    <a class="df aic content-content-inner-discuss-post-footer-left-username">${post_data["author"]}</a>
+                    <span class="df aic content-content-inner-discuss-post-footer-left-time">${post_data["time"]}</span>
+                </div>
+                <div class="df aic content-content-inner-discuss-post-footer-right">
+                    <a class="df aic content-content-inner-discuss-post-footer-right-id" href="/views/problems/${post_data["question"]}">
+                        ${post_data["question"]}
+                    </a>
+                    <div class="df aic content-content-inner-discuss-post-footer-right-likes">
+                        <img class="content-content-inner-discuss-post-footer-right-likes-icon" src="assets/images/svgs/caret-up-fill.svg" alt="">
+                        <span class="content-content-inner-discuss-post-footer-right-likes-text">${post_data["likes"]}</span>
+                    </div>
+                    <div class="df aic content-content-inner-discuss-post-footer-right-views">
+                        <img class="content-content-inner-discuss-post-footer-right-views-icon" src="assets/images/svgs/eye-fill.svg" alt="">
+                        <span class="content-content-inner-discuss-post-footer-right-views-text">${post_data["views"]}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        `
+    )
+}
+function Load_Question_Discussions(QUESTION){
+    Object.keys(QUESTION["discussions"]).forEach(post_id => {
+        content_content_inner_discuss.makePost(QUESTION["discussions"][post_id]);
+    })
+}
 const content_content_inner_discuss_header_nav = content_content_inner_discuss.querySelector("#content-content-inner-discuss-header-nav");
 const content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
 content_header_nav_left_discuss.addEventListener("click", function(){
@@ -269,12 +304,6 @@ content_content_inner_discuss_header_nav_filter.querySelectorAll(".content-conte
     })
 })
 
-const content_content_inner_discuss_header_nav_new = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-new");
-content_content_inner_discuss_header_nav_new.addEventListener("click", function(){
-    if(!USER.login || !USER["user_data"]["problems"][QUESTION.id] || !USER["user_data"]["problems"][QUESTION.id]["passed"]){
-        alert("You need to PASS the problem before writing a Solution Report");
-    }
-})
 
 
 

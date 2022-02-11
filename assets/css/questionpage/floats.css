@@ -28,6 +28,96 @@
 
 
 
+/* new post */
+#newpost #newpost-content {
+    padding: 10px;
+    width: 520px;
+    height: min-content;
+    font-family: 'Roboto', sans-serif;
+    background: #FFFFFF;
+}
+#newpost #newpost-content-title {
+    padding: 20px;
+    width: 100%;
+    height: 64px;
+    color: #02203C;
+    font-size: 20px;
+    font-weight: 400;
+    font-family: 'Roboto', sans-serif;
+}
+#newpost #newpost-content-title #newpost-content-title-icon {
+    margin-right: 10px;
+    width: 24px;
+    height: 24px;
+}
+#newpost .newpost-content-description {
+    padding: 0 20px 0 20px;
+    width: 100%;
+    height: 20px;
+    color: #445D6E;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#newpost .newpost-content-description b {
+    padding: 0 4px;
+}
+#newpost .newpost-content-description span {
+    padding: 0 4px;
+}
+#newpost .newpost-content-description span a {
+    padding: 0 4px;
+    transition: 0.2s;
+    color: #328df4;
+}
+#newpost .newpost-content-description span a:hover {
+    padding: 0 4px;
+    color: #144EAC;
+    text-shadow: 0 0 1px #455A64;
+}
+#newpost input {
+    margin: 0 20px 20px 20px;
+    padding: 6px 12px;
+    width: calc(100% - 40px);
+    height: 32px;
+}
+#newpost #newpost-content-footer {
+    justify-content: flex-end;
+    margin-top: 10px;
+    padding: 10px 20px 20px 20px;
+    width: 100%;
+    height: 40px;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#newpost #newpost-content-footer .newpost-content-footer-button {
+    margin-left: 20px;
+    border-radius: 4px;
+    width: 76px;
+    height: 40px;
+    transition: 0.2s;
+}
+#newpost #newpost-content-footer #newpost-content-footer-cancel {
+    border: 1px solid #D2D2D2;
+    color: #4D4D4D;
+    background: #FFFFFF;
+}
+#newpost #newpost-content-footer #newpost-content-footer-cancel:hover {
+    border: 1px solid #404040;
+    color: #191919;
+    background: #ECECEC;
+}
+#newpost #newpost-content-footer #newpost-content-footer-confirm {
+    color: #FFFFFF;
+    background: #455A64;
+}
+#newpost #newpost-content-footer #newpost-content-footer-confirm:hover {
+    background: #63737C;
+}
+
+
+
+
+
 /* editor-reset */
 #editor-reset #editor-reset-content {
     padding: 10px;

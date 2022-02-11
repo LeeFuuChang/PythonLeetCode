@@ -114,8 +114,10 @@
 
 
 
-
-
+#content-content-inner-discuss #content-content-inner-discuss-posts {
+    width: 100%;
+    height: min-content;
+}
 #content-content-inner-discuss .content-content-inner-discuss-post {
     flex-direction: column;
     align-items: flex-start;

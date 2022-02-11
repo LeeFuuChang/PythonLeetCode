@@ -4,6 +4,54 @@ const all_floats = document.querySelectorAll(".floatfixed");
 
 
 
+// new post
+const content_content_inner_discuss_header_nav_new = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-new");
+const newpost_float = document.querySelector("#newpost");
+const newpost_float_link = newpost_float.querySelector("#newpost-link");
+const newpost_float_title = newpost_float.querySelector("#newpost-title");
+const newpost_content_footer_cancel = newpost_float.querySelector("#newpost-content-footer-cancel");
+const newpost_content_footer_confirm = newpost_float.querySelector("#newpost-content-footer-confirm");
+content_content_inner_discuss_header_nav_new.addEventListener("click", function(){
+    if(!USER.login || !USER["user_data"]["problems"][QUESTION.id] || !USER["user_data"]["problems"][QUESTION.id]["passed"]){
+        alert("You need to PASS the problem before writing a Solution Report");
+        return;
+    }
+    newpost_float.classList.add("active");
+})
+newpost_content_footer_cancel.addEventListener("click", function(){
+    newpost_float.classList.remove("active");
+})
+newpost_content_footer_confirm.addEventListener("click", function(){
+    let link = newpost_float_link.value;
+    let title = newpost_float_title.value;
+
+    if( title=="" ){
+        alert("invaild Solution Report title");
+        return;
+    }else if( link == "" ){
+        alert("invaild Google Docs Publish Link");
+        return;
+    }
+
+    fetch(
+        `/discuss/newpost?id=${QUESTION.id}&username=${USER["user_data"]["username"]}&time=${getNow()}&link=${link}&title=${title}`,
+        {method:"GET"}
+    ).then(res => {
+        return res.json();
+    }).then(res => {
+        console.log(res["output"]);
+        if(res["state"]){
+            content_content_inner_discuss.makePost(res["output"]);
+        }
+    })
+
+    newpost_float.classList.remove("active");
+})
+
+
+
+
+
 // editor-reset
 const editor_reset_button = document.querySelector("#content-header-nav-right-reset");
 const editor_reset_float = document.querySelector("#editor-reset");

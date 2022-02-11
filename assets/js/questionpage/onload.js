@@ -20,6 +20,7 @@ window.onload = function(){
     }).then(res => {
         QUESTION = res.question;
         Load_Question_Description(QUESTION);
+        Load_Question_Discussions(QUESTION);
         codeEditor.default = (QUESTION.predefine ? `${QUESTION.predefine}\n\n` : "") + QUESTION.default;
         codeEditor.render(
             CurrentsEditorOptions.font,
