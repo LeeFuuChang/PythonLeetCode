@@ -5,8 +5,11 @@
     "likes":16132,
     "dislikes":3451,
     "description":[
-        "You are given two non-empty linked lists representing two non-negative integers. The digits are stored in reverse order, and each of their nodes contains a single digit. Add the two numbers and return the sum as a linked list.",
-        "You may assume the two numbers do not contain any leading zero, except the number 0 itself."
+        "給定兩個非空的 Linked-List 以表示兩個非負正整數，以反向儲存每位數字，Linked-List上的每個節點分別儲存一位數字。現在希望你將兩數相加，並以 Linked-List 反向儲存每位數字後回傳結果。",
+        "",
+        "輸入說明：<br>題目會傳入兩個 Linked-List ，分別代表兩個非負正整數用 Linked-List 反向儲存後的結果。",
+        "",
+        "輸出說明：<br>請將兩個 Linked-List 解析成原本的兩個非負正整數，並將兩數相加後用 Linked-List 反向儲存，之後回傳整個 LinkedList。"
     ],
     "var":[
         "l1",
@@ -18,7 +21,7 @@
         "ex1":{
             "input":"l1 = [2,4,3], l2 = [5,6,4]",
             "output":"[7,0,8]",
-            "explain":"342 + 465 = 807."
+            "explain":"L1所儲存的數字為342，L2所儲存的數字為465，兩個數字相加為807，用Linked-List反向儲存後回傳[7,0,8]"
         },
         "ex2":{
             "input":"l1 = [0], l2 = [0]",
@@ -32,9 +35,9 @@
         }
     },
     "constraints":[
-        "The number of nodes in each linked list is in the range [500, 1000].",
+        "每個 Linked-List 的節點 ListNode 的數量介於 [500, 1000].",
         "0 <= Node.val <= 9",
-        "It is guaranteed that the list represents a number that does not have leading zeros."
+        "Linked-List 的最後一個節點不會是【0】 除非其代表數字【0】"
     ],
     "discussions":{}
 }

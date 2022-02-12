@@ -5,9 +5,11 @@
     "likes": 28753,
     "dislikes": 923,
     "description": [
-        "Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.",
-        "You may assume that each input would have exactly one solution, and you may not use the same element twice.",
-        "You can return the answer in any order."
+        "給定一個全是整數的列表 List:【nums】 與一個整數 int:【target】, 回傳一個列表 List 其中包含兩個正整數, 分別為 nums 中的兩個 index, 且這兩個 index 對應到的數字 相加 恰好等於 target",
+        "",
+        "輸入說明：<br>題目會傳入一個 List【nums】與一個整數 int【target】",
+        "",
+        "輸出說明：<br>回傳一個 List [ i, j ] 滿足 nums[ i ]+nums[ j ] 等於 target"
     ],
     "var": [
         "nums",
@@ -19,7 +21,7 @@
         "ex1": {
             "input": "nums = [2,7,11,15], target = 9",
             "output": "[0,1]",
-            "explain": "Because nums[0] + nums[1] == 9, we return [0, 1]."
+            "explain": "因為 nums[0] + nums[1] == 9, 所以回傳 [0,1]."
         },
         "ex2": {
             "input": "nums = [3,2,4], target = 6",
@@ -33,10 +35,12 @@
         }
     },
     "constraints": [
-        "2 <= nums.length <= 10<sup>4</sup>",
+        "2 <= len(nums) <= 10<sup>4</sup>",
         "-10<sup>9</sup> <= nums[i] <= 10<sup>9</sup>",
         "-10<sup>9</sup> <= target <= 10<sup>9</sup>",
-        "Only one valid answer exists."
+        "只有一組正確解答",
+        "回傳的兩個整數不會相同",
+        "回傳兩個整數的順序不限"
     ],
     "discussions": {}
 }
