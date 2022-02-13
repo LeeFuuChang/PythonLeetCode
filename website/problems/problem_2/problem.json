@@ -4,6 +4,9 @@
     "difficulty":"Medium",
     "likes":16132,
     "dislikes":3451,
+    "participants":100,
+    "passed_participants":93,
+    "time":"2022/02/13",
     "description":[
         "給定兩個非空的 Linked-List 以表示兩個非負正整數，以反向儲存每位數字，Linked-List上的每個節點分別儲存一位數字。現在希望你將兩數相加，並以 Linked-List 反向儲存每位數字後回傳結果。",
         "",

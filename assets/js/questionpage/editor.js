@@ -36,9 +36,9 @@ codeEditor.StringReplacement = {
 codeEditor.removeComment = function(s){
     let last = 0;
     while(true){
-        let cur1 = s.indexOf("#");
-        let cur2 = s.indexOf(";1;", last);
-        if(cur1<0)break;
+        let cur1 = s.indexOf("#", last);
+        let cur2 = s.indexOf(";1;", cur1);
+        if(cur1<0 || cur2<0 || cur1>=s.length || cur2>=s.length)break;
         s = s.substring(0, cur1) + s.slice(cur2);
         last = cur2;
     }
@@ -82,7 +82,7 @@ submit_button.addEventListener("click", function(){
 
         let problem_id = QUESTION.id;
         let code = `${codeEditor.renderedEditor.getValue().toString()}\n`;
-        let submit_time = getNow()
+        let submit_time = getNow();
         Object.keys(codeEditor.StringReplacement).forEach(key => {
             code = code.replaceAll(key, codeEditor.StringReplacement[key]);
         })

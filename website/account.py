@@ -12,6 +12,22 @@ account = Blueprint("account", __name__)
 
 
 
+@account.route("/get", methods=["GET"])
+def get_ip_login_account():
+    address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    
+    with open(os.path.join(os.path.dirname(__file__), "data", "current.json"), "r") as f:
+        current = json.load(f)
+    user_data = None
+    address_user = Handle_IP.Search(address, current)
+    if address_user:
+        with open(os.path.join(os.path.dirname(__file__), "data", "users", f"{address_user}.json"), "r") as f:
+            user_data = json.load(f)
+
+    return {"user_data":user_data}
+
+
+
 @account.route("/login", methods=["GET"])
 def login():
     Args = request.args.to_dict()

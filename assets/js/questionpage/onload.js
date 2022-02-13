@@ -28,17 +28,14 @@ window.onload = function(){
             CurrentsEditorOptions.bind.toLowerCase(),
             codeEditor.default
         );
+    })
 
-        if(res["user_data"]){
-            all_floats.forEach(float => {
-                if(float.classList.contains("active")){
-                    float.classList.remove("active");
-                }
-            })
-            console.log("Login OK");
+    GetIPLoginAccount(function(user_data){
+        if(user_data){
             USER.login = true;
-            USER["user_data"] = res["user_data"];
+            USER["user_data"] = user_data;
             document.querySelector("#pageheader-nav-right-user-nav-y-profile-username").innerText = USER["user_data"]["username"];
+    
             Load_User_Question_Submissions(USER["user_data"]);
             CurrentsEditorOptions = USER["user_data"]["editor"];
             codeEditor.render(
@@ -48,7 +45,7 @@ window.onload = function(){
                 codeEditor.renderedEditor.getValue()
             );
         }
-    })
+    });
 }
 
 function LoginLoad(){

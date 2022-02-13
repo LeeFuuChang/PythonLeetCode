@@ -1,7 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@100;200;300;400;500;600;700;800;900&display=swap');
+@import url("_header.css");
+@import url("_floats.css");
+
 
 :root {
+    --question-difficulty-hard: #E91E63;
+    --question-difficulty-medium: #EF6C00;
+    --question-difficulty-easy: #43A047;
     --case-passed-green: #009688;
     --case-failed-red: #c62928;
     --case-waiting-black: #263238;

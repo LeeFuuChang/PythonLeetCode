@@ -42,13 +42,13 @@
     filter: none;
 }
 #content-content-inner-description #content-content-inner-description-header #content-content-inner-description-header-nav .content-content-inner-description-header-nav-item.easy {
-    color: #43A047;
+    color: var(--question-difficulty-easy);
 }
 #content-content-inner-description #content-content-inner-description-header #content-content-inner-description-header-nav .content-content-inner-description-header-nav-item.medium {
-    color: #EF6C00;
+    color: var(--question-difficulty-medium);
 }
 #content-content-inner-description #content-content-inner-description-header #content-content-inner-description-header-nav .content-content-inner-description-header-nav-item.hard {
-    color: #E91E63;
+    color: var(--question-difficulty-hard);
 }
 #content-content-inner-description .content-content-inner-type-hr {
     margin-bottom: 14px;

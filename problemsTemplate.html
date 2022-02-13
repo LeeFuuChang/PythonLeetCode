@@ -7,7 +7,7 @@
     <title>Let's Py</title>
 
     <link rel="stylesheet" href="assets/css/_globals.css">
-    <link rel="stylesheet" href="assets/css/landingpage/globals.css">
+    <link rel="stylesheet" href="assets/css/problemspage/globals.css">
     <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
 </head>
@@ -70,52 +70,88 @@
 
 
 
-    <div id="content">
-        <header id="content-header" class="df aic jcc">
-            <div id="content-header-left" class="df aic jcc content-header-section">
-                <div id="content-header-left-frame">
-                    <textarea id="content-header-left-frame-animation" spellcheck="false" disabled></textarea>
+    <div id="content" class="df jcc">
+        <div id="content-questions" class="df aic">
+            <header id="content-questions-header">
+
+            </header>
+            <div id="content-questions-inner" class="df aic">
+                <div id="content-questions-inner-header" class="df aic content-questions-inner-item">
+                    <div class="df aic content-questions-inner-item-left">
+                        <div class="df aic jcc content-questions-inner-item-left-state">
+                            State
+                        </div>
+                        <a class="df aic content-questions-inner-item-left-id">
+                            <span class="content-questions-inner-item-left-id-text">
+                                ID
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <div class="df aic content-questions-inner-item-left-title">
+                            <span class="content-questions-inner-item-left-title-text">
+                                Title
+                            </span>
+                        </div>
+                    </div>
+                    <div class="df aic content-questions-inner-item-right">
+                        <a class="df aic content-questions-inner-item-right-acceptance">
+                            <span class="content-questions-inner-item-right-acceptance-text">
+                                AC-Rate
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <a class="df aic content-questions-inner-item-right-difficulty">
+                            <span class="content-questions-inner-item-right-difficulty-text">
+                                Difficulty
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <a class="df aic content-questions-inner-item-right-join">
+                            <span class="content-questions-inner-item-right-join-text">
+                                Join
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                    </div>
                 </div>
+                <!-- <div class="df aic content-questions-inner-item">
+                    <div class="df aic content-questions-inner-item-left">
+                        <div class="df aic jcc content-questions-inner-item-left-state">
+                            <img class="content-questions-inner-item-left-state-icon passed" src="assets/images/svgs/check-lg.svg" alt="">
+                        </div>
+                        <div class="df aic content-questions-inner-item-left-id">
+                            <span class="content-questions-inner-item-left-id-text">
+                                a002
+                            </span>
+                        </div>
+                        <a class="df aic content-questions-inner-item-left-title">
+                            <span class="content-questions-inner-item-left-title-text">
+                                Add Two Numbers
+                            </span>
+                        </a>
+                    </div>
+                    <div class="df aic content-questions-inner-item-right">
+                        <div class="df aic content-questions-inner-item-right-acceptance">
+                            <span class="content-questions-inner-item-right-acceptance-text">
+                                97%
+                            </span>
+                        </div>
+                        <div class="df aic content-questions-inner-item-right-difficulty">
+                            <span class="content-questions-inner-item-right-difficulty-text medium">
+                                Medium
+                            </span>
+                        </div>
+                        <div class="df aic content-questions-inner-item-right-join">
+                            <span class="content-questions-inner-item-right-join-text">
+                                2022/02/12
+                            </span>
+                        </div>
+                    </div>
+                </div> -->
             </div>
-            <div id="content-header-right" class="df aic jcc content-header-section">
-                <img id="content-header-right-logo" src="assets/images/logo/icon-logo.png" alt="">
-            </div>
-        </header>
-        <div id="content-features" class="df aic jcc">
-            <div class="df aic jcc content-features-row">
-                <div class="df aic jcc content-features-row-section">
-                    <div class="df aic content-features-row-section-item">
-                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/checklist.svg" alt="">
-                        <h2 class="df aic jcc content-features-row-section-item-title">精選題庫</h2>
-                        <p class="df aic jcc content-features-row-section-item-description">
-                            眾多精選題庫<br>物件導向、資料結構、演算法<br>競程練習、考古題庫
-                        </p>
-                    </div>
-                    <div class="df aic content-features-row-section-item">
-                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/code-editor.svg" alt="">
-                        <h2 class="df aic jcc content-features-row-section-item-title">在線編輯</h2>
-                        <p class="df aic jcc content-features-row-section-item-description">
-                            在線即時編程、精選代碼主題<br>支援多種編輯器鍵位<br>物件導向編程練習
-                        </p>
-                    </div>
-                </div>
-                <div class="df aic jcc content-features-row-section">
-                    <div class="df aic content-features-row-section-item">
-                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/compute.svg" alt="">
-                        <h2 class="df aic jcc content-features-row-section-item-title">即時評測</h2>
-                        <p class="df aic jcc content-features-row-section-item-description">
-                            自製 Python 專用 OJ<br>線上解題、即時評測<br>自訂測試資料、自動生成正解
-                        </p>
-                    </div>
-                    <div class="df aic content-features-row-section-item">
-                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/idea.svg" alt="">
-                        <h2 class="df aic jcc content-features-row-section-item-title">邏輯訓練</h2>
-                        <p class="df aic jcc content-features-row-section-item-description">
-                            實作練習、邏輯訓練<br>快速學習編程<br>在燒腦實作中成為專家<br>
-                        </p>
-                    </div>
-                </div>
-            </div>
+            <footer id="content-questions-footer">
+
+            </footer>
         </div>
     </div>
 
@@ -161,7 +197,7 @@
                     <input id="signup-float-content-username" type="text" placeholder="Username">
                     <input id="signup-float-content-password" type="password" placeholder="Password">
                     <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
-                    <a id="signup-float-content-submit" class="df aic jcc">Sign Up</a>
+                    <a id="signup-float-content-submit" class="df aic jcc">Sign In</a>
                     <div id="signup-float-content-noaccount" class="df">
                         <a id="signup-float-content-noaccount-login">
                             Login
@@ -172,9 +208,6 @@
         </div>
     </div>
 </body>
-<script>
-
-</script>
 <script src="assets/js/jquery-3.6.0.min.js"></script>
 
 <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
@@ -206,12 +239,12 @@
 
 <!-- My Scripts -->
 <!-- Onload Script -->
-<script src="assets/js/landingpage/onload.js"></script>
+<script src="assets/js/problemspage/onload.js"></script>
 <!-- Global Scripts -->
 <script src="assets/js/_onload.js"></script>
 <script src="assets/js/_header.js"></script>
 <script src="assets/js/_floats.js"></script>
 <!-- Page Scripts -->
-<script src="assets/js/landingpage/animate.js"></script>
+<script src="assets/js/problemspage/content.js"></script>
 
 </html>
