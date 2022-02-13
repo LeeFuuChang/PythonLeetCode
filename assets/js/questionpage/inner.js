@@ -230,6 +230,7 @@ content_content_inner_discuss_header_nav_search.addEventListener("input", functi
 })
 
 const content_content_inner_discuss_header_nav_filter = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-filter");
+content_content_inner_discuss_header_nav_filter.now_sort = null;
 const content_content_inner_discuss_header_nav_filter_option_item_function = {
     "sort":{
         "nto":function(){
@@ -248,7 +249,16 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 
                 return t2 - t1;
             }
+
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+
+            if(content_content_inner_discuss_header_nav_filter.now_sort == "nto-b>s"){
+                sorted = sorted.reverse();
+                content_content_inner_discuss_header_nav_filter.now_sort = "nto-s>b";
+            }else{
+                content_content_inner_discuss_header_nav_filter.now_sort = "nto-b>s";
+            }
+
             for(let i=0; i<sorted.length; i++){
                 sorted[i].parentNode.appendChild(sorted[i]);
             }
@@ -260,6 +270,14 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 return `${t2}`.localeCompare(`${t1}`);
             }
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+
+            if(content_content_inner_discuss_header_nav_filter.now_sort == "vote-b>s"){
+                sorted = sorted.reverse();
+                content_content_inner_discuss_header_nav_filter.now_sort = "vote-s>b";
+            }else{
+                content_content_inner_discuss_header_nav_filter.now_sort = "vote-b>s";
+            }
+
             for(let i=0; i<sorted.length; i++){
                 sorted[i].parentNode.appendChild(sorted[i]);
             }
@@ -271,6 +289,14 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 return `${t2}`.localeCompare(`${t1}`);
             }
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
+
+            if(content_content_inner_discuss_header_nav_filter.now_sort == "view-b>s"){
+                sorted = sorted.reverse();
+                content_content_inner_discuss_header_nav_filter.now_sort = "view-s>b";
+            }else{
+                content_content_inner_discuss_header_nav_filter.now_sort = "view-b>s";
+            }
+
             for(let i=0; i<sorted.length; i++){
                 sorted[i].parentNode.appendChild(sorted[i]);
             }

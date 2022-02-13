@@ -40,3 +40,13 @@ a {
 .jcc {
     justify-content: center;
 }
+
+.hard {
+    color: var(--question-difficulty-hard) !important;
+}
+.medium {
+    color: var(--question-difficulty-medium) !important;
+}
+.easy {
+    color: var(--question-difficulty-easy) !important;
+}

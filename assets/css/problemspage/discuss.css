@@ -1,0 +1,108 @@
+#content-questions #content-questions-header {
+    margin: 10px 0;
+    width: 100%;
+    height: min-content;
+}
+#content-questions #content-questions-header #content-questions-header-nav {
+    justify-content: flex-end;
+    width: 100%;
+    height: min-content;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-search {
+    margin-right: 12px;
+    padding: 6px 12px;
+    width: 100%;
+    height: 32px;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter {
+    width: min-content;
+    height: 32px;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item {
+    position: relative;
+    margin: 0 4px;
+    width: max-content;
+    min-width: 80px;
+    height: 100%;
+    font-family: 'Roboto', sans-serif;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-button {
+    border-radius: 4px;
+    padding: 0 12px;
+    width: 100%;
+    height: 100%;
+    transition: 0.2s;
+    font-weight: 500;
+    color: #545c66;
+    background: #e4e4e4;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-button:hover {
+    background: #c4c4c4;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-button .content-questions-header-nav-filter-button-text {
+    font-size: 14px;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-button .content-questions-header-nav-filter-button-icon {
+    margin-left: 4px;
+    width: 16px;
+    height: 16px;
+    filter: invert(33%) sepia(11%) saturate(507%) hue-rotate(173deg) brightness(100%) contrast(89%);
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options {
+    display: none;
+    position: absolute;
+    flex-direction: column;
+    border-radius: 4px;
+    padding: 6px 0;
+    top: 110%;
+    right: 0;
+    width: max-content;
+    background: #d4d4d4;
+    z-index: 2000;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options.active {
+    display: flex;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item {
+    padding: 8px 16px;
+    width: 100%;
+    font-weight: 500;
+    color: #545c66;
+    background: #d4d4d4;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item:hover {
+    background: #e4e4e4;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-bullet {
+    border-radius: 50%;
+    width: 8px;
+    height: 8px;
+    margin: 4px 12px 4px 0;
+    background: transparent;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-icon {
+    margin: 0 6px;
+    width: 20px;
+    height: 20px;
+    color: inherit;
+    filter: none;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-icon.passed {
+    filter: invert(57%) sepia(15%) saturate(1753%) hue-rotate(73deg) brightness(89%) contrast(89%);
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-icon.failed {
+    filter: invert(42%) sepia(35%) saturate(4346%) hue-rotate(11deg) brightness(103%) contrast(103%);
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item.active .content-questions-header-nav-filter-options-item-bullet {
+    background: #545c66;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-text {
+    font-size: 14px;
+    color: #545c66;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-text.passed {
+    color: #40a045;
+}
+#content-questions #content-questions-header #content-questions-header-nav #content-questions-header-nav-filter .content-questions-header-nav-filter-item .content-questions-header-nav-filter-options .content-questions-header-nav-filter-options-item .content-questions-header-nav-filter-options-item-text.failed {
+    color: #ec791b;
+}
