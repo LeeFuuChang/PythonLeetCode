@@ -196,7 +196,6 @@ function Load_Question_Discussions(QUESTION){
     })
 }
 const content_content_inner_discuss_header_nav = content_content_inner_discuss.querySelector("#content-content-inner-discuss-header-nav");
-const content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
 content_header_nav_left_discuss.addEventListener("click", function(){
     if(!USER.login){
         login_float.classList.add("active");
@@ -216,6 +215,7 @@ content_header_nav_left_discuss.addEventListener("click", function(){
 const content_content_inner_discuss_header_nav_search = content_content_inner_discuss_header_nav.querySelector("#content-content-inner-discuss-header-nav-search");
 content_content_inner_discuss_header_nav_search.addEventListener("input", function(){
     let value = content_content_inner_discuss_header_nav_search.value.toLowerCase();
+    let content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
     content_content_inner_discuss_posts.forEach(post => {
         let title = post.querySelector(".content-content-inner-discuss-post-title").innerText.toLowerCase();
         let username = post.querySelector(".content-content-inner-discuss-post-footer-left-username").innerText.toLowerCase();
@@ -250,6 +250,7 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 return t2 - t1;
             }
 
+            let content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
 
             if(content_content_inner_discuss_header_nav_filter.now_sort == "nto-b>s"){
@@ -269,6 +270,7 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 let t2 = b.querySelector(".content-content-inner-discuss-post-footer-right-likes-text").textContent;
                 return `${t2}`.localeCompare(`${t1}`);
             }
+            let content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
 
             if(content_content_inner_discuss_header_nav_filter.now_sort == "vote-b>s"){
@@ -288,6 +290,7 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 let t2 = b.querySelector(".content-content-inner-discuss-post-footer-right-views-text").textContent;
                 return `${t2}`.localeCompare(`${t1}`);
             }
+            let content_content_inner_discuss_posts = content_content_inner_discuss.querySelectorAll(".content-content-inner-discuss-post");
             let sorted = [].map.call(content_content_inner_discuss_posts, function(ele){return ele}).sort(sort);
 
             if(content_content_inner_discuss_header_nav_filter.now_sort == "view-b>s"){

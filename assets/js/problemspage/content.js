@@ -8,9 +8,35 @@ const content_questions_inner = content_questions.querySelector("#content-questi
 
 // content header
 const default_item_filter_as = {
+    "search":1,
     "state":1,
     "difficulty":1
 }
+const content_questions_header_nav_search = content_questions.querySelector("#content-questions-header-nav-search");
+content_questions_header_nav_search.addEventListener("input", function(){
+    let value = content_questions_header_nav_search.value.toLowerCase();
+    let question_items = content_questions_inner.querySelectorAll("div.content-questions-inner-item");
+    question_items.forEach(item => {
+        let question_id = item.querySelector(".content-questions-inner-item-left-id-text").innerText.toLowerCase();
+        let question = item.querySelector(".content-questions-inner-item-left-title-text").innerText.toLowerCase();
+
+        if( question_id.indexOf(value)>=0 || question.indexOf(value)>=0 ){
+            item.filter_as["search"] = 1;
+        }else{
+            item.filter_as["search"] = 0;
+        }
+
+        let now = 1;
+        Object.values(item.filter_as).forEach(i => {
+            now *= i;
+        })
+        if(now){
+            item.style.display = "flex";
+        }else{
+            item.style.display = "none";
+        }
+    })
+})
 const filter_ref = {
     "state":{
         "1":(problem_list)=>{
@@ -26,7 +52,7 @@ const filter_ref = {
                 }else{
                     item.filter_as["state"] = 0;
                 }
-                
+
                 let now = 1;
                 Object.values(item.filter_as).forEach(i => {
                     now *= i;
@@ -205,7 +231,7 @@ const filter_ref = {
         }
     }
 }
-const filters = content.querySelectorAll(".content-questions-header-nav-filter-item");
+const filters = content_questions.querySelectorAll(".content-questions-header-nav-filter-item");
 filters.forEach(filter => {
     let button = filter.querySelector(".content-questions-header-nav-filter-button");
     let option_ui = filter.querySelector(".content-questions-header-nav-filter-options");
