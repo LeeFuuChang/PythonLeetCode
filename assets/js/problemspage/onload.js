@@ -20,6 +20,10 @@ window.onload = function(){
             return res.json();
         }).then(res => {
             LoadProblemList(res["problem_list"]);
+            problem_list_more = res["more"];
+            if(!problem_list_more){
+                content_questions_footer_more.style.display = "none";
+            }
         })
     })
 }

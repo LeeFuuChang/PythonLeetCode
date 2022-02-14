@@ -4,8 +4,9 @@ import os
 
 st = time()
 
-def main(filename):
+def main(filename, output):
     if ".html" not in filename: filename+=".html"
+    if ".html" not in output: output+=".html"
 
     looking = [
         "src",
@@ -29,13 +30,20 @@ def main(filename):
 
             print("Fixed:", part)
 
-    with open(os.path.join(os.path.dirname(__file__), "output.html"), "w") as f:
+    if not os.path.exists(os.path.join(os.path.dirname(__file__), "output")): os.mkdir(os.path.join(os.path.dirname(__file__), "output"))
+    with open(os.path.join(os.path.dirname(__file__), "output", output), "w") as f:
         f.write(html)
     print("\nFixed html length:", len(html), "characters")
 
 
 if len(argv) > 1:
-    main(argv[1])
+    for i, o in zip(argv[1].split(","), argv[2].split(",")):
+        main(i, o)
 else:
     print("\nWrong Usage:\n--correct usage: \n\tpython [this_pyfile_name.py] [html_file_name.html]\n--example usage:\n\tpython makeTemplate.py index.html")
+
 print("\nFinish execution in:", time()-st)
+
+"""
+python .\makeTemplate.py landingTemplate_TW,problemsTemplate,questionTemplate_TW index,problem_list,question_page
+"""

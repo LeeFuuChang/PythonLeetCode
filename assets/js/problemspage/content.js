@@ -22,6 +22,10 @@ content_questions_header_nav_search.addEventListener("input", function(){
         let question_id = item.querySelector(".content-questions-inner-item-left-id-text").innerText.toLowerCase();
         let question = item.querySelector(".content-questions-inner-item-left-title-text").innerText.toLowerCase();
 
+        if(!item.filter_as){
+            item.filter_as = JSON.parse(JSON.stringify(default_item_filter_as)) //copy
+        }
+
         if( question_id.indexOf(value)>=0 || question.indexOf(value)>=0 ){
             item.filter_as["search"] = 1;
         }else{
@@ -471,18 +475,20 @@ content_questions_inner_sort_join.addEventListener("click", function(){
 // content footer 
 const content_questions_footer_more = content_questions_footer.querySelector("#content-questions-footer-more");
 content_questions_footer_more.addEventListener("click", function(){
-    problem_list_start += 50;
-    problem_list_end += 50;
-    fetch(
-        `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
-        {method:"GET"}
-    ).then(res => {
-        return res.json();
-    }).then(res => {
-        LoadProblemList(res["problem_list"]);
-        problem_list_more = res["more"];
-        if(problem_list_more){
-            content_questions_footer_more.style.cursor = "pointer";
-        }
-    })
+    if(problem_list_more){
+        problem_list_start += 50;
+        problem_list_end += 50;
+        fetch(
+            `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+            {method:"GET"}
+        ).then(res => {
+            return res.json();
+        }).then(res => {
+            LoadProblemList(res["problem_list"]);
+            problem_list_more = res["more"];
+            if(!problem_list_more){
+                content_questions_footer_more.style.display = "none";
+            }
+        })
+    }
 })

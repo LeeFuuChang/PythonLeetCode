@@ -23,7 +23,17 @@ def problem_list():
     with open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r") as f:
         problem_list = json.load(f)
 
-    return {"problem_list":problem_list["problem_list"][start-1:end]}
+    if len(problem_list["problem_list"]) >= end:
+        result = problem_list["problem_list"][start-1:end]
+        more = True
+    elif len(problem_list["problem_list"]) >= start:
+        result = problem_list["problem_list"][start-1:]
+        more = False
+    else:
+        result = []
+        more = False
+
+    return {"problem_list":result, "more":more}
 
 
 
