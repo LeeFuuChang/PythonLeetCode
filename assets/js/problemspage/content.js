@@ -87,6 +87,25 @@ const filter_ref = {
                     item.style.display = "none";
                 }
             })
+        },
+        "default":(problem_list)=>{
+            problem_list.forEach(item => {
+                if(!item.filter_as){
+                    item.filter_as = JSON.parse(JSON.stringify(default_item_filter_as)) //copy
+                }
+
+                item.filter_as["state"] = 1;
+
+                let now = 1;
+                Object.values(item.filter_as).forEach(i => {
+                    now *= i;
+                })
+                if(now){
+                    item.style.display = "flex";
+                }else{
+                    item.style.display = "none";
+                }
+            })
         }
     },
     "difficulty":{
@@ -154,6 +173,25 @@ const filter_ref = {
                     item.filter_as["difficulty"] = 0;
                 }
                 
+                let now = 1;
+                Object.values(item.filter_as).forEach(i => {
+                    now *= i;
+                })
+                if(now){
+                    item.style.display = "flex";
+                }else{
+                    item.style.display = "none";
+                }
+            })
+        },
+        "default":(problem_list)=>{
+            problem_list.forEach(item => {
+                if(!item.filter_as){
+                    item.filter_as = JSON.parse(JSON.stringify(default_item_filter_as)) //copy
+                }
+
+                item.filter_as["difficulty"] = 1;
+
                 let now = 1;
                 Object.values(item.filter_as).forEach(i => {
                     now *= i;
@@ -275,13 +313,17 @@ const content_questions_inner_sort_join = content_questions_inner.querySelector(
 content_questions_inner_sort_id.addEventListener("click", function(){
     let question_list_items = content_questions_inner.querySelectorAll("div.content-questions-inner-item");
     let sort = function(a, b){
-        let at = a.querySelector(".content-questions-inner-item-left-id-text").innerText;
+        let at = a[0].querySelector(".content-questions-inner-item-left-id-text").innerText;
         at = Number(`0x${at}`);
-        let bt = b.querySelector(".content-questions-inner-item-left-id-text").innerText;
+        let bt = b[0].querySelector(".content-questions-inner-item-left-id-text").innerText;
         bt = Number(`0x${bt}`);
         return bt-at;
     }
-    let sorted = [].map.call(question_list_items, (ele)=>{return ele}).sort(sort);
+    let sorted = [].map.call(question_list_items, (ele)=>{
+        let show = ele.style.display != "none";
+        ele.style.display = "flex";
+        return [ele, show];
+    }).sort(sort);
 
     if(content_questions_inner.now_sort == "id-b>s"){
         sorted = sorted.reverse();
@@ -291,19 +333,26 @@ content_questions_inner_sort_id.addEventListener("click", function(){
     }
 
     for(let i=0; i<sorted.length; i++){
-        sorted[i].parentNode.appendChild(sorted[i]);
+        sorted[i][0].parentNode.appendChild(sorted[i][0]);
+        if(!sorted[i][1]){
+            sorted[i][0].style.display = "none";
+        }
     }
 })
 content_questions_inner_sort_ac.addEventListener("click", function(){
     let question_list_items = content_questions_inner.querySelectorAll("div.content-questions-inner-item");
     let sort = function(a, b){
-        let at = a.querySelector(".content-questions-inner-item-right-acceptance-text").innerText;
+        let at = a[0].querySelector(".content-questions-inner-item-right-acceptance-text").innerText;
         at = parseInt(at.substring(0, at.length-1));
-        let bt = b.querySelector(".content-questions-inner-item-right-acceptance-text").innerText;
+        let bt = b[0].querySelector(".content-questions-inner-item-right-acceptance-text").innerText;
         bt = parseInt(bt.substring(0, bt.length-1));
         return bt - at;
     }
-    let sorted = [].map.call(question_list_items, (ele)=>{return ele}).sort(sort);
+    let sorted = [].map.call(question_list_items, (ele)=>{
+        let show = ele.style.display != "none";
+        ele.style.display = "flex";
+        return [ele, show];
+    }).sort(sort);
 
     if(content_questions_inner.now_sort == "ac-b>s"){
         sorted = sorted.reverse();
@@ -313,7 +362,10 @@ content_questions_inner_sort_ac.addEventListener("click", function(){
     }
 
     for(let i=0; i<sorted.length; i++){
-        sorted[i].parentNode.appendChild(sorted[i]);
+        sorted[i][0].parentNode.appendChild(sorted[i][0]);
+        if(!sorted[i][1]){
+            sorted[i][0].style.display = "none";
+        }
     }
 })
 content_questions_inner_sort_difficulty.addEventListener("click", function(){
@@ -324,13 +376,17 @@ content_questions_inner_sort_difficulty.addEventListener("click", function(){
         "hard":2
     }
     let sort = function(a, b){
-        let at = a.querySelector(".content-questions-inner-item-right-difficulty-text").innerText;
+        let at = a[0].querySelector(".content-questions-inner-item-right-difficulty-text").innerText;
         at = difficulty_ref[at.toLowerCase()];
-        let bt = b.querySelector(".content-questions-inner-item-right-difficulty-text").innerText;
+        let bt = b[0].querySelector(".content-questions-inner-item-right-difficulty-text").innerText;
         bt = difficulty_ref[bt.toLowerCase()];
         return bt - at;
     }
-    let sorted = [].map.call(question_list_items, (ele)=>{return ele}).sort(sort);
+    let sorted = [].map.call(question_list_items, (ele)=>{
+        let show = ele.style.display != "none";
+        ele.style.display = "flex";
+        return [ele, show];
+    }).sort(sort);
 
     if(content_questions_inner.now_sort == "difficulty-b>s"){
         sorted = sorted.reverse();
@@ -340,23 +396,30 @@ content_questions_inner_sort_difficulty.addEventListener("click", function(){
     }
 
     for(let i=0; i<sorted.length; i++){
-        sorted[i].parentNode.appendChild(sorted[i]);
+        sorted[i][0].parentNode.appendChild(sorted[i][0]);
+        if(!sorted[i][1]){
+            sorted[i][0].style.display = "none";
+        }
     }
 })
 content_questions_inner_sort_join.addEventListener("click", function(){
     let question_list_items = content_questions_inner.querySelectorAll("div.content-questions-inner-item");
     let sort = function(a, b){
-        let t1_s = a.querySelector(".content-questions-inner-item-right-join-text").innerText;
+        let t1_s = a[0].querySelector(".content-questions-inner-item-right-join-text").innerText;
         let t1_st = [].map.call(t1_s.split("/"), (s)=>{return parseInt(s)});
         let t1 = t1_st[0]*12*30*24*60 + t1_st[1]*30*24*60 + t1_st[2]*24*60;
         
-        let t2_s = b.querySelector(".content-questions-inner-item-right-join-text").innerText;
+        let t2_s = b[0].querySelector(".content-questions-inner-item-right-join-text").innerText;
         let t2_st = [].map.call(t2_s.split("/"), (s)=>{return parseInt(s)});
         let t2 = t2_st[0]*12*30*24*60 + t2_st[1]*30*24*60 + t2_st[2]*24*60;
         
         return t2 - t1;
     }
-    let sorted = [].map.call(question_list_items, (ele)=>{return ele}).sort(sort);
+    let sorted = [].map.call(question_list_items, (ele)=>{
+        let show = ele.style.display != "none";
+        ele.style.display = "flex";
+        return [ele, show];
+    }).sort(sort);
 
     if(content_questions_inner.now_sort == "join-b>s"){
         sorted = sorted.reverse();
@@ -366,6 +429,9 @@ content_questions_inner_sort_join.addEventListener("click", function(){
     }
 
     for(let i=0; i<sorted.length; i++){
-        sorted[i].parentNode.appendChild(sorted[i]);
+        sorted[i][0].parentNode.appendChild(sorted[i][0]);
+        if(!sorted[i][1]){
+            sorted[i][0].style.display = "none";
+        }
     }
 })
