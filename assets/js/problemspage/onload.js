@@ -2,6 +2,7 @@ var USER = {
     "login":false,
     "user_data":undefined
 }
+var problem_list_more = true;
 var problem_list_start = 1;
 var problem_list_end = 50;
 window.onload = function(){

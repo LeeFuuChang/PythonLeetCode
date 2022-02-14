@@ -1,6 +1,8 @@
 const content = document.querySelector("#content");
 const content_questions = content.querySelector("#content-questions");
+const content_questions_header = content_questions.querySelector("#content-questions-header");
 const content_questions_inner = content_questions.querySelector("#content-questions-inner");
+const content_questions_footer = content_questions.querySelector("#content-questions-footer");
 
 
 
@@ -12,7 +14,7 @@ const default_item_filter_as = {
     "state":1,
     "difficulty":1
 }
-const content_questions_header_nav_search = content_questions.querySelector("#content-questions-header-nav-search");
+const content_questions_header_nav_search = content_questions_header.querySelector("#content-questions-header-nav-search");
 content_questions_header_nav_search.addEventListener("input", function(){
     let value = content_questions_header_nav_search.value.toLowerCase();
     let question_items = content_questions_inner.querySelectorAll("div.content-questions-inner-item");
@@ -231,7 +233,7 @@ const filter_ref = {
         }
     }
 }
-const filters = content_questions.querySelectorAll(".content-questions-header-nav-filter-item");
+const filters = content_questions_header.querySelectorAll(".content-questions-header-nav-filter-item");
 filters.forEach(filter => {
     let button = filter.querySelector(".content-questions-header-nav-filter-button");
     let option_ui = filter.querySelector(".content-questions-header-nav-filter-options");
@@ -460,4 +462,27 @@ content_questions_inner_sort_join.addEventListener("click", function(){
             sorted[i][0].style.display = "none";
         }
     }
+})
+
+
+
+
+
+// content footer 
+const content_questions_footer_more = content_questions_footer.querySelector("#content-questions-footer-more");
+content_questions_footer_more.addEventListener("click", function(){
+    problem_list_start += 50;
+    problem_list_end += 50;
+    fetch(
+        `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+        {method:"GET"}
+    ).then(res => {
+        return res.json();
+    }).then(res => {
+        LoadProblemList(res["problem_list"]);
+        problem_list_more = res["more"];
+        if(problem_list_more){
+            content_questions_footer_more.style.cursor = "pointer";
+        }
+    })
 })
