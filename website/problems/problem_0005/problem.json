@@ -1,0 +1,41 @@
+{
+    "id":"0005",
+    "name":"Palindrome Number",
+    "difficulty":"Easy",
+    "likes":16132,
+    "dislikes":3451,
+    "participants":100,
+    "passed_participants":93,
+    "time":"2022/02/14",
+    "description":[
+        "給定一個整數 int【x】，判斷並回傳 【x】 是否是個迴文數 (當【x】正著念倒著念長一樣的時候稱【x】為迴文數)",
+        "",
+        "輸入說明：<br>題目會傳入一個整數【x】",
+        "",
+        "輸出說明：<br>如果【x】是迴文數就回傳True，不是則回傳False"
+    ],
+    "var":["x"],
+    "predefine":"",
+    "default":"#start coding below\nclass Solution(): #don't change class name\n    def main(self, x): #don't change function name",
+    "example":{
+        "ex1":{
+            "input":"s = 121",
+            "output":"True",
+            "explain":"121 倒過來看 121 => '121' == '121'"
+        },
+        "ex2":{
+            "input":"s = -121",
+            "output":"False",
+            "explain":"-121 倒過來看 121- => '-121' != '121-'"
+        },
+        "ex3":{
+            "input":"s = 10",
+            "output":"False",
+            "explain":"10 倒過來看 01 => '10' != '01'"
+        }
+    },
+    "constraints":[
+        "-2<sup>31</sup> <= x <= 2<sup>31</sup> - 1"
+    ],
+    "discussions":{}
+}
