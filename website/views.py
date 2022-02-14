@@ -17,21 +17,25 @@ def problems():
 def problem_list():
     Args = request.args.to_dict()
 
-    start = int(Args["start"])
-    end = int(Args["end"])
+    start = int(Args.get("start", False))
+    end = int(Args.get("end", False))
 
     with open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r") as f:
         problem_list = json.load(f)
 
-    if len(problem_list["problem_list"]) >= end:
-        result = problem_list["problem_list"][start-1:end]
-        more = True
-    elif len(problem_list["problem_list"]) >= start:
-        result = problem_list["problem_list"][start-1:]
-        more = False
-    else:
-        result = []
-        more = False
+    if start and end:
+        if len(problem_list["problem_list"]) >= end:
+            result = problem_list["problem_list"][start-1:end]
+            more = True
+        elif len(problem_list["problem_list"]) >= start:
+            result = problem_list["problem_list"][start-1:]
+            more = False
+        else:
+            result = []
+            more = False
+
+    elif Args.get("get", False) == "all":
+        return {"all":problem_list["problem_list"]}
 
     return {"problem_list":result, "more":more}
 

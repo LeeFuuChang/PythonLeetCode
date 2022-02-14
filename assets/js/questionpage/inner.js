@@ -426,3 +426,27 @@ function Load_User_Question_Submissions(user_data){
 
 
 // inner footer nav (Go Problems page / Random Problem / Prev Problem / Next Problem)
+const inner_footer_nav = inner.querySelector("#content-content-inner-footer-nav");
+const inner_footer_nav_random = inner_footer_nav.querySelector("#content-content-inner-footer-nav-right-random");
+inner_footer_nav_random.addEventListener("click", function(){
+    fetch(
+        "/views/problem_list?get=all",
+        {method:"GET"}
+    ).then(res => {
+        return res.json();
+    }).then(res => {
+        let problems = res["all"];
+        let randed = parseInt(Math.random() * problems.length-1);
+        location.href = `/views/problems/${problems[randed]["id"]}`;
+    })
+})
+const inner_footer_nav_prev = inner_footer_nav.querySelector("#content-content-inner-footer-nav-right-prev");
+inner_footer_nav_prev.addEventListener("click", function(){
+    let prev_id = `${parseInt(Number(`0x${QUESTION["id"]}`)-1, 16)}`.padStart(4, "0");
+    location.href = `/views/problems/${prev_id}`;
+})
+const inner_footer_nav_next = inner_footer_nav.querySelector("#content-content-inner-footer-nav-right-next");
+inner_footer_nav_next.addEventListener("click", function(){
+    let next_id = `${parseInt(Number(`0x${QUESTION["id"]}`)+1, 16)}`.padStart(4, "0");
+    location.href = `/views/problems/${next_id}`;
+})
