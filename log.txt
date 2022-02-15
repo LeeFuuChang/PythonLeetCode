@@ -142,7 +142,37 @@
         1. 完成 問題列表 列表排序 (由大到小 & 由小到大)
         2. 完成 問題列表 前端 header 部分 (search bar / filter) (HTML、CSS) (JS尚未製作)
 
+    2. 
+        1. 完成 問題列表 前端 header 部分 難度/狀態 filter (JS)
 
+    3. 
+        1. 新增 問題列表 filter 【無篩選】 選項
+
+    4. 
+        1. 完成 問題列表 前端 header 部分 搜尋Search (JS)
+        2. 修復 問題頁面 討論Discuss 排序所有討論 (JS)
+
+    5. 
+        1. 完成 問題列表頁面
+        2. 更新所有頁面 pageheader problem_list連結
+
+    6. 
+        1. 完成 問題頁面 上一題/下一題/隨機選題
+        2. 將 problem 1/2 更名為 0001/0002
+
+
+
+2022/02/15
+    1. 
+        1. 新增問題 0003, 0004, 0005
+        2. 修復問題列表 AC_Rate division by 0 問題
+
+    2.
+        1. 清空所有問題數據 (參與者 / 已通過參與者 / 讚 / 倒讚)
+        2. 新增問題 0006, 0007
+        3. 修復 上一題/下一題 出現不存在的題目的問題
+        4. 修復程式碼修整(codeProcess) 修復 Long for 調整function無窮迴圈
+        5. 新增程式碼修整(codeProcess) comprehension 調整function
 
 
 
