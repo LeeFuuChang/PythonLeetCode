@@ -1,5 +1,4 @@
-from flask import Blueprint, request, render_template
-from .modules import Handle_IP
+from flask import Blueprint, request, render_template, abort
 import json
 import os
 
@@ -43,16 +42,34 @@ def problem_list():
 
 @views.route("/problems/<path:subpath>")
 def question(subpath):
-
     paths = subpath.split("/")
     problem_id = paths[0]
 
-    if len(paths)>1:
-        if paths[1] == "get":
-            with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "problem.json"), "r") as f:
-                question = json.load(f)
-            return {"question":question}
+    with open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r") as f:
+        problem_list = json.load(f)
+    problem_ids = sorted([problem["id"] for problem in problem_list["problem_list"]], key=lambda x:int(f"0x{x}", 16))
 
-    return render_template("question_page.html", problem_id=problem_id)
+    if problem_id in problem_ids:
+        if len(paths)>1:
+            if paths[1] == "get":
+                with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "problem.json"), "r") as f:
+                    question = json.load(f)
+
+                idx = problem_ids.index(problem_id)
+                if idx == 0:
+                    question["prev"] = None
+                    question["next"] = problem_ids[idx+1]
+                elif idx == len(problem_ids)-1:
+                    question["prev"] = problem_ids[idx-1]
+                    question["next"] = None
+                else:
+                    question["prev"] = problem_ids[idx-1]
+                    question["next"] = problem_ids[idx+1]
+
+                return {"question":question}
+
+        return render_template("question_page.html", problem_id=problem_id)
+
+    return abort(404)
 
 

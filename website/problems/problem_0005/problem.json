@@ -2,10 +2,10 @@
     "id":"0005",
     "name":"Palindrome Number",
     "difficulty":"Easy",
-    "likes":16132,
-    "dislikes":3451,
-    "participants":100,
-    "passed_participants":93,
+    "likes": 0,
+    "dislikes": 0,
+    "participants":0,
+    "passed_participants":0,
     "time":"2022/02/14",
     "description":[
         "給定一個整數 int【x】，判斷並回傳 【x】 是否是個迴文數 (當【x】正著念倒著念長一樣的時候稱【x】為迴文數)",
@@ -21,17 +21,17 @@
         "ex1":{
             "input":"s = 121",
             "output":"True",
-            "explain":"121 倒過來看 121 => '121' == '121'"
+            "explain":"121 倒過來看 121 => \"121\" == \"121\""
         },
         "ex2":{
             "input":"s = -121",
             "output":"False",
-            "explain":"-121 倒過來看 121- => '-121' != '121-'"
+            "explain":"-121 倒過來看 121- => \"-121\" != \"121-\""
         },
         "ex3":{
             "input":"s = 10",
             "output":"False",
-            "explain":"10 倒過來看 01 => '10' != '01'"
+            "explain":"10 倒過來看 01 => \"10\" != \"01\""
         }
     },
     "constraints":[

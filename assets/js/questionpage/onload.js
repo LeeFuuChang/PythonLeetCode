@@ -28,6 +28,12 @@ window.onload = function(){
             CurrentsEditorOptions.bind.toLowerCase(),
             codeEditor.default
         );
+        if(!QUESTION["prev"]){
+            inner_footer_nav_prev.style.cursor = "not-allowed";
+        }
+        if(!QUESTION["next"]){
+            inner_footer_nav_next.style.cursor = "not-allowed";
+        }
     })
 
     GetIPLoginAccount(function(user_data){

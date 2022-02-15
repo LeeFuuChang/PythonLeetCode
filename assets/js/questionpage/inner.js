@@ -442,11 +442,11 @@ inner_footer_nav_random.addEventListener("click", function(){
 })
 const inner_footer_nav_prev = inner_footer_nav.querySelector("#content-content-inner-footer-nav-right-prev");
 inner_footer_nav_prev.addEventListener("click", function(){
-    let prev_id = `${parseInt(Number(`0x${QUESTION["id"]}`)-1, 16)}`.padStart(4, "0");
-    location.href = `/views/problems/${prev_id}`;
+    if(!QUESTION["prev"])return;
+    location.href = `/views/problems/${QUESTION["prev"]}`;
 })
 const inner_footer_nav_next = inner_footer_nav.querySelector("#content-content-inner-footer-nav-right-next");
 inner_footer_nav_next.addEventListener("click", function(){
-    let next_id = `${parseInt(Number(`0x${QUESTION["id"]}`)+1, 16)}`.padStart(4, "0");
-    location.href = `/views/problems/${next_id}`;
+    if(!QUESTION["next"])return;
+    location.href = `/views/problems/${QUESTION["next"]}`;
 })

@@ -1,3 +1,4 @@
+from .modules.CodeProcess import CodeProcessor
 from flask import Blueprint, request
 import tracemalloc as memoryTracer
 import time as Timer
@@ -55,6 +56,8 @@ def Save_Submit_Result(problem_id, code, result, username):
 
 
 
+
+
 def CE_RE_Error_CleanUP(s):
     while((start:=s.find("<"))>0 and (end:=s.find(">"))>0):
         s = s[:start] + s[end+1:]
@@ -68,7 +71,7 @@ def FixInfiniteWhile(code):
         finding = "while("
         idx = code.find(finding, now)
         if idx < 0 or idx > len(code): break
-        inserting = "(self.GetTimeFunction() - self.RuntimeStartTime < self.RuntimeMaxTime) and ("
+        inserting = "(Solution.__GetTimeFunction() - Solution.__RuntimeStartTime < Solution.__RuntimeMaxTime) and ("
         code = code[:idx+len(finding)] + inserting + code[idx+len(finding):]
         now = idx+len(finding)+len(inserting)
 
@@ -100,20 +103,77 @@ def FixLongFor(code):
 
         while(True):
             ending = code.find(":", now)
-            now = ending
-            if code[ending+1] != "=": break
-            continue
+            _now = ending
+            while(True):
+                _now -= 1
+                if code[_now] != " ":
+                    break
+            if code[ending+1] != "=" and code[_now] == ")": break
+            if ending < 0 or ending > len(code): break
+            now = ending+1
+        if ending < 0 or ending > len(code): break
 
-        tmp = now+1
+        tmp = now
         while(True):
             if code[tmp] != " ":
-                code = code[:now+1] + code[tmp:]
+                code = code[:now] + code[tmp:]
                 break
             tmp += 1
         
-        adding = "\n" + " "*4*(indent+1) + "if(self.GetTimeFunction() - self.RuntimeStartTime > self.RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
-        code = code[:now+1] + adding + code[now+1:] + "\n"
+        adding = "\n" + " "*4*(indent+1) + "if(Solution.__GetTimeFunction() - Solution.__RuntimeStartTime > Solution.__RuntimeMaxTime):break" + "\n" + " "*4*(indent+1)
+        code = code[:now] + adding + code[now:] + "\n"
         now += len(adding)
+    return code
+
+
+
+def FixLongComprehension(code):
+    now = 0
+    while(True):
+        now = code.find("for", now)
+        if now < 0 or now > len(code): break
+
+        is_comprehension = True
+        tmp = now-1
+        remember_space = [now-1, 1]
+        p = [0, 0]
+        while(True):
+            if remember_space[1]:
+                if code[remember_space[0]] != " ":
+                    remember_space[1] = 0
+                else:
+                    remember_space[0] -= 1
+
+            if code[tmp] == ")":
+                p[0] += 1
+            elif code[tmp] == "]":
+                p[1] += 1
+            elif code[tmp] == "(":
+                if p[0] == 0:
+                    break
+                else:
+                    p[0] -= 1
+            elif code[tmp] == "[":
+                if p[1] == 0:
+                    break
+                else:
+                    p[1] -= 1
+            elif code[tmp] == ":":
+                is_comprehension = False
+                break
+            tmp -= 1
+            if tmp < 0: 
+                is_comprehension = False
+                break
+
+        if not is_comprehension:
+            now += 3
+            continue
+        else:
+            adding = ") if(Solution.__GetTimeFunction() - Solution.__RuntimeStartTime < Solution.__RuntimeMaxTime)else(Solution.__KillTLE()) "
+            code = code[:tmp+1] + "(" + code[tmp+1:]
+            code = code[:remember_space[0]+2] + adding + code[now+1:]
+            now += len(adding)+3
     return code
 
 
@@ -160,8 +220,7 @@ def submit_submit():
     maxTime = float(judger["maxTime"])
     maxMemory = float(judger["maxMemory"])
     try:
-        fixed_code = FixInfiniteWhile(code)
-        fixed_code = FixLongFor(fixed_code)
+        fixed_code = CodeProcessor.Fix(code)
         exec(fixed_code, codeed)
     except Exception as e:
         result = {
@@ -188,9 +247,10 @@ def submit_submit():
         memoryTracer.start()
         curMem = memoryTracer.get_traced_memory()[0] / 10**3
         try:
-            setattr(codeed["Solution"], "RuntimeStartTime", curT)
-            setattr(codeed["Solution"], "RuntimeMaxTime", maxTime)
-            setattr(codeed["Solution"], "GetTimeFunction", Timer.time)
+            setattr(codeed["Solution"], "_RuntimeStartTime", curT)
+            setattr(codeed["Solution"], "_RuntimeMaxTime", maxTime)
+            setattr(codeed["Solution"], "_GetTimeFunction", CodeProcessor._GetTimeFunction)
+            setattr(codeed["Solution"], "_KillTLE", CodeProcessor._KillTLE)
             output = codeed["Solution"]().main(*inputs)
         except Exception as e:
             result = {
@@ -268,8 +328,7 @@ def submit_test():
         }
         return result
     try:
-        fixed_code = FixInfiniteWhile(code)
-        fixed_code = FixLongFor(fixed_code)
+        fixed_code = CodeProcessor.Fix(code)
         exec(fixed_code, codeed)
     except Exception as e:
         result = {
@@ -290,9 +349,10 @@ def submit_test():
     memoryTracer.start()
     curMem = memoryTracer.get_traced_memory()[0] / 10**3
     try:
-        setattr(codeed["Solution"], "RuntimeStartTime", curT)
-        setattr(codeed["Solution"], "RuntimeMaxTime", maxTime)
-        setattr(codeed["Solution"], "GetTimeFunction", Timer.time)
+        setattr(codeed["Solution"], "_RuntimeStartTime", curT)
+        setattr(codeed["Solution"], "_RuntimeMaxTime", maxTime)
+        setattr(codeed["Solution"], "_GetTimeFunction", CodeProcessor._GetTimeFunction)
+        setattr(codeed["Solution"], "_KillTLE", CodeProcessor._KillTLE)
         output = codeed["Solution"]().main(*inputs)
     except Exception as e:
         result = {

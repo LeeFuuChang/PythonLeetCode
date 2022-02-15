@@ -1,0 +1,43 @@
+{
+    "id":"0007",
+    "name":"How Long is it",
+    "difficulty":"Easy",
+    "likes": 0,
+    "dislikes": 0,
+    "participants":0,
+    "passed_participants":0,
+    "time":"2022/02/15",
+    "description":[
+        "計算兩個時間之間相差幾分鐘",
+        "",
+        "輸入說明：<br>題目會傳入兩個字串【t1、t2】，時間字串的格式為 \"yyyy/mm/dd hh:mm\"",
+        "",
+        "輸出說明：<br>回傳這兩個時間之間相隔幾分鐘"
+    ],
+    "var":["strs"],
+    "predefine":"",
+    "default":"#start coding below\nclass Solution(): #don't change class name\n    def main(self, t1, t2): #don't change function name",
+    "example":{
+        "ex1":{
+            "input":"t1 = \"2022/02/15 10:47\", t2 = \"2022/02/15 17:10\"",
+            "output":"380",
+            "explain":null
+        },
+        "ex2":{
+            "input":"t1 = \"2022/02/01 00:00\", t2 = \"2022/07/30 23:59\"",
+            "output":"259199",
+            "explain":null
+        },
+        "ex3":{
+            "input":"t1 = \"2022/01/01 00:00\", t2 = \"2023/01/01 00:00\"",
+            "output":"518400",
+            "explain":null
+        }
+    },
+    "constraints":[
+        "限制每個月固定都是30天",
+        "t1 <= t2",
+        "字串中的 時 為24小時制"
+    ],
+    "discussions":{}
+}

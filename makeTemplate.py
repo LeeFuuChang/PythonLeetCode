@@ -45,5 +45,5 @@ else:
 print("\nFinish execution in:", time()-st)
 
 """
-python .\makeTemplate.py landingTemplate_TW,problemsTemplate,questionTemplate_TW index,problem_list,question_page
+python .\makeTemplate.py landingTemplate_TW,problemsTemplate_TW,questionTemplate_TW index,problem_list,question_page
 """
