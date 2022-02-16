@@ -50,8 +50,9 @@ def login():
 
     username = Args.get("username", None)
     password = Args.get("password", None)
+    now_time = Args.get("time", None)
 
-    if not (username and password): return {"state":0}
+    if not (username and password and now_time): return {"state":0}
 
     address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     users_path = os.path.join(os.path.dirname(__file__), "data")
@@ -123,8 +124,9 @@ def signup():
     email = Args.get("email", None)
     username = Args.get("username", None)
     password = Args.get("password", None)
+    now_time = Args.get("time", None)
 
-    if not (email and username and password): return {"state":0}
+    if not (email and username and password and now_time): return {"state":0}
 
     users_path = os.path.join(os.path.dirname(__file__), "data")
     with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
@@ -147,6 +149,7 @@ def signup():
         "email": email,
         "username": username,
         "password": password,
+        "join":now_time,
         "editor": {
             "font": "14",
             "theme": "eclipse",

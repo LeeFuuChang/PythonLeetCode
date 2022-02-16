@@ -5,56 +5,56 @@
             "name": "Two Sum",
             "difficulty": "Easy",
             "time": "2022/02/13",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0002",
             "name": "Add Two Numbers",
             "difficulty": "Medium",
             "time": "2022/02/13",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0003",
             "name": "Reverse Integer",
             "difficulty": "Easy",
             "time": "2022/02/14",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0004",
             "name": "String to Integer (atoi)",
             "difficulty": "Medium",
             "time": "2022/02/14",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0005",
             "name": "Palindrome Number",
             "difficulty": "Easy",
             "time": "2022/02/14",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0006",
             "name": "Longest Common Prefix",
             "difficulty": "Easy",
             "time": "2022/02/15",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         },
         {
             "id": "0007",
             "name": "How Long is it",
             "difficulty": "Easy",
             "time": "2022/02/15",
-            "participants": 0,
-            "passed_participants": 0
+            "participants": [],
+            "passed_participants": []
         }
     ]
 }

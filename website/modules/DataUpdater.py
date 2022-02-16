@@ -24,7 +24,9 @@ class Updater():
             username = user_data["username"]
             data[username] = {
                 "username":username,
-                "passed_problems":user_data["passed_problems"]
+                "passed_problems":user_data["passed_problems"],
+                "tried_problems":list(user_data["problems"].keys()),
+                "join":user_data["join"]
             }
         data = {ud["username"]:ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))}
         with open(os.path.join(self.Path__data, "user_list.json"), "w") as f:

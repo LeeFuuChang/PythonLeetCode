@@ -1,6 +1,8 @@
 {
     "leefuuchang": {
         "username": "leefuuchang",
-        "passed": []
+        "passed_problems": [],
+        "tried_problems": [],
+        "join": "2022/02/16"
     }
 }

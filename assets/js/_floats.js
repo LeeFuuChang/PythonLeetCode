@@ -35,8 +35,9 @@ login_float_close.addEventListener("click", function(){
 login_float_submit.addEventListener("click", function(){
     let username = login_float_username.value;
     let password = login_float_password.value;
+    let now_time = getNow();
     fetch(
-        `/account/login?username=${username}&password=${password}`, {
+        `/account/login?username=${username}&password=${password}&time=${now_time}`, {
             method:"GET"
         }
     ).then(res => {
@@ -89,9 +90,10 @@ signup_float_submit.addEventListener("click", function(){
     let username = signup_float_username.value;
     let password = signup_float_password.value;
     let confirm = signup_float_confirm.value;
+    let now_time = getNow();
     if(password == confirm){
         fetch(
-            `/account/signup?email=${email}&username=${username}&password=${password}`, {
+            `/account/signup?email=${email}&username=${username}&password=${password}&time=${now_time}`, {
                 method:"GET"
             }
         ).then(res => {

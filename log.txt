@@ -183,4 +183,13 @@
 
 
 
+2022/02/17
+    1.
+        1. 完成 解題排名
+        2. 將 GetNow() (JS) 移至通用功能 (_onload.js)
+        3. 將 participants / passed_participants 從整數改為列表 儲存使用者名稱
+        4. 新增 使用者資料 passed_problems 儲存通過的問題ID以為之後使用者個人頁面做準備
+
+
+
 

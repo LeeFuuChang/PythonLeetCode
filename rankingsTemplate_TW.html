@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="assets/css/_globals.css">
+    <link rel="stylesheet" href="assets/css/rankingspage/globals.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
+</head>
+<body>
+    <header id="pageheader">
+        <nav id="pageheader-nav" class="df aic">
+            <div id="pageheader-nav-left" class="df aic jcc">
+                <a id="pageheader-nav-left-logo"  class="df aic jcc pageheader-nav-left-logo" href="#">
+                    <img id="pageheader-nav-left-logo-img" src="assets/images/logo/logo.png" alt="">
+                </a>
+                <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="/views/problems">
+                    <span id="pageheader-nav-left-problems-text">題目列表</span>
+                </a>
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-ranks-text">解題排名</span>
+                </a>
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="#">
+                    <span id="pageheader-nav-left-submissions-text">解題動態</span>
+                </a>
+            </div>
+            <div id="pageheader-nav-right" class="df aic jcc">
+                <div id="pageheader-nav-right-user" class="df aic jcc pageheader-nav-right-item">
+                    <img id="pageheader-nav-right-user-icon" src="assets/images/svgs/person-circle.svg" alt="">
+                    <div id="pageheader-nav-right-user-nav">
+                        <div id="pageheader-nav-right-user-nav-y" class="df">
+                            <a id="pageheader-nav-right-user-nav-y-profile" class="df aic">
+                                <img src="assets/images/svgs/person-circle.svg" alt="">
+                                <span id="pageheader-nav-right-user-nav-y-profile-username"></span>
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-favorite" class="df aic">
+                                <img src="assets/images/svgs/bookmark-heart.svg" alt="">
+                                我的最愛
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-y-submissions" class="df aic">
+                                <img src="assets/images/svgs/clock.svg" alt="">
+                                提交紀錄
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-logout" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-left.svg" alt="">
+                                登出
+                            </a>
+                        </div>
+                        <div id="pageheader-nav-right-user-nav-n" class="df">
+                            <a id="pageheader-nav-right-user-nav-n-login" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-in-right.svg" alt="">
+                                登入
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-n-signup" class="df aic">
+                                <img src="assets/images/svgs/person-plus-fill.svg" alt="">
+                                註冊
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div id="content" class="df jcc">
+        <div id="content-rankings" class="df aic">
+            <header id="content-rankings-header">
+                <nav id="content-rankings-header-nav" class="df aic">
+                    <input id="content-rankings-header-nav-search" type="text" placeholder="Search for ID or Title">
+                    <div id="content-rankings-header-nav-filter" class="df aic jcc">
+                        <div id="content-rankings-header-nav-filter-acceptance" class="df aic jcc content-rankings-header-nav-filter-item" aria-label="acceptance">
+                            <a id="content-rankings-header-nav-filter-acceptance-button" class="df aic jcc content-rankings-header-nav-filter-button">
+                                <span class="df aic content-rankings-header-nav-filter-button-text">通過率</span>
+                                <img class="content-rankings-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
+                            </a>
+                            <div id="content-rankings-header-nav-filter-acceptance-options" class="jcc content-rankings-header-nav-filter-options">
+                                <a id="content-rankings-header-nav-filter-acceptance-options-view" class="df aic content-rankings-header-nav-filter-options-item" aria-label="90-100">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">90% - 100%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-vote" class="df aic content-rankings-header-nav-filter-options-item" aria-label="80-90">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">80% - 90%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="70-80">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">70% - 80%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="60-70">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">60% - 70%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="50-60">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">50% - 60%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="40-50">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">40% - 50%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="30-40">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">30% - 40%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="20-30">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">20% - 30%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="10-20">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">10% - 20%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="0-10">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">0% - 10%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-default" class="df aic content-rankings-header-nav-filter-options-item active" aria-label="default">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">Default</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div id="content-rankings-inner" class="df aic">
+                <header id="content-rankings-inner-header" class="df aic content-rankings-inner-item">
+                    <div class="df aic content-rankings-inner-item-left">
+                        <div id="content-rankings-inner-sort-rank" class="df aic content-rankings-inner-item-left-rank">
+                            <span class="content-rankings-inner-item-left-rank-text">
+                                #
+                            </span>
+                        </div>
+                        <div class="df aic content-rankings-inner-item-left-username">
+                            <span class="content-rankings-inner-item-left-username-text">
+                                用戶名稱
+                            </span>
+                        </div>
+                    </div>
+                    <div class="df aic content-rankings-inner-item-right">
+                        <div id="content-rankings-inner-sort-ac" class="df aic content-rankings-inner-item-right-accept">
+                            <span class="content-rankings-inner-item-right-accept-text">
+                                通過數
+                            </span>
+                        </div>
+                        <div id="content-rankings-inner-sort-acceptance" class="df aic content-rankings-inner-item-right-acceptance">
+                            <span class="content-rankings-inner-item-right-acceptance-text">
+                                通過率
+                            </span>
+                        </div>
+                        <div id="content-rankings-inner-sort-join" class="df aic content-rankings-inner-item-right-join">
+                            <span class="content-rankings-inner-item-right-join-text">
+                                加入時間
+                            </span>
+                        </div>
+                    </div>
+                </header>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    <div id="login-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="login-float-content" class="df aic">
+                    <header id="login-float-content-header" class="df aic">
+                        <img id="login-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="login-float-content-logo" class="df aic jcc">
+                        <img id="login-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="login-float-content-username" type="text" placeholder="E-mail/Username">
+                    <input id="login-float-content-password" type="password" placeholder="Password">
+                    <a id="login-float-content-submit" class="df aic jcc">登入</a>
+                    <div id="login-float-content-noaccount" class="df">
+                        <a id="login-float-content-noaccount-forget">
+                            忘記密碼
+                        </a>
+                        <a id="login-float-content-noaccount-signup">
+                            註冊
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="signup-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="signup-float-content" class="df aic">
+                    <header id="signup-float-content-header" class="df aic">
+                        <img id="signup-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="signup-float-content-logo" class="df aic jcc">
+                        <img id="signup-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="signup-float-content-email" type="text" placeholder="E-mail">
+                    <input id="signup-float-content-username" type="text" placeholder="Username">
+                    <input id="signup-float-content-password" type="password" placeholder="Password">
+                    <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
+                    <a id="signup-float-content-submit" class="df aic jcc">註冊</a>
+                    <div id="signup-float-content-noaccount" class="df">
+                        <a id="signup-float-content-noaccount-login">
+                            登入
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+    <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+    
+    <script src="assets/plugin/codemirror/keymap/emacs.js"></script>
+    <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+    <script src="assets/plugin/codemirror/keymap/vim.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+    
+    <script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+    
+    <script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
+    <script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+    
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="assets/js/rankingspage/onload.js"></script>
+    <!-- Global Scripts -->
+    <script src="assets/js/_onload.js"></script>
+    <script src="assets/js/_header.js"></script>
+    <script src="assets/js/_floats.js"></script>
+    <!-- Page Scripts -->
+    <script src="assets/js/rankingspage/content.js"></script>
+</body>
+</html>

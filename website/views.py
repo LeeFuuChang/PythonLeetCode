@@ -6,6 +6,8 @@ views = Blueprint("views", __name__)
 
 
 
+
+
 @views.route("/problems")
 def problems():
     return render_template("problem_list.html")
@@ -37,6 +39,25 @@ def problem_list():
         return {"all":problem_list["problem_list"]}
 
     return {"problem_list":result, "more":more}
+
+
+
+
+
+@views.route("/rankings")
+def rankings():
+    return render_template("rankings_page.html")
+
+
+
+@views.route("/user_list")
+def ranking_list():
+    with open(os.path.join(os.path.dirname(__file__), "data", "user_list.json"), "r") as f:
+        data = json.load(f)
+    result = sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))
+    return {"user_list":result}
+
+
 
 
 

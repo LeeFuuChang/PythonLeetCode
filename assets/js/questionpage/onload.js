@@ -1,12 +1,3 @@
-function getNow(){
-    let TIMER = new Date();
-    let Year = TIMER.getFullYear().toString().padStart(4, "0");
-    let Month = (TIMER.getMonth()+1).toString().padStart(2, "0");
-    let Dat = TIMER.getDate().toString().padStart(2, "0");
-    let Hour = TIMER.getHours().toString().padStart(2, "0");
-    let Min = TIMER.getMinutes().toString().padStart(2, "0");
-    return `${Year}/${Month}/${Dat} ${Hour}:${Min}`;
-}
 var QUESTION = undefined;
 var USER = {
     "login":false,
