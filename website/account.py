@@ -1,3 +1,4 @@
+from .modules.DataUpdater import Updater; DataUpdater__account = Updater()
 from flask import Blueprint, request
 from .modules import Handle_CSV
 from .modules import Handle_IP
@@ -9,6 +10,21 @@ import os
 
 
 account = Blueprint("account", __name__)
+"""
+USER_DEFAULT_JSON
+{
+    "email": "",
+    "username": "",
+    "password": "",
+    "editor": {
+        "font": "14",
+        "theme": "eclipse",
+        "bind": "sublime"
+    },
+    "passed_problems":[],
+    "problems": {}
+}
+"""
 
 
 
@@ -126,6 +142,22 @@ def signup():
     Current_Data = Current_Data.append({"account":email, "username":username, "password":password}, ignore_index=True)
     with open(os.path.join(users_path, "users.csv"), "w") as f:
         Handle_CSV.Write_CSV(Data_File=f, Titles=Column_Title, Rows=Current_Data)
+
+    user_data = {
+        "email": email,
+        "username": username,
+        "password": password,
+        "editor": {
+            "font": "14",
+            "theme": "eclipse",
+            "bind": "sublime"
+        },
+        "passed_problems":[],
+        "problems": {}
+    }
+    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
+        json.dump(user_data, f, indent=4)
+
     return {"state":1}
 
 

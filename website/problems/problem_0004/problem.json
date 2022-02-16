@@ -4,8 +4,8 @@
     "difficulty":"Medium",
     "likes": 0,
     "dislikes": 0,
-    "participants":0,
-    "passed_participants":0,
+    "participants":[],
+    "passed_participants":[],
     "time":"2022/02/14",
     "description":[
         "撰寫一個算法，將輸入的字串以以下規則轉為整數",

@@ -318,7 +318,7 @@ const LoadProblemList = function(plist){
             <div class="df aic content-questions-inner-item-right">
                 <div class="df aic content-questions-inner-item-right-acceptance">
                     <span class="content-questions-inner-item-right-acceptance-text">
-                        ${ p["participants"] ? parseInt(p["passed_participants"] / p["participants"] * 100) : 0 }%
+                        ${ p["participants"].length ? parseInt(p["passed_participants"].length / p["participants"].length * 100) : 0 }%
                     </span>
                 </div>
                 <div class="df aic content-questions-inner-item-right-difficulty">

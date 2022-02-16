@@ -268,8 +268,8 @@ run_test_content_footer_confirm.addEventListener("click", function(){
         case_item => {
             let inputDefinition = case_item.querySelector(".run-test-content-cases-item-left-var-textarea").value.toString();
             Object.keys(codeEditor.StringReplacement).forEach(key => {
-                code = code.replaceAll(key, codeEditor.StringReplacement[key]);
-                inputDefinition = inputDefinition.replaceAll(key, codeEditor.StringReplacement[key]);
+                code = ReplaceAll(code, key, codeEditor.StringReplacement[key]);
+                inputDefinition = ReplaceAll(inputDefinition, key, codeEditor.StringReplacement[key]);
             })
             code = codeEditor.removeComment(code);
             inputDefinition = codeEditor.removeComment(inputDefinition);

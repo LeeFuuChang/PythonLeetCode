@@ -4,8 +4,8 @@
     "difficulty":"Easy",
     "likes": 0,
     "dislikes": 0,
-    "participants":0,
-    "passed_participants":0,
+    "participants":[],
+    "passed_participants":[],
     "time":"2022/02/15",
     "description":[
         "從一個裝滿字串的列表中，找出這些字串的共同詞頭",

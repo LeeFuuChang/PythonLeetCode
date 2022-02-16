@@ -4,8 +4,8 @@
     "difficulty":"Easy",
     "likes": 0,
     "dislikes": 0,
-    "participants":0,
-    "passed_participants":0,
+    "participants":[],
+    "passed_participants":[],
     "time":"2022/02/14",
     "description":[
         "給定一個整數 int【x】，將 x 顛倒後回傳",

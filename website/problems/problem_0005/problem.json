@@ -4,8 +4,8 @@
     "difficulty":"Easy",
     "likes": 0,
     "dislikes": 0,
-    "participants":0,
-    "passed_participants":0,
+    "participants":[],
+    "passed_participants":[],
     "time":"2022/02/14",
     "description":[
         "給定一個整數 int【x】，判斷並回傳 【x】 是否是個迴文數 (當【x】正著念倒著念長一樣的時候稱【x】為迴文數)",

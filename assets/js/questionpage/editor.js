@@ -84,7 +84,7 @@ submit_button.addEventListener("click", function(){
         let code = `${codeEditor.renderedEditor.getValue().toString()}\n`;
         let submit_time = getNow();
         Object.keys(codeEditor.StringReplacement).forEach(key => {
-            code = code.replaceAll(key, codeEditor.StringReplacement[key]);
+            code = ReplaceAll(code, key, codeEditor.StringReplacement[key]);
         })
         code = codeEditor.removeComment(code);
         fetch(

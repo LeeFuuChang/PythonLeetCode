@@ -1,4 +1,4 @@
-from .modules.DataUpdater import Updater; DataUpdater = Updater()
+from .modules.DataUpdater import Updater; DataUpdater__submit = Updater()
 from .modules.CodeProcess import CodeProcessor
 from flask import Blueprint, request
 import tracemalloc as memoryTracer
@@ -54,8 +54,10 @@ def Save_Submit_Result(problem_id, code, result, username):
         json.dump(user_data, f, indent=4)
     
     if user_data["problems"][f"{problem_id}"]["passed"]:
-        DataUpdater.Update_User_Passed(problem_id, user_data)
-    DataUpdater.Update_Problem_Participants(problem_id, username, user_data["problems"][f"{problem_id}"]["passed"])
+        DataUpdater__submit.Update_User_Passed(problem_id, user_data)
+        DataUpdater__submit.Update_User_List()
+    DataUpdater__submit.Update_Problem_Participants(problem_id, username, user_data["problems"][f"{problem_id}"]["passed"])
+    DataUpdater__submit.Update_Problem_List()
 
     return {**result, "user_data":user_data}
 

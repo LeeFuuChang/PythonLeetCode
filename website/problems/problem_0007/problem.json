@@ -4,8 +4,8 @@
     "difficulty":"Easy",
     "likes": 0,
     "dislikes": 0,
-    "participants":0,
-    "passed_participants":0,
+    "participants":[],
+    "passed_participants":[],
     "time":"2022/02/15",
     "description":[
         "計算兩個時間之間相差幾分鐘",

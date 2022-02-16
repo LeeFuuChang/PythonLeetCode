@@ -24,13 +24,9 @@ class Updater():
             username = user_data["username"]
             data[username] = {
                 "username":username,
-                "passed":[]
+                "passed_problems":user_data["passed_problems"]
             }
-            for question_id, question_data in user_data["problems"].items():
-                if question_data["passed"]:
-                    data[username]["passed"].append(question_id)
-
-        data = {ud["username"]:ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed"]))}
+        data = {ud["username"]:ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))}
         with open(os.path.join(self.Path__data, "user_list.json"), "w") as f:
             json.dump(data, f, indent=4)
 
@@ -57,8 +53,8 @@ class Updater():
             }
             problem_list["problem_list"].append(now)
 
-            with open(os.path.join(self.Path__problems, "problem_list.json"), "w") as f:
-                json.dump(problem_list, f, indent=4)
+        with open(os.path.join(self.Path__problems, "problem_list.json"), "w") as f:
+            json.dump(problem_list, f, indent=4)
 
 
     def Update_User_Passed(self, problem_id, username):
@@ -68,7 +64,7 @@ class Updater():
         if problem_id not in user_data["passed_problems"]:
             user_data["passed_problems"].append(problem_id)
             with open(user_data_file, "w") as f:
-                json.dump(user_data, f)
+                json.dump(user_data, f, indent=4)
 
 
     def Update_Problem_Participants(self, problem_id, username, passed):
@@ -80,4 +76,4 @@ class Updater():
         if passed and username not in problem_data["passed_participants"]:
             problem_data["passed_participants"].append(username)
         with open(problem_data_file, "w") as f:
-            json.dump(problem_data, f)
+            json.dump(problem_data, f, indent=4)

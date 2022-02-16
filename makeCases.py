@@ -2,38 +2,27 @@ import random
 import json
 
 cases = {
-    "cases":[]
+    "cases":[
+        [[0, 0], 0],
+        [[3,3], 6],
+        [[3,2,4], 6],
+        [[2,7,11,15], 9],
+    ]
 }
 
-for i in range(10):
-    now = []
-    for j in range(2):
-        g = [
-            f"{random.randint( 2000, 3000):0>4}",
-            "/",
-            f"{random.randint( 1,12):0>2}",
-            "/",
-            f"{random.randint( 1,30):0>2}",
-            " ",
-            f"{random.randint( 0,23):0>2}",
-            ":",
-            f"{random.randint( 0,59):0>2}",
-        ]
-        now.append("".join(g))
+for i in range(1, 7):
+    _len = random.randint(2, int(10**i**(1/2)))
+    picked = random.sample(range(_len), 2)
+    nums = [
+        random.randint(-10**9, 10**9) for j in range(_len)
+    ]
+    now = [
+        nums,
+        nums[picked[0]]+nums[picked[1]]
+    ]
     cases["cases"].append(now)
 
-def sp(s):
-    s = s.split()
-    s = [int(_) for _ in s[0].split("/") + s[1].split(":")]
-    s = s[0]*12*30*24*60 + s[1]*30*24*60 + s[2]*24*60 + s[3]*60 + s[4]
-    return s
-
-def a(t1, t2):
-    return sp(t2) - sp(t1)
-
 for idx, case in enumerate(cases["cases"]):
-    if a(*case) < 0:
-        cases["cases"][idx] = cases["cases"][idx][::-1]
     print(cases["cases"][idx])
 with open("eval.json", "w") as f:
     json.dump(cases, f, indent=4)
