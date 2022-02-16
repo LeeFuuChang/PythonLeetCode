@@ -1,5 +1,6 @@
 from time import time
 from sys import argv
+import codecs
 import os
 
 st = time()
@@ -13,7 +14,7 @@ def main(filename, output):
         "href"
     ]
 
-    with open(os.path.join(os.path.dirname(__file__), filename), "r") as f:
+    with codecs.open(os.path.join(os.path.dirname(__file__), filename), "r", "utf-8") as f:
         html = f.read()
     print("Input html length:", len(html), "characters\n")
 
@@ -31,7 +32,7 @@ def main(filename, output):
             print("Fixed:", part)
 
     if not os.path.exists(os.path.join(os.path.dirname(__file__), "output")): os.mkdir(os.path.join(os.path.dirname(__file__), "output"))
-    with open(os.path.join(os.path.dirname(__file__), "output", output), "w") as f:
+    with codecs.open(os.path.join(os.path.dirname(__file__), "output", output), "w", "utf-8") as f:
         f.write(html)
     print("\nFixed html length:", len(html), "characters")
 

@@ -1,3 +1,4 @@
+from .modules.DataUpdater import Updater; DataUpdater = Updater()
 from .modules.CodeProcess import CodeProcessor
 from flask import Blueprint, request
 import tracemalloc as memoryTracer
@@ -43,14 +44,18 @@ def Save_Submit_Result(problem_id, code, result, username):
     user_data["problems"][f"{problem_id}"]["recentSubmissions"].insert(0, result)
     user_data["problems"][f"{problem_id}"]["recentSubmissions"][0]["code"] = code
 
-    if not user_data["problems"][f"{problem_id}"]["passed"]:
-        user_data["problems"][f"{problem_id}"]["passed"] = result["result"] == states[1][0]
+    if result["result"] == states[1][0] and not user_data["problems"][f"{problem_id}"]["passed"]:
+        user_data["problems"][f"{problem_id}"]["passed"] = True
 
     if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
         user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
 
     with open(os.path.join(users_path, f"{username}.json"), "w") as f:
         json.dump(user_data, f, indent=4)
+    
+    if user_data["problems"][f"{problem_id}"]["passed"]:
+        DataUpdater.Update_User_Passed(problem_id, user_data)
+    DataUpdater.Update_Problem_Participants(problem_id, username, user_data["problems"][f"{problem_id}"]["passed"])
 
     return {**result, "user_data":user_data}
 

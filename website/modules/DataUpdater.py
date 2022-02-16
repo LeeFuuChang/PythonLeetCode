@@ -61,7 +61,23 @@ class Updater():
                 json.dump(problem_list, f, indent=4)
 
 
-    def Update_Problem_Participants(self, problem_id, passed):
+    def Update_User_Passed(self, problem_id, username):
+        user_data_file = os.path.join(self.Path__data, "users", f"{username}.json")
+        with open(user_data_file, "r") as f:
+            user_data = json.load(f)
+        if problem_id not in user_data["passed_problems"]:
+            user_data["passed_problems"].append(problem_id)
+            with open(user_data_file, "w") as f:
+                json.dump(user_data, f)
+
+
+    def Update_Problem_Participants(self, problem_id, username, passed):
         problem_data_file = os.path.join(self.Path__problems, f"problem_{problem_id}", "problem.json")
         with open(problem_data_file, "r") as f:
-            pass
+            problem_data = json.load(f)
+        if username not in problem_data["participants"]:
+            problem_data["participants"].append(username)
+        if passed and username not in problem_data["passed_participants"]:
+            problem_data["passed_participants"].append(username)
+        with open(problem_data_file, "w") as f:
+            json.dump(problem_data, f)
