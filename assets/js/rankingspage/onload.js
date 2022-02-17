@@ -11,12 +11,16 @@ window.onload = function(){
         }
     }).then(function(v){
         fetch(
-            `user_list`,
+            `user_list?start=${problem_list_start}&end=${problem_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();
         }).then(res => {
-            LoadRankings(res["user_list"]);
+            LoadProblemList(res["user_list"]);
+            user_list_more = res["more"];
+            if(!user_list_more){
+                content_rankings_footer_more.style.display = "none";
+            }
         })
     })
 }

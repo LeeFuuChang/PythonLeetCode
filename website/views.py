@@ -1,4 +1,5 @@
 from flask import Blueprint, request, render_template, abort
+from . import __Constants as CONSTANT
 import json
 import os
 
@@ -10,7 +11,12 @@ views = Blueprint("views", __name__)
 
 @views.route("/problems")
 def problems():
-    return render_template("problem_list.html")
+    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+    with open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html")) as f:
+        constantHeader = f.read()
+    with open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html")) as f:
+        constantFloat = f.read()
+    return render_template("problem_list.html", constantHeader=constantHeader, constantFloat=constantFloat)
 
 
 
@@ -46,16 +52,41 @@ def problem_list():
 
 @views.route("/rankings")
 def rankings():
-    return render_template("rankings_page.html")
+    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+    with open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html")) as f:
+        constantHeader = f.read()
+    with open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html")) as f:
+        constantFloat = f.read()
+    return render_template("rankings_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
 
 
 
 @views.route("/user_list")
 def ranking_list():
+    Args = request.args.to_dict()
+
+    start = int(Args.get("start", False))
+    end = int(Args.get("end", False))
+
     with open(os.path.join(os.path.dirname(__file__), "data", "user_list.json"), "r") as f:
-        data = json.load(f)
-    result = sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))
-    return {"user_list":result}
+        user_list = json.load(f)
+    user_list = sorted(list(user_list.values()), key=lambda user:len(user["passed_problems"]))
+
+    if start and end:
+        if len(user_list) >= end:
+            result = user_list[start-1:end]
+            more = True
+        elif len(user_list) >= start:
+            result = user_list[start-1:]
+            more = False
+        else:
+            result = []
+            more = False
+
+    elif Args.get("get", False) == "all":
+        return {"all":user_list}
+
+    return {"user_list":result, "more":more}
 
 
 
@@ -89,7 +120,12 @@ def question(subpath):
 
                 return {"question":question}
 
-        return render_template("question_page.html", problem_id=problem_id)
+        constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+        with open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html")) as f:
+            constantHeader = f.read()
+        with open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html")) as f:
+            constantFloat = f.read()
+        return render_template("question_page.html", problem_id=problem_id, constantHeader=constantHeader, constantFloat=constantFloat)
 
     return abort(404)
 

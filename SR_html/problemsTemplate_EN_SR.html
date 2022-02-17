@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="assets/css/_globals.css">
+    <link rel="stylesheet" href="assets/css/problemspage/globals.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
+</head>
+<body>
+    {{ constantHeader|safe }}
+
+
+
+    <div id="content" class="df jcc">
+        <div id="content-questions" class="df aic">
+            <header id="content-questions-header">
+                <nav id="content-questions-header-nav" class="df aic">
+                    <input id="content-questions-header-nav-search" type="text" placeholder="Search for ID or Title">
+                    <div id="content-questions-header-nav-filter" class="df aic jcc">
+                        <div id="content-questions-header-nav-filter-state" class="df aic jcc content-questions-header-nav-filter-item" aria-label="state">
+                            <a id="content-questions-header-nav-filter-state-button" class="df aic jcc content-questions-header-nav-filter-button">
+                                <span class="df aic content-questions-header-nav-filter-button-text">State</span>
+                                <img class="content-questions-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
+                            </a>
+                            <div id="content-questions-header-nav-filter-state-options" class="jcc content-questions-header-nav-filter-options">
+                                <a id="content-questions-header-nav-filter-state-options-time" class="df aic content-questions-header-nav-filter-options-item" aria-label="1">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-questions-header-nav-filter-options-item-icon passed" src="assets/images/svgs/check-lg.svg" alt="">
+                                    <span class="content-questions-header-nav-filter-options-item-text passed">Passed</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-state-options-vote" class="df aic content-questions-header-nav-filter-options-item" aria-label="0">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-questions-header-nav-filter-options-item-icon failed" src="assets/images/svgs/activity.svg" alt="">
+                                    <span class="content-questions-header-nav-filter-options-item-text failed">Tried</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-state-options-view" class="df aic content-questions-header-nav-filter-options-item" aria-label="-1">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-questions-header-nav-filter-options-item-icon" src="assets/images/svgs/dash-lg.svg" alt="">
+                                    <span class="content-questions-header-nav-filter-options-item-text">Yet Tried</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-state-options-default" class="df aic content-questions-header-nav-filter-options-item active" aria-label="default">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-questions-header-nav-filter-options-item-icon" src="assets/images/svgs/arrow-clockwise.svg" alt="">
+                                    <span class="content-questions-header-nav-filter-options-item-text">Default</span>
+                                </a>
+                            </div>
+                        </div>
+                        <div id="content-questions-header-nav-filter-difficulty" class="df aic jcc content-questions-header-nav-filter-item" aria-label="difficulty">
+                            <a id="content-questions-header-nav-filter-difficulty-button" class="df aic jcc content-questions-header-nav-filter-button">
+                                <span class="df aic content-questions-header-nav-filter-button-text">Difficulty</span>
+                                <img class="content-questions-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
+                            </a>
+                            <div id="content-questions-header-nav-filter-difficulty-options" class="jcc content-questions-header-nav-filter-options">
+                                <a id="content-questions-header-nav-filter-difficulty-options-view" class="df aic content-questions-header-nav-filter-options-item" aria-label="hard">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-questions-header-nav-filter-options-item-text hard">Hard</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-difficulty-options-vote" class="df aic content-questions-header-nav-filter-options-item" aria-label="medium">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-questions-header-nav-filter-options-item-text medium">Medium</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-difficulty-options-time" class="df aic content-questions-header-nav-filter-options-item" aria-label="easy">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-questions-header-nav-filter-options-item-text easy">Easy</span>
+                                </a>
+                                <a id="content-questions-header-nav-filter-difficulty-options-default" class="df aic content-questions-header-nav-filter-options-item active" aria-label="default">
+                                    <span class="content-questions-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-questions-header-nav-filter-options-item-text default">Default</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div id="content-questions-inner" class="df aic">
+                <header id="content-questions-inner-header" class="df aic content-questions-inner-item">
+                    <div class="df aic content-questions-inner-item-left">
+                        <div class="df aic jcc content-questions-inner-item-left-state">
+                            State
+                        </div>
+                        <a id="content-questions-inner-sort-id" class="df aic content-questions-inner-item-left-id">
+                            <span class="content-questions-inner-item-left-id-text">
+                                ID
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <div class="df aic content-questions-inner-item-left-title">
+                            <span class="content-questions-inner-item-left-title-text">
+                                Title
+                            </span>
+                        </div>
+                    </div>
+                    <div class="df aic content-questions-inner-item-right">
+                        <a id="content-questions-inner-sort-ac" class="df aic content-questions-inner-item-right-acceptance">
+                            <span class="content-questions-inner-item-right-acceptance-text">
+                                AC-Rate
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <a id="content-questions-inner-sort-difficulty" class="df aic content-questions-inner-item-right-difficulty">
+                            <span class="content-questions-inner-item-right-difficulty-text">
+                                Difficulty
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                        <a id="content-questions-inner-sort-join" class="df aic content-questions-inner-item-right-join">
+                            <span class="content-questions-inner-item-right-join-text">
+                                Join
+                            </span>
+                            <img class="content-questions-inner-item-sort-icon" src="assets/images/svgs/arrow-down-up.svg" alt="">
+                        </a>
+                    </div>
+                </header>
+            </div>
+            <footer id="content-questions-footer" class="df aic jcc">
+                <a id="content-questions-footer-more" class="df aic jcc">
+                    <span id="content-questions-footer-more-text" class="df aic jcc">
+                        Load more
+                    </span>
+                </a>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    {{ constantFloat|safe }}
+
+
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+    <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+    
+    <script src="assets/plugin/codemirror/keymap/emacs.js"></script>
+    <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+    <script src="assets/plugin/codemirror/keymap/vim.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+    
+    <script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+    
+    <script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
+    <script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+    
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="assets/js/problemspage/onload.js"></script>
+    <!-- Global Scripts -->
+    <script src="assets/js/_onload.js"></script>
+    <script src="assets/js/_header.js"></script>
+    <script src="assets/js/_floats.js"></script>
+    <!-- Page Scripts -->
+    <script src="assets/js/problemspage/content.js"></script>
+</body>
+</html>

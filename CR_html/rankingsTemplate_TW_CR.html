@@ -19,13 +19,13 @@
                     <img id="pageheader-nav-left-logo-img" src="assets/images/logo/logo.png" alt="">
                 </a>
                 <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="/views/problems">
-                    <span id="pageheader-nav-left-problems-text">Problems</span>
+                    <span id="pageheader-nav-left-problems-text">題目列表</span>
                 </a>
-                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="#">
-                    <span id="pageheader-nav-left-ranks-text">Ranks</span>
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="/views/rankings">
+                    <span id="pageheader-nav-left-ranks-text">解題排名</span>
                 </a>
-                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="#">
-                    <span id="pageheader-nav-left-submissions-text">Submissions</span>
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="/views/submissions">
+                    <span id="pageheader-nav-left-submissions-text">解題動態</span>
                 </a>
             </div>
             <div id="pageheader-nav-right" class="df aic jcc">
@@ -40,26 +40,26 @@
                             <hr>
                             <a id="pageheader-nav-right-user-nav-y-favorite" class="df aic">
                                 <img src="assets/images/svgs/bookmark-heart.svg" alt="">
-                                My Favorite
+                                我的最愛
                             </a>
                             <a id="pageheader-nav-right-user-nav-y-submissions" class="df aic">
                                 <img src="assets/images/svgs/clock.svg" alt="">
-                                Submissions
+                                提交紀錄
                             </a>
                             <hr>
                             <a id="pageheader-nav-right-user-nav-y-logout" class="df aic">
                                 <img src="assets/images/svgs/box-arrow-left.svg" alt="">
-                                Logout
+                                登出
                             </a>
                         </div>
                         <div id="pageheader-nav-right-user-nav-n" class="df">
                             <a id="pageheader-nav-right-user-nav-n-login" class="df aic">
                                 <img src="assets/images/svgs/box-arrow-in-right.svg" alt="">
-                                Login
+                                登入
                             </a>
                             <a id="pageheader-nav-right-user-nav-n-signup" class="df aic">
                                 <img src="assets/images/svgs/person-plus-fill.svg" alt="">
-                                Sign UP
+                                註冊
                             </a>
                         </div>
                     </div>
@@ -78,7 +78,7 @@
                     <div id="content-rankings-header-nav-filter" class="df aic jcc">
                         <div id="content-rankings-header-nav-filter-acceptance" class="df aic jcc content-rankings-header-nav-filter-item" aria-label="acceptance">
                             <a id="content-rankings-header-nav-filter-acceptance-button" class="df aic jcc content-rankings-header-nav-filter-button">
-                                <span class="df aic content-rankings-header-nav-filter-button-text">AC Rate</span>
+                                <span class="df aic content-rankings-header-nav-filter-button-text">通過率</span>
                                 <img class="content-rankings-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
                             </a>
                             <div id="content-rankings-header-nav-filter-acceptance-options" class="jcc content-rankings-header-nav-filter-options">
@@ -141,29 +141,36 @@
                         </div>
                         <div class="df aic content-rankings-inner-item-left-username">
                             <span class="content-rankings-inner-item-left-username-text">
-                                Username
+                                用戶名稱
                             </span>
                         </div>
                     </div>
                     <div class="df aic content-rankings-inner-item-right">
                         <div id="content-rankings-inner-sort-ac" class="df aic content-rankings-inner-item-right-accept">
                             <span class="content-rankings-inner-item-right-accept-text">
-                                AC
+                                通過數
                             </span>
                         </div>
                         <div id="content-rankings-inner-sort-acceptance" class="df aic content-rankings-inner-item-right-acceptance">
                             <span class="content-rankings-inner-item-right-acceptance-text">
-                                AC-Rate
+                                通過率
                             </span>
                         </div>
                         <div id="content-rankings-inner-sort-join" class="df aic content-rankings-inner-item-right-join">
                             <span class="content-rankings-inner-item-right-join-text">
-                                Join
+                                加入時間
                             </span>
                         </div>
                     </div>
                 </header>
             </div>
+            <footer id="content-rankings-footer" class="df aic jcc">
+                <a id="content-rankings-footer-more" class="df aic jcc">
+                    <span id="content-rankings-footer-more-text" class="df aic jcc">
+                        載入更多
+                    </span>
+                </a>
+            </footer>
         </div>
     </div>
 
@@ -182,13 +189,13 @@
                     </div>
                     <input id="login-float-content-username" type="text" placeholder="E-mail/Username">
                     <input id="login-float-content-password" type="password" placeholder="Password">
-                    <a id="login-float-content-submit" class="df aic jcc">Sign In</a>
+                    <a id="login-float-content-submit" class="df aic jcc">登入</a>
                     <div id="login-float-content-noaccount" class="df">
                         <a id="login-float-content-noaccount-forget">
-                            Forgot Password
+                            忘記密碼
                         </a>
                         <a id="login-float-content-noaccount-signup">
-                            Sign Up
+                            註冊
                         </a>
                     </div>
                 </div>
@@ -209,10 +216,10 @@
                     <input id="signup-float-content-username" type="text" placeholder="Username">
                     <input id="signup-float-content-password" type="password" placeholder="Password">
                     <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
-                    <a id="signup-float-content-submit" class="df aic jcc">Sign In</a>
+                    <a id="signup-float-content-submit" class="df aic jcc">註冊</a>
                     <div id="signup-float-content-noaccount" class="df">
                         <a id="signup-float-content-noaccount-login">
-                            Login
+                            登入
                         </a>
                     </div>
                 </div>

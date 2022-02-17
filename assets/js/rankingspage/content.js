@@ -41,6 +41,11 @@ content_rankings_header_nav_search.addEventListener("input", function(){
         }
     })
 })
+content_rankings_header_nav_search.addEventListener("keydown", function(e){
+    if(e.key == "Enter"){
+        location.href = `/account/profile/${content_rankings_header_nav_search.value.toLowerCase()}`;
+    }
+})
 const filter_ref = {
     "acceptance":{
         "90-100":function(problem_list){
@@ -388,6 +393,7 @@ filters.forEach(filter => {
 
 // problem lists
 const LoadRankings = function(rlist){
+    let now_len = content_rankings_inner.querySelectorAll("div.content-rankings-inner-item").length;
     for(let i=0; i<rlist.length; i++){
         let r = rlist[i];
 
@@ -401,7 +407,7 @@ const LoadRankings = function(rlist){
             <div class="df aic content-rankings-inner-item-left">
                 <div class="df aic content-rankings-inner-item-left-rank">
                     <span class="content-rankings-inner-item-left-rank-text">
-                        ${i+1}
+                        ${now_len+i+1}
                     </span>
                 </div>
                 <a class="df aic content-rankings-inner-item-left-username" href="/views/problems/">
@@ -433,3 +439,28 @@ const LoadRankings = function(rlist){
         content_rankings_inner.insertAdjacentHTML("beforeend", html);
     }
 }
+
+
+
+
+
+// content footer 
+const content_rankings_footer_more = content_rankings_footer.querySelector("#content-rankings-footer-more");
+content_rankings_footer_more.addEventListener("click", function(){
+    if(problem_list_more){
+        problem_list_start += 50;
+        problem_list_end += 50;
+        fetch(
+            `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+            {method:"GET"}
+        ).then(res => {
+            return res.json();
+        }).then(res => {
+            LoadProblemList(res["problem_list"]);
+            problem_list_more = res["more"];
+            if(!problem_list_more){
+                content_rankings_footer_more.style.display = "none";
+            }
+        })
+    }
+})

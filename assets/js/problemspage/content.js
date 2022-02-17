@@ -43,6 +43,11 @@ content_questions_header_nav_search.addEventListener("input", function(){
         }
     })
 })
+content_questions_header_nav_search.addEventListener("keydown", function(e){
+    if(e.key == "Enter"){
+        location.href = `/views/problems/${content_questions_header_nav_search.value.toLowerCase()}`;
+    }
+})
 const filter_ref = {
     "state":{
         "1":(problem_list)=>{

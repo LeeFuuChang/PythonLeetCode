@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/_globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/rankingspage/globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/theme/__import__.css')}}">
+</head>
+<body>
+    {{ constantHeader|safe }}
+
+
+
+    <div id="content" class="df jcc">
+        <div id="content-rankings" class="df aic">
+            <header id="content-rankings-header">
+                <nav id="content-rankings-header-nav" class="df aic">
+                    <input id="content-rankings-header-nav-search" type="text" placeholder="Search for ID or Title">
+                    <div id="content-rankings-header-nav-filter" class="df aic jcc">
+                        <div id="content-rankings-header-nav-filter-acceptance" class="df aic jcc content-rankings-header-nav-filter-item" aria-label="acceptance">
+                            <a id="content-rankings-header-nav-filter-acceptance-button" class="df aic jcc content-rankings-header-nav-filter-button">
+                                <span class="df aic content-rankings-header-nav-filter-button-text">AC Rate</span>
+                                <img class="content-rankings-header-nav-filter-button-icon" src="{{url_for('static', filename='assets/images/svgs/caret-down-fill.svg')}}" alt="">
+                            </a>
+                            <div id="content-rankings-header-nav-filter-acceptance-options" class="jcc content-rankings-header-nav-filter-options">
+                                <a id="content-rankings-header-nav-filter-acceptance-options-view" class="df aic content-rankings-header-nav-filter-options-item" aria-label="90-100">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">90% - 100%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-vote" class="df aic content-rankings-header-nav-filter-options-item" aria-label="80-90">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">80% - 90%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="70-80">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">70% - 80%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="60-70">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">60% - 70%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="50-60">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">50% - 60%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="40-50">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">40% - 50%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="30-40">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">30% - 40%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="20-30">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">20% - 30%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="10-20">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">10% - 20%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-time" class="df aic content-rankings-header-nav-filter-options-item" aria-label="0-10">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">0% - 10%</span>
+                                </a>
+                                <a id="content-rankings-header-nav-filter-acceptance-options-default" class="df aic content-rankings-header-nav-filter-options-item active" aria-label="default">
+                                    <span class="content-rankings-header-nav-filter-options-item-bullet"></span>
+                                    <span class="content-rankings-header-nav-filter-options-item-text">Default</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </nav>
+            </header>
+            <div id="content-rankings-inner" class="df aic">
+                <header id="content-rankings-inner-header" class="df aic content-rankings-inner-item">
+                    <div class="df aic content-rankings-inner-item-left">
+                        <div id="content-rankings-inner-sort-rank" class="df aic content-rankings-inner-item-left-rank">
+                            <span class="content-rankings-inner-item-left-rank-text">
+                                #
+                            </span>
+                        </div>
+                        <div class="df aic content-rankings-inner-item-left-username">
+                            <span class="content-rankings-inner-item-left-username-text">
+                                Username
+                            </span>
+                        </div>
+                    </div>
+                    <div class="df aic content-rankings-inner-item-right">
+                        <div id="content-rankings-inner-sort-ac" class="df aic content-rankings-inner-item-right-accept">
+                            <span class="content-rankings-inner-item-right-accept-text">
+                                AC
+                            </span>
+                        </div>
+                        <div id="content-rankings-inner-sort-acceptance" class="df aic content-rankings-inner-item-right-acceptance">
+                            <span class="content-rankings-inner-item-right-acceptance-text">
+                                AC-Rate
+                            </span>
+                        </div>
+                        <div id="content-rankings-inner-sort-join" class="df aic content-rankings-inner-item-right-join">
+                            <span class="content-rankings-inner-item-right-join-text">
+                                Join
+                            </span>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <footer id="content-rankings-footer" class="df aic jcc">
+                <a id="content-rankings-footer-more" class="df aic jcc">
+                    <span id="content-rankings-footer-more-text" class="df aic jcc">
+                        Load more
+                    </span>
+                </a>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    {{ constantFloat|safe }}
+
+
+
+    <!-- Scripts -->
+    <script src="{{url_for('static', filename='assets/js/jquery-3.6.0.min.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/comment/comment.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/selection/active-line.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/emacs.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/sublime.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/vim.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/hint/show-hint.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/mode/python/python.js')}}"></script> 
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/lint.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/javascript-lint.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldcode.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldgutter.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/brace-fold.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/indent-fold.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/comment-fold.js')}}"></script>
+    
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/closebrackets.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/matchbrackets.js')}}"></script>
+    
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="{{url_for('static', filename='assets/js/rankingspage/onload.js')}}"></script>
+    <!-- Global Scripts -->
+    <script src="{{url_for('static', filename='assets/js/_onload.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_header.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_floats.js')}}"></script>
+    <!-- Page Scripts -->
+    <script src="{{url_for('static', filename='assets/js/rankingspage/content.js')}}"></script>
+</body>
+</html>

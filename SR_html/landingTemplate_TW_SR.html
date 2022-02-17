@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="assets/css/_globals.css">
+    <link rel="stylesheet" href="assets/css/landingpage/globals.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
+</head>
+<body>
+    {{ constantHeader|safe }}
+
+
+
+    <div id="content">
+        <header id="content-header" class="df aic jcc">
+            <div id="content-header-left" class="df aic jcc content-header-section">
+                <div id="content-header-left-frame">
+                    <textarea id="content-header-left-frame-animation" spellcheck="false" disabled></textarea>
+                </div>
+            </div>
+            <div id="content-header-right" class="df aic jcc content-header-section">
+                <img id="content-header-right-logo" src="assets/images/logo/icon-logo.png" alt="">
+            </div>
+        </header>
+        <div id="content-features" class="df aic jcc">
+            <div class="df aic jcc content-features-row">
+                <div class="df aic jcc content-features-row-section">
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/checklist.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">精選題庫</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            眾多精選題庫<br>物件導向、資料結構、演算法<br>競程練習、考古題庫
+                        </p>
+                    </div>
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/code-editor.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">在線編輯</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            在線即時編程、精選代碼主題<br>支援多種編輯器鍵位<br>物件導向編程練習
+                        </p>
+                    </div>
+                </div>
+                <div class="df aic jcc content-features-row-section">
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/compute.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">即時評測</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            自製 Python 專用 OJ<br>線上解題、即時評測<br>自訂測試資料、自動生成正解
+                        </p>
+                    </div>
+                    <div class="df aic content-features-row-section-item">
+                        <img class="df aic jcc content-features-row-section-item-icon" src="assets/images/svgs/idea.svg" alt="">
+                        <h2 class="df aic jcc content-features-row-section-item-title">邏輯訓練</h2>
+                        <p class="df aic jcc content-features-row-section-item-description">
+                            實作練習、邏輯訓練<br>快速學習編程<br>在燒腦實作中成為專家<br>
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    {{ constantFloat|safe }}
+
+
+
+    <!-- Scripts -->
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+    <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+    
+    <script src="assets/plugin/codemirror/keymap/emacs.js"></script>
+    <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+    <script src="assets/plugin/codemirror/keymap/vim.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+    
+    <script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+    
+    <script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
+    <script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+    
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="assets/js/landingpage/onload.js"></script>
+    <!-- Global Scripts -->
+    <script src="assets/js/_onload.js"></script>
+    <script src="assets/js/_header.js"></script>
+    <script src="assets/js/_floats.js"></script>
+    <!-- Page Scripts -->
+    <script src="assets/js/landingpage/animate.js"></script>
+</body>
+</html>

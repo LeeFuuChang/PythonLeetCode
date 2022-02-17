@@ -7,7 +7,7 @@
     <title>Let's Py</title>
 
     <link rel="stylesheet" href="assets/css/_globals.css">
-    <link rel="stylesheet" href="assets/css/questionpage/globals.css">
+    <link rel="stylesheet" href="assets/css/landingpage/globals.css">
     <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
     <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
 </head>
@@ -21,10 +21,10 @@
                 <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="/views/problems">
                     <span id="pageheader-nav-left-problems-text">Problems</span>
                 </a>
-                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="#">
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="/views/rankings">
                     <span id="pageheader-nav-left-ranks-text">Ranks</span>
                 </a>
-                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="#">
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="/views/submissions">
                     <span id="pageheader-nav-left-submissions-text">Submissions</span>
                 </a>
             </div>
@@ -73,7 +73,6 @@
 
 
 
-
     <!-- floats (notification, askyesno, confirm. . . etc) -->
     <div id="login-float" class="floatfixed">
         <div class="df aic jcc floatfixed-dim">
@@ -114,7 +113,7 @@
                     <input id="signup-float-content-username" type="text" placeholder="Username">
                     <input id="signup-float-content-password" type="password" placeholder="Password">
                     <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
-                    <a id="signup-float-content-submit" class="df aic jcc">Sign In</a>
+                    <a id="signup-float-content-submit" class="df aic jcc">Sign Up</a>
                     <div id="signup-float-content-noaccount" class="df">
                         <a id="signup-float-content-noaccount-login">
                             Login
@@ -124,42 +123,43 @@
             </div>
         </div>
     </div>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+    <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+    
+    <script src="assets/plugin/codemirror/keymap/emacs.js"></script>
+    <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
+    <script src="assets/plugin/codemirror/keymap/vim.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+    
+    <script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+    
+    <script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
+    <script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
+    <script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+    
+    <script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
+    <script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+    
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="assets/js/landingpage/onload.js"></script>
+    <!-- Global Scripts -->
+    <script src="assets/js/_onload.js"></script>
+    <script src="assets/js/_header.js"></script>
+    <script src="assets/js/_floats.js"></script>
+    <!-- Page Scripts -->
+    <script src="assets/js/landingpage/animate.js"></script>
 </body>
-<script src="assets/js/jquery-3.6.0.min.js"></script>
-
-<script src="assets/plugin/codemirror/lib/codemirror.js"></script>
-
-<script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
-
-<script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
-
-<script src="assets/plugin/codemirror/keymap/emacs.js"></script>
-<script src="assets/plugin/codemirror/keymap/sublime.js"></script>
-<script src="assets/plugin/codemirror/keymap/vim.js"></script>
-
-<script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
-
-<script src="assets/plugin/codemirror/mode/python/python.js"></script> 
-
-<script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
-<script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
-
-<script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
-<script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
-<script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
-<script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
-<script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
-
-<script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
-<script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
-
-
-<!-- My Scripts -->
-<!-- Onload Script -->
-
-<!-- Global Scripts -->
-<script src="assets/js/_header.js"></script>
-<script src="assets/js/_floats.js"></script>
-<!-- Page Scripts -->
-
 </html>

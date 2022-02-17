@@ -1,5 +1,5 @@
 from .modules.DataUpdater import Updater; DataUpdater__account = Updater()
-from flask import Blueprint, request
+from flask import Blueprint, request, abort
 from .modules import Handle_CSV
 from .modules import Handle_IP
 from io import StringIO
@@ -198,3 +198,10 @@ def editor():
 
 
 
+@account.route("/profile/<path:subpath>")
+def profile(subpath):
+    subpath = subpath.split("/")
+    username = subpath[0]
+    with open(os.path.join(os.path.dirname(__file__), "data", "user_list.json"), "r") as f:
+        users = json.load(f)
+    if username in users.keys(): return abort(404)
