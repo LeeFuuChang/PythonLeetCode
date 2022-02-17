@@ -28,3 +28,5 @@ window.onload = function(){
         })
     })
 }
+
+function LoginLoad(){}

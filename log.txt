@@ -190,6 +190,16 @@
         3. 將 participants / passed_participants 從整數改為列表 儲存使用者名稱
         4. 新增 使用者資料 passed_problems 儲存通過的問題ID以為之後使用者個人頁面做準備
 
+    2.
+        1. 將所有HTML分別製作 CR&SR 兩個版本
+        2. 將後端更新為可以同時使用 CR&SR 兩個版本
+        3. 將 解題排名 更新為一次載入50名用戶
 
+    3.
+        1. 修復註冊 路徑不存在 問題
+        2. 重新編排 user_data 使用者名稱大小寫儲存與搜尋方式
+        3. 修復 modules Handle_IP 刪除未登入的用戶IP時會出錯的問題
 
-
+    4.
+        1. 修復 LoginLoad is not defined (JS)
+        2. 更新甘特圖

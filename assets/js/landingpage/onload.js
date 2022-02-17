@@ -13,3 +13,5 @@ window.onload = function(){
         StartLandingPageEditorAnimation();
     })
 }
+
+function LoginLoad(){}
