@@ -106,18 +106,9 @@ def question(subpath):
             if paths[1] == "get":
                 with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "problem.json"), "r") as f:
                     question = json.load(f)
-
                 idx = problem_ids.index(problem_id)
-                if idx == 0:
-                    question["prev"] = None
-                    question["next"] = problem_ids[idx+1]
-                elif idx == len(problem_ids)-1:
-                    question["prev"] = problem_ids[idx-1]
-                    question["next"] = None
-                else:
-                    question["prev"] = problem_ids[idx-1]
-                    question["next"] = problem_ids[idx+1]
-
+                question["prev"] = problem_ids[idx-1] if idx!=0 else None
+                question["next"] = problem_ids[idx+1] if idx!=len(problem_ids)-1 else None 
                 return {"question":question}
 
         constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")

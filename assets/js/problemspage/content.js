@@ -481,6 +481,7 @@ content_questions_inner_sort_join.addEventListener("click", function(){
 const content_questions_footer_more = content_questions_footer.querySelector("#content-questions-footer-more");
 content_questions_footer_more.addEventListener("click", function(){
     if(problem_list_more){
+        content_questions_footer_more.style.display = "none";
         problem_list_start += 50;
         problem_list_end += 50;
         fetch(
@@ -491,8 +492,8 @@ content_questions_footer_more.addEventListener("click", function(){
         }).then(res => {
             LoadProblemList(res["problem_list"]);
             problem_list_more = res["more"];
-            if(!problem_list_more){
-                content_questions_footer_more.style.display = "none";
+            if(problem_list_more){
+                content_questions_footer_more.style.display = "flex";
             }
         })
     }

@@ -1,0 +1,134 @@
+/
+    Args:
+    Return:
+        index.html
+
+
+
+/account/get
+    Args:
+        IP (from request)
+    Return:
+        user_data
+
+/account/login
+    Args
+        username
+        password
+        time
+    Return:
+        state (0 missingArg/invalid username/incorrect password ; 1 login ok)
+        user_data
+
+/account/signup
+    Args
+        email
+        username
+        password
+        time
+    Return:
+        state (-1 exist email ; -2 exist username ; 0 missingArg ; 1 signup ok)
+        user_data
+
+/account/logout
+    Args
+        username
+    Return:
+        state (1 logout ok)
+
+/account/editor
+    Args
+        username
+        font
+        theme
+        bind
+    Return:
+        state (0 missingArg ; 1 save editor settings ok)
+
+/account/profile/{username}
+    Args
+        username (from url)
+    Return:
+        user's profile page #todo
+
+
+
+/discuss/newpost
+    Args
+        username
+        time
+        link
+        title
+        id (question id)
+    Return:
+        state (0 missingArg ; 1 create post ok)
+        output ("Missing arguments" ; post_data)
+
+/discuss/visit
+    Args
+        id (post id)
+    Return:
+        discuss post page #todo
+
+
+
+/submit/submit
+    Args
+        code
+        username
+        id
+        st (submit time)
+    Return:
+        submit_time
+        time (max runtime)
+        memory (max memory usage)
+        result ("AC" ; "WA" ; "TLE" ; "MLE" ; "RE" ; "CE" ; "SE")
+        output ("Accepted" ; "Wrong Answer" ; "Time Limit Exceed" ; "Memory Limit Exceed" ; "Runtime Error" ; "Compile Error" ; "Server Error")
+
+/submit/test
+    Args
+        code
+        id (question id)
+        inputDefinition
+    Return:
+        time (max runtime)
+        memory (max memory usage)
+        result ("AC" ; "WA" ; "TLE" ; "MLE" ; "RE" ; "CE" ; "SE")
+        output ("Accepted" ; "Wrong Answer" ; "Time Limit Exceed" ; "Memory Limit Exceed" ; "Runtime Error" ; "Compile Error" ; "Server Error")
+
+
+
+/views/problems
+    Args:
+    Return:
+        problem list page
+
+/views/problem_list
+    Args:
+    Return:
+        problem_list
+
+/views/rankings
+    Args:
+    Return:
+        rankings page
+
+/views/user_list
+    Args:
+        start
+        end
+        get (?get=all)
+    Return:
+        user_list
+
+/views/problems/{question_id}
+    Args:
+        question_id (from url)
+    Return:
+        question page
+
+/views/problems/{question_id}/get
+    Args:
+        question_id (from url)
+    Return:
+        question_data

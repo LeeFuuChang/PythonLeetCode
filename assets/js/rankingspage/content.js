@@ -447,19 +447,20 @@ const LoadRankings = function(rlist){
 // content footer 
 const content_rankings_footer_more = content_rankings_footer.querySelector("#content-rankings-footer-more");
 content_rankings_footer_more.addEventListener("click", function(){
-    if(problem_list_more){
-        problem_list_start += 50;
-        problem_list_end += 50;
+    if(user_list_more){
+        content_rankings_footer_more.style.display = "none";
+        user_list_start += 50;
+        user_list_end += 50;
         fetch(
-            `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+            `problem_list?start=${user_list_start}&end=${user_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();
         }).then(res => {
-            LoadProblemList(res["problem_list"]);
-            problem_list_more = res["more"];
-            if(!problem_list_more){
-                content_rankings_footer_more.style.display = "none";
+            LoadProblemList(res["user_list"]);
+            user_list_more = res["more"];
+            if(user_list_more){
+                content_rankings_footer_more.style.display = "flex";
             }
         })
     }

@@ -22,7 +22,8 @@ class Updater():
             with open(os.path.join(dirpath, user_data_file), "r") as f:
                 user_data = json.load(f)
             username = user_data["username"]
-            data[username] = {
+            username_lower = username.lower()
+            data[username_lower] = {
                 "username":username,
                 "passed_problems":user_data["passed_problems"],
                 "tried_problems":list(user_data["problems"].keys()),

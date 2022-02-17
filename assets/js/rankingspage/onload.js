@@ -2,7 +2,11 @@ var USER = {
     "login":false,
     "user_data":undefined
 }
+var user_list_more = false;
+var user_list_start = 1;
+var user_list_end = 50;
 window.onload = function(){
+    content_rankings_footer_more.style.display = "none";
     GetIPLoginAccount(function(user_data){
         if(user_data){
             USER.login = true;
@@ -11,15 +15,15 @@ window.onload = function(){
         }
     }).then(function(v){
         fetch(
-            `user_list?start=${problem_list_start}&end=${problem_list_end}`,
+            `user_list?start=${user_list_start}&end=${user_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();
         }).then(res => {
-            LoadProblemList(res["user_list"]);
+            LoadRankings(res["user_list"]);
             user_list_more = res["more"];
-            if(!user_list_more){
-                content_rankings_footer_more.style.display = "none";
+            if(user_list_more){
+                content_rankings_footer_more.style.display = "flex";
             }
         })
     })

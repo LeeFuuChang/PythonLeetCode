@@ -55,8 +55,8 @@ def login():
     if not (username and password and now_time): return {"state":0}
 
     address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    users_path = os.path.join(os.path.dirname(__file__), "data")
-    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
+    with open(os.path.join(users_path, "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
         accounts_lower = [_.lower() for _ in users["account"]]
         usernames_lower = [_.lower() for _ in users["username"]]
@@ -71,13 +71,13 @@ def login():
 
     username = users.iloc[idx]["username"]
 
-    with open(os.path.join(users_path, "current.json"), "r") as f:
+    with open(os.path.join(os.path.dirname(users_path), "current.json"), "r") as f:
         current = json.load(f)
     current = Handle_IP.Join(address, current, username)
-    with open(os.path.join(users_path, "current.json"), "w") as f:
+    with open(os.path.join(os.path.dirname(users_path), "current.json"), "w") as f:
         json.dump(current, f, indent=4)
 
-    with open(os.path.join(users_path, "users", f"{username}.json"), "r") as f:
+    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
         user_data = json.load(f)
 
     if password == user_data["password"]:
@@ -97,15 +97,6 @@ def logout():
 
     address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
     users_path = os.path.join(os.path.dirname(__file__), "data")
-    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
-        users = pd.read_csv(StringIO(f.read().replace(" ", "")))
-        usernames_lower = [_.lower() for _ in users["username"]]
-
-    idx = None
-    if username.lower() in usernames_lower:
-        idx = usernames_lower.index(username.lower())
-
-    if idx == None: return {"state":0}
 
     with open(os.path.join(users_path, "current.json"), "r") as f:
         current = json.load(f)
@@ -128,8 +119,9 @@ def signup():
 
     if not (email and username and password and now_time): return {"state":0}
 
-    users_path = os.path.join(os.path.dirname(__file__), "data")
-    with open(os.path.join(users_path, "users", "users.csv"), "r") as f:
+    address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
+    with open(os.path.join(users_path, "users.csv"), "r") as f:
         users = pd.read_csv(StringIO(f.read().replace(" ", "")))
         accounts_lower = [_.lower() for _ in users["account"]]
         usernames_lower = [_.lower() for _ in users["username"]]
@@ -149,7 +141,7 @@ def signup():
         "email": email,
         "username": username,
         "password": password,
-        "join":now_time,
+        "join":now_time.split()[0],
         "editor": {
             "font": "14",
             "theme": "eclipse",
@@ -158,10 +150,16 @@ def signup():
         "passed_problems":[],
         "problems": {}
     }
-    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
+    with open(os.path.join(users_path, f"{username.lower()}.json"), "w") as f:
         json.dump(user_data, f, indent=4)
 
-    return {"state":1}
+    with open(os.path.join(os.path.dirname(users_path), "current.json"), "r") as f:
+        current = json.load(f)
+    current = Handle_IP.Join(address, current, username)
+    with open(os.path.join(os.path.dirname(users_path), "current.json"), "w") as f:
+        json.dump(current, f, indent=4)
+
+    return {"state":1, "user_data":user_data}
 
 
 

@@ -23,14 +23,15 @@ def Join(ip, current, username):
 def Delete(ip, current):
     if not Search(ip, current): return current
     ip_node = ip.split(".")
-    if len(current[ip_node[0]][ip_node[1]][ip_node[2]]) == 1:
-        if len(current[ip_node[0]][ip_node[1]]) == 1:
-            if len(current[ip_node[0]]) == 1:
-                del current[ip_node[0]]
+    if ip_node[0] in current.keys() and ip_node[1] in current[ip_node[0]].keys() and ip_node[2] in current[ip_node[0]][ip_node[1]].keys() and ip_node[3] in current[ip_node[0]][ip_node[1]][ip_node[2]]:
+        if len(current[ip_node[0]][ip_node[1]][ip_node[2]]) == 1:
+            if len(current[ip_node[0]][ip_node[1]]) == 1:
+                if len(current[ip_node[0]]) == 1:
+                    del current[ip_node[0]]
+                else:
+                    del current[ip_node[0]][ip_node[1]]
             else:
-                del current[ip_node[0]][ip_node[1]]
+                del current[ip_node[0]][ip_node[1]][ip_node[2]]
         else:
-            del current[ip_node[0]][ip_node[1]][ip_node[2]]
-    else:
-        del current[ip_node[0]][ip_node[1]][ip_node[2]][ip_node[3]]
+            del current[ip_node[0]][ip_node[1]][ip_node[2]][ip_node[3]]
     return current
