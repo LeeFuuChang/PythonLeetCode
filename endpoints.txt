@@ -45,6 +45,14 @@
     Return:
         state (0 missingArg ; 1 save editor settings ok)
 
+/account/user_list
+    Args:
+        start
+        end
+        get (?get=all)
+    Return:
+        user_list
+
 /account/profile/{username}
     Args
         username (from url)
@@ -112,14 +120,6 @@
     Args:
     Return:
         rankings page
-
-/views/user_list
-    Args:
-        start
-        end
-        get (?get=all)
-    Return:
-        user_list
 
 /views/problems/{question_id}
     Args:

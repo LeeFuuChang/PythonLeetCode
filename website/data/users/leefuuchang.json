@@ -2,12 +2,15 @@
     "email": "a0962014248gg@gmail.com",
     "username": "LeeFuuChang",
     "password": "ivan930619",
-    "join":"2022/02/16",
+    "join": "2022/02/16",
     "editor": {
         "font": "14",
         "theme": "eclipse",
         "bind": "sublime"
     },
-    "passed_problems":[],
+    "like_problems": [],
+    "dislike_problems": [],
+    "favorite_problems": [],
+    "passed_problems": [],
     "problems": {}
 }

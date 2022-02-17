@@ -217,14 +217,16 @@ editor_settings_content_footer_confirm.addEventListener("click", function(){
     USER["user_data"]["editor"] = CurrentsEditorOptions;
     if(USER.login){
         fetch(
-            `/account/editor?username=${USER["user_data"]["username"]}&font=${selected_font}&theme=${selected_theme}&bind=${selected_bind}`,
+            `/account/update?type=editor&username=${USER["user_data"]["username"]}&font=${selected_font}&theme=${selected_theme}&bind=${selected_bind}`,
             {
                 method:"GET"
             }
         ).then(res => {
             return res.json()
         }).then(res => {
-            console.log("Update Editor Settings", res["state"] ? "Success" : "Failed");
+            if(res["state"]){
+                USER["user_data"] = res["user_data"];
+            }
         })
     }
 })

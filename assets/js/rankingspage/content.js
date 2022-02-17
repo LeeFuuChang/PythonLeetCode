@@ -452,7 +452,7 @@ content_rankings_footer_more.addEventListener("click", function(){
         user_list_start += 50;
         user_list_end += 50;
         fetch(
-            `problem_list?start=${user_list_start}&end=${user_list_end}`,
+            `/account/user_list?start=${user_list_start}&end=${user_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();

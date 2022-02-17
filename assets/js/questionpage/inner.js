@@ -68,6 +68,10 @@ inner_type.forEach(type => {
 
 // inner Question description
 const content_header_nav_left_description = document.querySelector("#content-header-nav-left-description");
+const content_content_inner_description = document.querySelector("#content-content-inner-description");
+const content_content_inner_description_header_nav_like = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-like");
+const content_content_inner_description_header_nav_dislike = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-dislike");
+const content_content_inner_description_header_nav_favorite = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-favorite");
 content_header_nav_left_description.addEventListener("click", function(){
     inner_nav.querySelectorAll(".active").forEach(active => {
         active.classList.remove("active");
@@ -79,15 +83,14 @@ content_header_nav_left_description.addEventListener("click", function(){
     inner.querySelector(`#content-content-inner-description`).classList.add("active");
     Update_Scroll_hint(inner.querySelector(`#content-content-inner-description`));
 })
-const content_content_inner_description = document.querySelector("#content-content-inner-description");
 function Load_Question_Description(QUESTION){
     document.querySelector("title").innerText = `${QUESTION.id}. ${QUESTION.name}`;
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-id").textContent = QUESTION.id;
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-name").textContent = QUESTION.name;
     content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").classList.add(QUESTION.difficulty.toLowerCase());
     content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").textContent = QUESTION.difficulty;
-    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-like").insertAdjacentText("beforeend", QUESTION.likes);
-    content_content_inner_description.querySelector("#content-content-inner-description-header-nav-dislike").insertAdjacentText("beforeend", QUESTION.dislikes);
+    content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText = QUESTION.likes;
+    content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText = QUESTION.dislikes;
     QUESTION.description.forEach(line => {
         content_content_inner_description.querySelector("#content-content-inner-description-content-question").insertAdjacentHTML(
             "beforeend",
@@ -139,19 +142,121 @@ function Load_Question_Description(QUESTION){
         }
     }
     let constraints_ul = content_content_inner_description.querySelector("#content-content-inner-description-content-constraints-list");
-    QUESTION.constraints.forEach(cst => {
+    QUESTION.constraints.forEach(constraint => {
         constraints_ul.insertAdjacentHTML(
             "beforeend",
             `
             <li class="content-content-inner-description-content-constraints-list-item">
-                ${cst}
+                ${constraint}
             </li>
             `
         )
     })
 
     Update_Scroll_hint(inner.querySelector("#content-content-inner-description"));
+
+    if(USER.login){
+        if(USER["user_data"]["like_problems"].indexOf(QUESTION.id) >= 0){
+            content_content_inner_description_header_nav_like.classList.add("active");
+        }else if(USER["user_data"]["dislike_problems"].indexOf(QUESTION.id) >= 0){
+            content_content_inner_description_header_nav_dislike.classList.add("active");
+        }
+        if(USER["user_data"]["favorite_problems"].indexOf(QUESTION.id) >= 0){
+            content_content_inner_description_header_nav_favorite.classList.add("active");
+        }
+    }
 }
+content_content_inner_description_header_nav_like.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("active");
+        return
+    }
+
+    let now_like = parseInt(content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText);
+    let now_dislike = parseInt(content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText);
+    if(content_content_inner_description_header_nav_dislike.classList.contains("active")){
+        content_content_inner_description_header_nav_dislike.classList.remove("active");
+        content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText = now_dislike-1;
+    }
+    if(!content_content_inner_description_header_nav_like.classList.contains("active")){
+        content_content_inner_description_header_nav_like.classList.add("active");
+        content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText = now_like+1;
+    }else{
+        content_content_inner_description_header_nav_like.classList.remove("active");
+        content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText = now_like-1;
+    }
+
+    fetch(
+        `/account/update?type=like&username=${USER["user_data"]["username"]}&id=${QUESTION.id}`,
+        {
+            method:"GET"
+        }
+    ).then(res => {
+        return res.json()
+    }).then(res => {
+        if(res["state"]){
+            USER["user_data"] = res["user_data"];
+        }
+    })
+})
+content_content_inner_description_header_nav_dislike.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("active");
+        return
+    }
+
+    let now_like = parseInt(content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText);
+    let now_dislike = parseInt(content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText);
+    if(content_content_inner_description_header_nav_like.classList.contains("active")){
+        content_content_inner_description_header_nav_like.classList.remove("active");
+        content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText = now_like-1;
+    }
+    if(!content_content_inner_description_header_nav_dislike.classList.contains("active")){
+        content_content_inner_description_header_nav_dislike.classList.add("active");
+        content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText = now_dislike+1;
+    }else{
+        content_content_inner_description_header_nav_dislike.classList.remove("active");
+        content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText = now_dislike-1;
+    }
+
+    fetch(
+        `/account/update?type=dislike&username=${USER["user_data"]["username"]}&id=${QUESTION.id}`,
+        {
+            method:"GET"
+        }
+    ).then(res => {
+        return res.json()
+    }).then(res => {
+        if(res["state"]){
+            USER["user_data"] = res["user_data"];
+        }
+    })
+})
+content_content_inner_description_header_nav_favorite.addEventListener("click", function(){
+    if(!USER.login){
+        login_float.classList.add("active");
+        return
+    }
+
+    if(!content_content_inner_description_header_nav_favorite.classList.contains("active")){
+        content_content_inner_description_header_nav_favorite.classList.add("active");
+    }else{
+        content_content_inner_description_header_nav_favorite.classList.remove("active");
+    }
+
+    fetch(
+        `/account/update?type=favorite&username=${USER["user_data"]["username"]}&id=${QUESTION.id}`,
+        {
+            method:"GET"
+        }
+    ).then(res => {
+        return res.json()
+    }).then(res => {
+        if(res["state"]){
+            USER["user_data"] = res["user_data"];
+        }
+    })
+})
 
 
 

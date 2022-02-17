@@ -15,7 +15,7 @@ window.onload = function(){
         }
     }).then(function(v){
         fetch(
-            `user_list?start=${user_list_start}&end=${user_list_end}`,
+            `/account/user_list?start=${user_list_start}&end=${user_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();

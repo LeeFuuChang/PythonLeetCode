@@ -29,6 +29,9 @@
     color: #000000;
     filter: invert(38%) sepia(3%) saturate(2702%) hue-rotate(154deg) brightness(106%) contrast(94%);
 }
+#content-content-inner-description #content-content-inner-description-header #content-content-inner-description-header-nav .content-content-inner-description-header-nav-item.active {
+    filter: invert(0%) sepia(100%) saturate(1%) hue-rotate(127deg) brightness(97%) contrast(100%);
+}
 #content-content-inner-description #content-content-inner-description-header #content-content-inner-description-header-nav .content-content-inner-description-header-nav-item img {
     margin-right: 4px;
     width: 12px;

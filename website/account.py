@@ -147,6 +147,9 @@ def signup():
             "theme": "eclipse",
             "bind": "sublime"
         },
+        "like_problems":[],
+        "dislike_problems":[],
+        "favorite_problems":[],
         "passed_problems":[],
         "problems": {}
     }
@@ -163,36 +166,88 @@ def signup():
 
 
 
-@account.route("/editor", methods=["GET"])
+@account.route("/update", methods=["GET"])
 def editor():
     Args = request.args.to_dict()
 
     username = Args.get("username", None)
-    font = Args.get("font", None)
-    theme = Args.get("theme", None)
-    bind = Args.get("bind", None)
-
-    if not (username and font and theme and bind): return {"state":0}
-
-    users_path = os.path.join(os.path.dirname(__file__), "data", "users")
-    with open(os.path.join(users_path, "users.csv"), "r") as f:
-        users = pd.read_csv(StringIO(f.read().replace(" ", "")))
-        usernames_lower = [_.lower() for _ in users["username"]]
-
-    idx = None
-    if username.lower() in usernames_lower:
-        idx = usernames_lower.index(username.lower())
-
-    if idx == None: return {"state":0}
-
-    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
+    if not username: return {"state":0}
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users", f"{username}.json")
+    with open(users_path, "r") as f:
         user_data = json.load(f)
-    user_data["editor"]["font"] = font
-    user_data["editor"]["theme"] = theme
-    user_data["editor"]["bind"] = bind
-    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
+
+    _type = Args.get("type", None)
+
+    if _type == "editor":
+        font = Args.get("font", None)
+        theme = Args.get("theme", None)
+        bind = Args.get("bind", None)
+        if not (font and theme and bind): return {"state":0}
+        if not os.path.exists(users_path): return {"state":0}
+        user_data["editor"]["font"] = font
+        user_data["editor"]["theme"] = theme
+        user_data["editor"]["bind"] = bind
+
+    elif _type == "like":
+        question_id = Args.get("id", None)
+        if not question_id: return {"state":0}
+        if question_id in user_data["dislike_problems"]:
+            user_data["dislike_problems"].remove(question_id)
+        if question_id not in user_data["like_problems"]:
+            user_data["like_problems"].append(question_id)
+        else:
+            user_data["like_problems"].remove(question_id)
+
+    elif _type == "dislike":
+        question_id = Args.get("id", None)
+        if not question_id: return {"state":0}
+        if question_id in user_data["like_problems"]:
+            user_data["like_problems"].remove(question_id)
+        if question_id not in user_data["dislike_problems"]:
+            user_data["dislike_problems"].append(question_id)
+        else:
+            user_data["dislike_problems"].remove(question_id)
+
+    elif _type == "favorite":
+        question_id = Args.get("id", None)
+        if not question_id: return {"state":0}
+        if question_id not in user_data["favorite_problems"]:
+            user_data["favorite_problems"].append(question_id)
+        else:
+            user_data["favorite_problems"].remove(question_id)
+
+    with open(users_path, "w") as f:
         json.dump(user_data, f, indent=4)
-    return {"state":1}
+    return {"state":1, "user_data":user_data}
+
+
+
+@account.route("/user_list")
+def ranking_list():
+    Args = request.args.to_dict()
+
+    start = int(Args.get("start", False))
+    end = int(Args.get("end", False))
+
+    with open(os.path.join(os.path.dirname(__file__), "data", "user_list.json"), "r") as f:
+        user_list = json.load(f)
+    user_list = sorted(list(user_list.values()), key=lambda user:len(user["passed_problems"]))
+
+    if start and end:
+        if len(user_list) >= end:
+            result = user_list[start-1:end]
+            more = True
+        elif len(user_list) >= start:
+            result = user_list[start-1:]
+            more = False
+        else:
+            result = []
+            more = False
+
+    elif Args.get("get", False) == "all":
+        return {"all":user_list}
+
+    return {"user_list":result, "more":more}
 
 
 
