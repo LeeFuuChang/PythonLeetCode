@@ -1,0 +1,90 @@
+#content-inner-profile-progress {
+    border-radius: 4px;
+    padding: 20px;
+    width: 100%;
+    height: min-content;
+    background: #FFFFFF;
+    box-shadow: 0 2px 8px #D2D2D2;
+    font-family: 'Roboto', sans-serif;
+    color: #424242;
+}
+#content-inner-profile-progress #content-inner-profile-progress-description {
+    padding-bottom: 4px;
+    align-items: flex-end;
+    width: 100%;
+    height: min-content;
+    font-size: 14px;
+    color: #626262;
+    line-height: 20px;
+}
+#content-inner-profile-progress #content-inner-profile-progress-description #content-inner-profile-progress-description-data {
+    align-items: flex-end;
+    margin-right: 4px;
+    font-size: 28px;
+    color: #000000;
+    line-height: 30px;
+}
+#content-inner-profile-progress #content-inner-profile-progress-description #content-inner-profile-progress-description-text {
+    margin: 0 4px;
+}
+#content-inner-profile-progress #content-inner-profile-progress-bar {
+    margin: 8px 0;
+    border-radius: 14px;
+    width: 100%;
+    height: 14px;
+    background: #E4E4E4;
+}
+#content-inner-profile-progress #content-inner-profile-progress-bar .content-inner-profile-progress-bar-part {
+    border-radius: inherit;
+    width: var(--percent);
+    height: 100%;
+    transition: 0.2s;
+    background: red;
+}
+#content-inner-profile-progress #content-inner-profile-progress-bar .content-inner-profile-progress-bar-part.easy {
+    background: var(--question-difficulty-easy) !important;
+}
+#content-inner-profile-progress #content-inner-profile-progress-bar .content-inner-profile-progress-bar-part.medium {
+    background: var(--question-difficulty-medium) !important;
+}
+#content-inner-profile-progress #content-inner-profile-progress-bar .content-inner-profile-progress-bar-part.hard {
+    background: var(--question-difficulty-hard) !important;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends {
+    justify-content: flex-start;
+    padding-top: 8px;
+    width: 100%;
+    height: min-content;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item {
+    margin-right: 24px;
+    width: max-content;
+    height: min-content;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-title {
+    font-size: 16px;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-bottom {
+    font-size: 14px;
+    color: #000000;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-bottom .content-inner-profile-progress-legends-item-bottom-bullet {
+    border-radius: 50%;
+    margin-right: 4px;
+    width: 8px;
+    height: 8px;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-bottom .content-inner-profile-progress-legends-item-bottom-bullet.easy {
+    background: var(--question-difficulty-easy) !important;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-bottom .content-inner-profile-progress-legends-item-bottom-bullet.medium {
+    background: var(--question-difficulty-medium) !important;
+}
+#content-inner-profile-progress #content-inner-profile-progress-legends .content-inner-profile-progress-legends-item .content-inner-profile-progress-legends-item-bottom .content-inner-profile-progress-legends-item-bottom-bullet.hard {
+    background: var(--question-difficulty-hard) !important;
+}
+
+
+
+
+
