@@ -20,4 +20,4 @@ for user_data_file in os.listdir(dirpath):
 
 data = {ud["username"]:ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed"]))}
 with open(os.path.join(os.path.dirname(__file__), "user_list.json"), "w") as f:
-    json.dump(data, f, indent=4)
+    json.dump(data, f, indent=4, ensure_ascii=False)

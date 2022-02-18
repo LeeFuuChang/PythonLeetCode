@@ -1,4 +1,5 @@
 from flask import Blueprint, request
+import codecs
 import json
 import os
 
@@ -22,9 +23,9 @@ def newpost():
     if not (username and posttime and postlink and posttitle and question_id):
         return {"state":0, "output":"Missing arguments"}
 
-    with open(os.path.join(curpath, "discussions", "discussions.json"), "r") as f:
+    with codecs.open(os.path.join(curpath, "discussions", "discussions.json"), "r", "utf-8") as f:
         discussions = json.load(f)
-    with open(os.path.join(curpath, "problems", f"problem_{question_id}", "problem.json"), "r") as f:
+    with codecs.open(os.path.join(curpath, "problems", f"problem_{question_id}", "problem.json"), "r", "utf-8") as f:
         problem = json.load(f)
     
     post_id = f"{hex(len(discussions))[2:]:0>16}"
@@ -34,8 +35,8 @@ def newpost():
         "title":posttitle,
         "author":username,
         "time":posttime,
-        "likes":0,
-        "views":0,
+        "likes":[],
+        "views":[],
         "question":question_id,
         "content":postlink
     }
@@ -43,10 +44,10 @@ def newpost():
     discussions[post_id] = post_data
     problem["discussions"][post_id] = post_data
 
-    with open(os.path.join(curpath, "discussions", "discussions.json"), "w") as f:
-        json.dump(discussions, f, indent=4)
-    with open(os.path.join(curpath, "problems", f"problem_{question_id}", "problem.json"), "w") as f:
-        json.dump(problem, f, indent=4)
+    with codecs.open(os.path.join(curpath, "discussions", "discussions.json"), "w", "utf-8") as f:
+        json.dump(discussions, f, indent=4, ensure_ascii=False)
+    with codecs.open(os.path.join(curpath, "problems", f"problem_{question_id}", "problem.json"), "w", "utf-8") as f:
+        json.dump(problem, f, indent=4, ensure_ascii=False)
 
     return {"state":1, "output":post_data}
 

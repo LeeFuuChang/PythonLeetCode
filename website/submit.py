@@ -3,6 +3,7 @@ from .modules.CodeProcess import CodeProcessor
 from flask import Blueprint, request
 import tracemalloc as memoryTracer
 import time as Timer
+import codecs
 import json
 import sys
 import os
@@ -24,7 +25,7 @@ states = {
 
 def Save_Submit_Result(problem_id, code, result, username):
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
-    with open(os.path.join(users_path, f"{username}.json"), "r") as f:
+    with codecs.open(os.path.join(users_path, f"{username}.json"), "r", "utf-8") as f:
         user_data = json.load(f)
 
     if(not user_data["problems"].get(f"{problem_id}", False)):
@@ -50,8 +51,8 @@ def Save_Submit_Result(problem_id, code, result, username):
     if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
         user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
 
-    with open(os.path.join(users_path, f"{username}.json"), "w") as f:
-        json.dump(user_data, f, indent=4)
+    with codecs.open(os.path.join(users_path, f"{username}.json"), "w", "utf-8") as f:
+        json.dump(user_data, f, indent=4, ensure_ascii=False)
     
     if user_data["problems"][f"{problem_id}"]["passed"]:
         DataUpdater__submit.Update_User_Passed(problem_id, user_data)
@@ -203,11 +204,11 @@ def submit_submit():
         }
         return Save_Submit_Result(problem_id, code, result, username)
 
-    with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
+    with codecs.open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r", "utf-8") as replacement:
         StringReplacement = json.load(replacement)
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
-    with open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "eval.json"), "r") as eval_cases_data:
+    with codecs.open(os.path.join(os.path.dirname(__file__), "problems", f"problem_{problem_id}", "eval.json"), "r", "utf-8") as eval_cases_data:
         eval_cases = json.load(eval_cases_data)["cases"]
 
 
@@ -305,7 +306,7 @@ def submit_test():
         }
         return result
 
-    with open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r") as replacement:
+    with codecs.open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r", "utf-8") as replacement:
         StringReplacement = json.load(replacement)
     for key, val in StringReplacement.items():
         code = code.replace(val, key)
