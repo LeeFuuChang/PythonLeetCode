@@ -4,14 +4,15 @@ from .views import views
 from .account import account
 from .discuss import discuss
 from . import __Constants as CONSTANT
+import codecs
 import os
 
 
 def Landing():
     constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html")) as f:
+    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
         constantHeader = f.read()
-    with open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html")) as f:
+    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
         constantFloat = f.read()
     return render_template("index.html", constantHeader=constantHeader, constantFloat=constantFloat)
 

@@ -5,6 +5,8 @@
             "name": "Two Sum",
             "difficulty": "Easy",
             "time": "2022/02/13",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -13,6 +15,8 @@
             "name": "Add Two Numbers",
             "difficulty": "Medium",
             "time": "2022/02/13",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -21,6 +25,8 @@
             "name": "Reverse Integer",
             "difficulty": "Easy",
             "time": "2022/02/14",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -29,6 +35,8 @@
             "name": "String to Integer (atoi)",
             "difficulty": "Medium",
             "time": "2022/02/14",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -37,6 +45,8 @@
             "name": "Palindrome Number",
             "difficulty": "Easy",
             "time": "2022/02/14",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -45,6 +55,8 @@
             "name": "Longest Common Prefix",
             "difficulty": "Easy",
             "time": "2022/02/15",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         },
@@ -53,6 +65,8 @@
             "name": "How Long is it",
             "difficulty": "Easy",
             "time": "2022/02/15",
+            "likes": [],
+            "dislikes": [],
             "participants": [],
             "passed_participants": []
         }

@@ -70,7 +70,9 @@ inner_type.forEach(type => {
 const content_header_nav_left_description = document.querySelector("#content-header-nav-left-description");
 const content_content_inner_description = document.querySelector("#content-content-inner-description");
 const content_content_inner_description_header_nav_like = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-like");
+const content_content_inner_description_header_nav_like_text = content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text");
 const content_content_inner_description_header_nav_dislike = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-dislike");
+const content_content_inner_description_header_nav_dislike_text = content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text");
 const content_content_inner_description_header_nav_favorite = content_content_inner_description.querySelector("#content-content-inner-description-header-nav-favorite");
 content_header_nav_left_description.addEventListener("click", function(){
     inner_nav.querySelectorAll(".active").forEach(active => {
@@ -89,8 +91,8 @@ function Load_Question_Description(QUESTION){
     content_content_inner_description.querySelector("#content-content-inner-description-header-title-name").textContent = QUESTION.name;
     content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").classList.add(QUESTION.difficulty.toLowerCase());
     content_content_inner_description.querySelector("#content-content-inner-description-header-nav-difficulty").textContent = QUESTION.difficulty;
-    content_content_inner_description_header_nav_like.querySelector("#content-content-inner-description-header-nav-like-text").innerText = QUESTION.likes;
-    content_content_inner_description_header_nav_dislike.querySelector("#content-content-inner-description-header-nav-dislike-text").innerText = QUESTION.dislikes;
+    content_content_inner_description_header_nav_like_text.innerText = QUESTION.likes.length;
+    content_content_inner_description_header_nav_dislike_text.innerText = QUESTION.dislikes.length;
     QUESTION.description.forEach(line => {
         content_content_inner_description.querySelector("#content-content-inner-description-content-question").insertAdjacentHTML(
             "beforeend",
@@ -283,11 +285,11 @@ content_content_inner_discuss.makePost = function(post_data){
                     </a>
                     <div class="df aic content-content-inner-discuss-post-footer-right-likes">
                         <img class="content-content-inner-discuss-post-footer-right-likes-icon" src="assets/images/svgs/caret-up-fill.svg" alt="">
-                        <span class="content-content-inner-discuss-post-footer-right-likes-text">${post_data["likes"]}</span>
+                        <span class="content-content-inner-discuss-post-footer-right-likes-text">${post_data["likes"].length}</span>
                     </div>
                     <div class="df aic content-content-inner-discuss-post-footer-right-views">
                         <img class="content-content-inner-discuss-post-footer-right-views-icon" src="assets/images/svgs/eye-fill.svg" alt="">
-                        <span class="content-content-inner-discuss-post-footer-right-views-text">${post_data["views"]}</span>
+                        <span class="content-content-inner-discuss-post-footer-right-views-text">${post_data["views"].length}</span>
                     </div>
                 </div>
             </div>
