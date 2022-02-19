@@ -30,7 +30,7 @@ class Updater():
                 "tried_problems":list(user_data["problems"].keys()),
                 "join":user_data["join"]
             }
-        data = {ud["username"]:ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))}
+        data = {ud["username"].lower():ud for ud in sorted(list(data.values()), key=lambda x:len(x["passed_problems"]))}
         with codecs.open(os.path.join(self.Path__data, "user_list.json"), "w", "utf-8") as f:
             json.dump(data, f, indent=4, ensure_ascii=False)
 

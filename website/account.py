@@ -4,6 +4,7 @@ from .modules import Handle_CSV
 from .modules import Handle_IP
 from io import StringIO
 import pandas as pd
+import shutil
 import codecs
 import json
 import os
@@ -155,7 +156,12 @@ def signup():
         "problems": {}
     }
     user_folder = os.path.join(users_path, username.lower())
-    if not os.path.exists(user_folder): os.mkdir(user_folder)
+    if not os.path.exists(user_folder): 
+        os.mkdir(user_folder)
+        shutil.copyfile(
+            os.path.join(os.path.dirname(__file__), "static", "assets", "images", "default_profile_img.jpg"),
+            os.path.join(user_folder, "profile_img.jpg")
+        )
     with codecs.open(os.path.join(user_folder, "user_data.json"), "w", "utf-8") as f:
         json.dump(user_data, f, indent=4, ensure_ascii=False)
 
@@ -165,6 +171,7 @@ def signup():
     with codecs.open(os.path.join(os.path.dirname(users_path), "current.json"), "w", "utf-8") as f:
         json.dump(current, f, indent=4, ensure_ascii=False)
 
+    DataUpdater__account.Update_User_List()
     return {"state":1, "user_data":user_data}
 
 
