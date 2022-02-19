@@ -25,7 +25,7 @@ states = {
 
 def Save_Submit_Result(problem_id, code, result, username):
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
-    with codecs.open(os.path.join(users_path, f"{username}.json"), "r", "utf-8") as f:
+    with codecs.open(os.path.join(users_path, username.lower(), "user_data.json"), "r", "utf-8") as f:
         user_data = json.load(f)
 
     if(not user_data["problems"].get(f"{problem_id}", False)):

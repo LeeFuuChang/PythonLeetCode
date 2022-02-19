@@ -38,7 +38,7 @@ def get_ip_login_account():
     user_data = None
     address_user = Handle_IP.Search(address, current)
     if address_user:
-        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", f"{address_user}.json"), "r", "utf-8") as f:
+        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", address_user.lower(), f"user_data.json"), "r", "utf-8") as f:
             user_data = json.load(f)
 
     return {"user_data":user_data}
@@ -78,7 +78,7 @@ def login():
     with codecs.open(os.path.join(os.path.dirname(users_path), "current.json"), "w", "utf-8") as f:
         json.dump(current, f, indent=4, ensure_ascii=False)
 
-    with codecs.open(os.path.join(users_path, f"{username}.json"), "r", "utf-8") as f:
+    with codecs.open(os.path.join(users_path, username.lower(), "user_data.json"), "r", "utf-8") as f:
         user_data = json.load(f)
 
     if password == user_data["password"]:
@@ -154,7 +154,9 @@ def signup():
         "passed_problems":[],
         "problems": {}
     }
-    with codecs.open(os.path.join(users_path, f"{username.lower()}.json"), "w", "utf-8") as f:
+    user_folder = os.path.join(users_path, username.lower())
+    if not os.path.exists(user_folder): os.mkdir(user_folder)
+    with codecs.open(os.path.join(user_folder, "user_data.json"), "w", "utf-8") as f:
         json.dump(user_data, f, indent=4, ensure_ascii=False)
 
     with codecs.open(os.path.join(os.path.dirname(users_path), "current.json"), "r", "utf-8") as f:
@@ -173,7 +175,7 @@ def editor():
 
     username = Args.get("username", None)
     if not username: return {"state":0}
-    users_path = os.path.join(os.path.dirname(__file__), "data", "users", f"{username}.json")
+    users_path = os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), "user_data.json")
     with codecs.open(users_path, "r", "utf-8") as f:
         user_data = json.load(f)
 

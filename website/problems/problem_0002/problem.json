@@ -1,46 +1,46 @@
 {
-    "id":"0002",
-    "name":"Add Two Numbers",
-    "difficulty":"Medium",
+    "id": "0002",
+    "name": "Add Two Numbers",
+    "difficulty": "Medium",
     "likes": [],
     "dislikes": [],
-    "participants":[],
-    "passed_participants":[],
-    "time":"2022/02/13",
-    "description":[
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/02/13",
+    "description": [
         "給定兩個非空的 Linked-List 以表示兩個非負正整數，以反向儲存每位數字，Linked-List上的每個節點分別儲存一位數字。現在希望你將兩數相加，並以 Linked-List 反向儲存每位數字後回傳結果。",
         "",
         "輸入說明：<br>題目會傳入兩個 Linked-List ，分別代表兩個非負正整數用 Linked-List 反向儲存後的結果。",
         "",
         "輸出說明：<br>請將兩個 Linked-List 解析成原本的兩個非負正整數，並將兩數相加後用 Linked-List 反向儲存，之後回傳整個 LinkedList。"
     ],
-    "var":[
+    "var": [
         "l1",
         "l2"
     ],
-    "predefine":"class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next",
-    "default":"#start coding below\nclass Solution(): #don't change class name\n    def main(self, l1, l2): #don't change function name",
-    "example":{
-        "ex1":{
-            "input":"l1 = [2,4,3], l2 = [5,6,4]",
-            "output":"[7,0,8]",
-            "explain":"L1所儲存的數字為342，L2所儲存的數字為465，兩個數字相加為807，用Linked-List反向儲存後回傳[7,0,8]"
+    "predefine": "class ListNode:\n    def __init__(self, val=0, next=None):\n        self.val = val\n        self.next = next",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, l1, l2): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "l1 = [2,4,3], l2 = [5,6,4]",
+            "output": "[7,0,8]",
+            "explain": "L1所儲存的數字為342，L2所儲存的數字為465，兩個數字相加為807，用Linked-List反向儲存後回傳[7,0,8]"
         },
-        "ex2":{
-            "input":"l1 = [0], l2 = [0]",
-            "output":"[0]",
-            "explain":null
+        "ex2": {
+            "input": "l1 = [0], l2 = [0]",
+            "output": "[0]",
+            "explain": null
         },
-        "ex3":{
-            "input":"l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
-            "output":"[8,9,9,9,0,0,0,1]",
-            "explain":null
+        "ex3": {
+            "input": "l1 = [9,9,9,9,9,9,9], l2 = [9,9,9,9]",
+            "output": "[8,9,9,9,0,0,0,1]",
+            "explain": null
         }
     },
-    "constraints":[
+    "constraints": [
         "每個 Linked-List 的節點 ListNode 的數量介於 [500, 1000].",
         "0 <= Node.val <= 9",
         "Linked-List 的最後一個節點不會是【0】 除非其代表數字【0】"
     ],
-    "discussions":{}
+    "discussions": {}
 }

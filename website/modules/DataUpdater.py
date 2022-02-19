@@ -18,9 +18,9 @@ class Updater():
         data = {}
 
         dirpath = os.path.join(self.Path__data, "users")
-        for user_data_file in os.listdir(dirpath):
-            if not ".json" in user_data_file: continue
-            with codecs.open(os.path.join(dirpath, user_data_file), "r", "utf-8") as f:
+        for user_data_folder in os.listdir(dirpath):
+            if "." in user_data_folder: continue
+            with codecs.open(os.path.join(dirpath, user_data_folder, "user_data.json"), "r", "utf-8") as f:
                 user_data = json.load(f)
             username = user_data["username"]
             username_lower = username.lower()
@@ -62,7 +62,7 @@ class Updater():
 
 
     def Update_User_Passed(self, problem_id, username):
-        user_data_file = os.path.join(self.Path__data, "users", f"{username}.json")
+        user_data_file = os.path.join(self.Path__data, "users", f"{username.lower()}", "user_data.json")
         with codecs.open(user_data_file, "r", "utf-8") as f:
             user_data = json.load(f)
         if problem_id not in user_data["passed_problems"]:

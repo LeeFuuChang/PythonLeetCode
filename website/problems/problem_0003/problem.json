@@ -1,41 +1,43 @@
 {
-    "id":"0003",
-    "name":"Reverse Integer",
-    "difficulty":"Easy",
+    "id": "0003",
+    "name": "Reverse Integer",
+    "difficulty": "Easy",
     "likes": [],
     "dislikes": [],
-    "participants":[],
-    "passed_participants":[],
-    "time":"2022/02/14",
-    "description":[
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/02/14",
+    "description": [
         "給定一個整數 int【x】，將 x 顛倒後回傳",
         "",
         "輸入說明：<br>題目會傳入一個整數【x】",
         "",
         "輸出說明：<br>將【x】顛倒後輸出"
     ],
-    "var":["x"],
-    "predefine":"",
-    "default":"#start coding below\nclass Solution(): #don't change class name\n    def main(self, x): #don't change function name",
-    "example":{
-        "ex1":{
-            "input":"x = 123",
-            "output":"321",
-            "explain":null
+    "var": [
+        "x"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, x): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "x = 123",
+            "output": "321",
+            "explain": null
         },
-        "ex2":{
-            "input":"x = -123",
-            "output":"-321",
-            "explain":null
+        "ex2": {
+            "input": "x = -123",
+            "output": "-321",
+            "explain": null
         },
-        "ex3":{
-            "input":"x = 120",
-            "output":"21",
-            "explain":null
+        "ex3": {
+            "input": "x = 120",
+            "output": "21",
+            "explain": null
         }
     },
-    "constraints":[
+    "constraints": [
         "-2<sup>31</sup> <= x <= 2<sup>31</sup> - 1"
     ],
-    "discussions":{}
+    "discussions": {}
 }
