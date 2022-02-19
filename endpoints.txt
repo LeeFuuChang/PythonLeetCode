@@ -57,7 +57,13 @@
     Args
         username (from url)
     Return:
-        user's profile page #todo
+        user's profile page
+
+/account/profile/{username}/get_profile_img
+    Args
+        username (from url)
+    Return:
+        user's profile image
 
 
 

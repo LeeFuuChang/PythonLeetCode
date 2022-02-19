@@ -1,3 +1,12 @@
+#content-inner-profile {
+    display: none;
+}
+#content-inner-profile.active {
+    display: flex;
+}
+
+
+
 #content-inner-profile-progress {
     border-radius: 4px;
     padding: 20px;

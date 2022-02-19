@@ -22,11 +22,11 @@ const signup_float_confirm = signup_float.querySelector("#signup-float-content-c
 const signup_float_submit = signup_float.querySelector("#signup-float-content-submit");
 const signup_float_login = signup_float.querySelector("#signup-float-content-noaccount-login");
 // listeners
-document.querySelector("#pageheader-nav-right-user-nav-n-login").addEventListener("click", function(){
+showLogin = function(){
     login_float_username.value = "";
     login_float_password.value = "";
     login_float.classList.add("active");
-})
+}
 login_float_close.addEventListener("click", function(){
     if(login_float.classList.contains("active")){
         login_float.classList.remove("active");
@@ -73,13 +73,13 @@ login_float_signup.addEventListener("click", function(){
     signup_float.classList.add("active");
 })
 
-document.querySelector("#pageheader-nav-right-user-nav-n-signup").addEventListener("click", function(){
+showSignUP = function(){
     signup_float_email.value = "";
     signup_float_username.value = "";
     signup_float_password.value = "";
     signup_float_confirm.value = "";
     signup_float.classList.add("active");
-})
+}
 signup_float_close.addEventListener("click", function(){
     if(signup_float.classList.contains("active")){
         signup_float.classList.remove("active");

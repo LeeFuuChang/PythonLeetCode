@@ -51,6 +51,7 @@ pageheader_nav_right_user_nav_y.addEventListener("mouseleave", function(){
 
 const pageheader_nav_right_user_nav_y_profile = pageheader_nav_right_user_nav_y.querySelector("#pageheader-nav-right-user-nav-y-profile");
 pageheader_nav_right_user_nav_y_profile.addEventListener("click", function(){
+    location = `/account/profile/${USER["user_data"]["username"]}`;
     pageheader_nav_right_user_nav_y.classList.remove("active");
 })
 
@@ -90,9 +91,11 @@ pageheader_nav_right_user_nav_n.addEventListener("mouseleave", function(){
 const pageheader_nav_right_user_nav_n_login = pageheader_nav_right_user_nav_n.querySelector("#pageheader-nav-right-user-nav-n-login");
 pageheader_nav_right_user_nav_n_login.addEventListener("click", function(){
     pageheader_nav_right_user_nav_n.classList.remove("active");
+    showLogin();
 })
 
 const pageheader_nav_right_user_nav_n_signup = pageheader_nav_right_user_nav_n.querySelector("#pageheader-nav-right-user-nav-n-signup");
 pageheader_nav_right_user_nav_n_signup.addEventListener("click", function(){
     pageheader_nav_right_user_nav_n.classList.remove("active");
+    showSignUP();
 })
