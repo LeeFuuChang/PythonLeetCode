@@ -1,3 +1,8 @@
+var USER = {
+    "login":false,
+    "user_data":undefined
+}
+
 function getNow(){
     let TIMER = new Date();
     let Year = TIMER.getFullYear().toString().padStart(4, "0");

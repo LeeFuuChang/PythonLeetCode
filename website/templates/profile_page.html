@@ -6,17 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Let's Py</title>
 
-    <link rel="stylesheet" href="assets/css/_globals.css">
-    <link rel="stylesheet" href="assets/css/profilepage/globals.css">
-    <link rel="stylesheet" href="assets/plugin/codemirror/lib/codemirror.css">
-    <link rel="stylesheet" href="assets/plugin/codemirror/theme/__import__.css">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/_globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/profilepage/globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/plugin/codemirror/theme/__import__.css')}}">
 </head>
 <body>
     <header id="pageheader">
         <nav id="pageheader-nav" class="df aic">
             <div id="pageheader-nav-left" class="df aic jcc">
                 <a id="pageheader-nav-left-logo"  class="df aic jcc pageheader-nav-left-logo" href="#">
-                    <img id="pageheader-nav-left-logo-img" src="assets/images/logo/logo.png" alt="">
+                    <img id="pageheader-nav-left-logo-img" src="{{url_for('static', filename='assets/images/logo/logo.png')}}" alt="">
                 </a>
                 <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="/views/problems">
                     <span id="pageheader-nav-left-problems-text">Problems</span>
@@ -30,35 +30,35 @@
             </div>
             <div id="pageheader-nav-right" class="df aic jcc">
                 <div id="pageheader-nav-right-user" class="df aic jcc pageheader-nav-right-item">
-                    <img id="pageheader-nav-right-user-icon" src="assets/images/svgs/person-circle.svg" alt="">
+                    <img id="pageheader-nav-right-user-icon" src="{{url_for('static', filename='assets/images/svgs/person-circle.svg')}}" alt="">
                     <div id="pageheader-nav-right-user-nav">
                         <div id="pageheader-nav-right-user-nav-y" class="df">
                             <a id="pageheader-nav-right-user-nav-y-profile" class="df aic">
-                                <img src="assets/images/svgs/person-circle.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/person-circle.svg')}}" alt="">
                                 <span id="pageheader-nav-right-user-nav-y-profile-username"></span>
                             </a>
                             <hr>
                             <a id="pageheader-nav-right-user-nav-y-favorite" class="df aic">
-                                <img src="assets/images/svgs/bookmark-heart.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/bookmark-heart.svg')}}" alt="">
                                 My Favorite
                             </a>
                             <a id="pageheader-nav-right-user-nav-y-submissions" class="df aic">
-                                <img src="assets/images/svgs/clock.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/clock.svg')}}" alt="">
                                 Submissions
                             </a>
                             <hr>
                             <a id="pageheader-nav-right-user-nav-y-logout" class="df aic">
-                                <img src="assets/images/svgs/box-arrow-left.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/box-arrow-left.svg')}}" alt="">
                                 Logout
                             </a>
                         </div>
                         <div id="pageheader-nav-right-user-nav-n" class="df">
                             <a id="pageheader-nav-right-user-nav-n-login" class="df aic">
-                                <img src="assets/images/svgs/box-arrow-in-right.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/box-arrow-in-right.svg')}}" alt="">
                                 Login
                             </a>
                             <a id="pageheader-nav-right-user-nav-n-signup" class="df aic">
-                                <img src="assets/images/svgs/person-plus-fill.svg" alt="">
+                                <img src="{{url_for('static', filename='assets/images/svgs/person-plus-fill.svg')}}" alt="">
                                 Sign UP
                             </a>
                         </div>
@@ -74,20 +74,20 @@
         <div id="content" class="df aic">
             <header id="content-header" class="df aic">
                 <div id="content-header-frame" class="df aic jcc">
-                    <img id="content-header-frame-img" src="assets/images/default_profile_img.jpg" alt="">
+                    <img id="content-header-frame-img" src="{{url_for('static', filename='assets/images/default_profile_img.jpg')}}" alt="">
                     <input type="file" id="content-header-frame-input" name="user_image_upload" accept="image/*" style="display:none">
                 </div>
                 <div id="content-header-info" class="df jcc">
-                    <h1 id="content-header-info-username">LeeFuuChang</h1>
-                    <p id="content-header-info-email">a0962014248gg@gmail.com</p>
+                    <h1 id="content-header-info-username"></h1>
+                    <p id="content-header-info-email"></p>
                 </div>
                 <div id="content-header-container" class="df aic">
                     <a id="content-header-container-edit" class="df aic content-header-container-button">
-                        <img id="content-header-container-edit-icon" src="assets/images/svgs/pencil-fill.svg" alt="">
+                        <img id="content-header-container-edit-icon" src="{{url_for('static', filename='assets/images/svgs/pencil-fill.svg')}}" alt="">
                         Edit profile
                     </a>
                     <a id="content-header-container-social" class="df aic content-header-container-button">
-                        <img id="content-header-container-social-icon" src="assets/images/svgs/collection-fill.svg" alt="">
+                        <img id="content-header-container-social-icon" src="{{url_for('static', filename='assets/images/svgs/collection-fill.svg')}}" alt="">
                         Social
                     </a>
                 </div>
@@ -186,10 +186,10 @@
             <div class="floatfixed-dim-content">
                 <div id="login-float-content" class="df aic">
                     <header id="login-float-content-header" class="df aic">
-                        <img id="login-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                        <img id="login-float-content-header-close" src="{{url_for('static', filename='assets/images/svgs/x.svg')}}" alt="">
                     </header>
                     <div id="login-float-content-logo" class="df aic jcc">
-                        <img id="login-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                        <img id="login-float-content-logo-img" src="{{url_for('static', filename='assets/images/logo/icon-logo.png')}}" alt="">
                     </div>
                     <input id="login-float-content-username" type="text" placeholder="E-mail/Username">
                     <input id="login-float-content-password" type="password" placeholder="Password">
@@ -211,10 +211,10 @@
             <div class="floatfixed-dim-content">
                 <div id="signup-float-content" class="df aic">
                     <header id="signup-float-content-header" class="df aic">
-                        <img id="signup-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                        <img id="signup-float-content-header-close" src="{{url_for('static', filename='assets/images/svgs/x.svg')}}" alt="">
                     </header>
                     <div id="signup-float-content-logo" class="df aic jcc">
-                        <img id="signup-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                        <img id="signup-float-content-logo-img" src="{{url_for('static', filename='assets/images/logo/icon-logo.png')}}" alt="">
                     </div>
                     <input id="signup-float-content-email" type="text" placeholder="E-mail">
                     <input id="signup-float-content-username" type="text" placeholder="Username">
@@ -230,43 +230,43 @@
             </div>
         </div>
     </div>
-    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    <script src="{{url_for('static', filename='assets/js/jquery-3.6.0.min.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/lib/codemirror.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/addon/comment/comment.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/comment/comment.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/addon/selection/active-line.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/selection/active-line.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/keymap/emacs.js"></script>
-    <script src="assets/plugin/codemirror/keymap/sublime.js"></script>
-    <script src="assets/plugin/codemirror/keymap/vim.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/emacs.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/sublime.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/vim.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/addon/hint/show-hint.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/hint/show-hint.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/mode/python/python.js"></script> 
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/mode/python/python.js')}}"></script> 
     
-    <script src="assets/plugin/codemirror/addon/lint/lint.js"></script>
-    <script src="assets/plugin/codemirror/addon/lint/javascript-lint.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/lint.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/javascript-lint.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/addon/fold/foldcode.js"></script>
-    <script src="assets/plugin/codemirror/addon/fold/foldgutter.js"></script>
-    <script src="assets/plugin/codemirror/addon/fold/brace-fold.js"></script>
-    <script src="assets/plugin/codemirror/addon/fold/indent-fold.js"></script>
-    <script src="assets/plugin/codemirror/addon/fold/comment-fold.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldcode.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldgutter.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/brace-fold.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/indent-fold.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/comment-fold.js')}}"></script>
     
-    <script src="assets/plugin/codemirror/addon/edit/closebrackets.js"></script>
-    <script src="assets/plugin/codemirror/addon/edit/matchbrackets.js"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/closebrackets.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/matchbrackets.js')}}"></script>
     
     
     <!-- My Scripts -->
     <!-- Onload Script -->
-    <script src="assets/js/profilepage/onload.js"></script>
+    <script src="{{url_for('static', filename='assets/js/profilepage/onload.js')}}"></script>
     <!-- Global Scripts -->
-    <script src="assets/js/_onload.js"></script>
-    <script src="assets/js/_header.js"></script>
-    <script src="assets/js/_floats.js"></script>
+    <script src="{{url_for('static', filename='assets/js/_onload.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_header.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_floats.js')}}"></script>
     <!-- Page Scripts -->
-    <script src="assets/js/profilepage/content_header.js"></script>
+    <script src="{{url_for('static', filename='assets/js/profilepage/content_header.js')}}"></script>
 </body>
 </html>

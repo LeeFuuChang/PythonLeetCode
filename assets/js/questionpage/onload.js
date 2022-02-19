@@ -1,8 +1,4 @@
 var QUESTION = undefined;
-var USER = {
-    "login":false,
-    "user_data":undefined
-}
 window.onload = function(){
     fetch(
         `${document.querySelector("#question-id").value}/get`, {method:"GET"}

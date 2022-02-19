@@ -1,7 +1,3 @@
-var USER = {
-    "login":false,
-    "user_data":undefined
-}
 var user_list_more = false;
 var user_list_start = 1;
 var user_list_end = 50;

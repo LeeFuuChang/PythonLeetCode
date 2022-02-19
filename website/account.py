@@ -1,5 +1,5 @@
 from .modules.DataUpdater import Updater; DataUpdater__account = Updater()
-from flask import Blueprint, request, abort
+from flask import Blueprint, render_template, request, abort, send_from_directory
 from .modules import Handle_CSV
 from .modules import Handle_IP
 from io import StringIO
@@ -169,7 +169,7 @@ def signup():
 
 
 
-@account.route("/update", methods=["GET"])
+@account.route("/update", methods=["GET", "POST"])
 def editor():
     Args = request.args.to_dict()
 
@@ -237,6 +237,12 @@ def editor():
         with codecs.open(question_path, "w", "utf-8") as f:
             json.dump(question_data, f, indent=4, ensure_ascii=False)
 
+    elif _type == "profile_img":
+        profile_img = request.files.to_dict().get("profile_img", None)
+        if not profile_img: return {"state":0}
+        profile_img.save(os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), "profile_img.jpg"))
+        return {"state":1, "user_data":user_data}
+
     with codecs.open(users_path, "w", "utf-8") as f:
         json.dump(user_data, f, indent=4, ensure_ascii=False)
     return {"state":1, "user_data":user_data}
@@ -278,4 +284,10 @@ def profile(subpath):
     username = subpath[0]
     with codecs.open(os.path.join(os.path.dirname(__file__), "data", "user_list.json"), "r", "utf-8") as f:
         users = json.load(f)
-    if username in users.keys(): return abort(404)
+    if username.lower() not in users.keys(): return abort(404)
+
+    if len(subpath)>1:
+        if subpath[1] == "get_profile_img":
+            return send_from_directory("data", f"users/{username.lower()}/profile_img.jpg", as_attachment=True)
+
+    return render_template("profile_page.html")

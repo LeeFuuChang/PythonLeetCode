@@ -1,7 +1,3 @@
-var USER = {
-    "login":false,
-    "user_data":undefined
-}
 window.onload = function(){
     GetIPLoginAccount(function(user_data){
         if(user_data){
