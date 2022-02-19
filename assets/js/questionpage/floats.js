@@ -76,7 +76,6 @@ const Supports = {
         "3024-night",
         "abbott",
         "abcdef",
-        "ambiance-mobile",
         "ambiance",
         "ayu-dark",
         "ayu-mirage",
