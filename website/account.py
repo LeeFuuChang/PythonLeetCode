@@ -31,18 +31,33 @@ USER_DEFAULT_JSON
 
 
 @account.route("/get", methods=["GET"])
-def get_ip_login_account():
-    address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
-    
-    with codecs.open(os.path.join(os.path.dirname(__file__), "data", "current.json"), "r", "utf-8") as f:
-        current = json.load(f)
-    user_data = None
-    address_user = Handle_IP.Search(address, current)
-    if address_user:
-        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", address_user.lower(), f"user_data.json"), "r", "utf-8") as f:
-            user_data = json.load(f)
+def get_account_data():
+    Args = request.args.to_dict()
+    getting = Args.get("get", None)
+    username = Args.get("username", None)
 
-    return {"user_data":user_data}
+    if getting == "iplogin":
+        address = request.environ.get('HTTP_X_REAL_IP', request.remote_addr)
+        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "current.json"), "r", "utf-8") as f:
+            current = json.load(f)
+        user_data = None
+        address_user = Handle_IP.Search(address, current)
+        if address_user:
+            with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", address_user.lower(), f"user_data.json"), "r", "utf-8") as f:
+                user_data = json.load(f)
+        return {"state":1, "user_data":user_data}
+
+    elif getting == "recentsubmissions":
+        if username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
+        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), f"user_data.json"), "r", "utf-8") as f:
+            user_data = json.load(f)
+        recent_submissions = []
+        for question_id in user_data["problems"]:
+            for submission in user_data["problems"][question_id]["recentSubmissions"]:
+                recent_submissions.append(submission)
+        recent_submissions = sorted(recent_submissions, key=lambda result:sum([num*[8640, 720, 24][idx] for idx, num in enumerate([int(_) for _ in result["submit_time"].split()[0].split("/")])]), reverse=True)
+        return {"recentsubmissions":recent_submissions}
+
 
 
 
@@ -181,7 +196,7 @@ def editor():
     Args = request.args.to_dict()
 
     username = Args.get("username", None)
-    if not username: return {"state":0}
+    if not username or username.lower() not in os.path.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
     users_path = os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), "user_data.json")
     with codecs.open(users_path, "r", "utf-8") as f:
         user_data = json.load(f)

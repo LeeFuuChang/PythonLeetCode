@@ -27,7 +27,7 @@ function ReplaceAll(_string, replacing, replacement){
 async function GetIPLoginAccount(func){
     let result;
     await fetch(
-        `/account/get`,
+        `/account/get?get=iplogin`,
         {method:"GET"}
     ).then(res => {
         return res.json();

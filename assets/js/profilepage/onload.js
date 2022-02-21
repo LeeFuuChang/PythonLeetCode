@@ -9,10 +9,12 @@ window.onload = function(){
             content_header_frame_img.src = `/account/profile/${USER["user_data"]["username"]}/get_profile_img`;
 
             LoadProfileProgress();
+            LoadProfileActivity();
         }
     });
 }
 
 function LoginLoad(){
     LoadProfileProgress();
+    LoadProfileActivity();
 }

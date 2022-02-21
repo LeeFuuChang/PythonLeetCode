@@ -134,6 +134,7 @@
 }
 #content-inner-profile-activity #content-inner-profile-activity-container {
     margin: 8px 0 4px 0;
+    flex-direction: row-reverse;
     width: 100%;
     height: min-content;
 }
@@ -144,7 +145,7 @@
     margin: 0 8px;
     height: 30px;
     transition: 0.2s;
-    background: #d3d3d3;
+    background: #C6C6C6;
     border: 2px solid transparent;
 }
 #content-inner-profile-activity #content-inner-profile-activity-container .content-inner-profile-activity-container-item:hover {
