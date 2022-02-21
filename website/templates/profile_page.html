@@ -78,8 +78,8 @@
                     <input type="file" id="content-header-frame-input" name="user_image_upload" accept="image/*" style="display:none">
                 </div>
                 <div id="content-header-info" class="df jcc">
-                    <h1 id="content-header-info-username"></h1>
-                    <p id="content-header-info-email"></p>
+                    <h1 id="content-header-info-username">Username</h1>
+                    <p id="content-header-info-email">User@email</p>
                 </div>
                 <div id="content-header-container" class="df aic">
                     <a id="content-header-container-edit" class="df aic content-header-container-button">
@@ -95,12 +95,12 @@
             <div id="content-inner" class="df aic">
                 <header id="content-inner-header" class="df aic">
                     <nav id="content-inner-header-nav" class="df aic">
-                        <a id="content-inner-header-nav-profile" class="content-inner-header-nav-item">Profile</a>
+                        <a id="content-inner-header-nav-profile" class="content-inner-header-nav-item active">Profile</a>
                         <a id="content-inner-header-nav-submissions" class="content-inner-header-nav-item">Submissions</a>
                         <a id="content-inner-header-nav-posts" class="content-inner-header-nav-item">Posts</a>
                     </nav>
                 </header>
-                <div id="content-inner-profile" class="df aic content-inner-container">
+                <div id="content-inner-profile" class="df aic content-inner-container active">
                     <div id="content-inner-profile-progress">
                         <h2 id="content-inner-profile-progress-description" class="df">
                             <span id="content-inner-profile-progress-description-data" class="df jcc">
@@ -171,6 +171,64 @@
                             </div>
                         </div>
                     </div>
+                    <div id="content-inner-profile-activity">
+                        <h2 id="content-inner-profile-activity-description" class="df">
+                            <span id="content-inner-profile-activity-description-title">Recent Activity</span>
+                            <span id="content-inner-profile-activity-description-data">84</span>
+                            <span id="content-inner-profile-activity-description-symbol">%</span>
+                        </h2>
+                        <div id="content-inner-profile-activity-container" class="df aic jcc">
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                            <div class="content-inner-profile-activity-container-item">
+                                <div class="content-inner-profile-activity-container-item-description">
+                                    2022/02/21<br>
+                                    <span class="content-inner-profile-activity-container-item-description-data">27</span>
+                                    Submits
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div id="content-inner-submissions"></div>
                 <div id="content-inner-posts"></div>
@@ -232,33 +290,7 @@
     </div>
     <script src="{{url_for('static', filename='assets/js/jquery-3.6.0.min.js')}}"></script>
     
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/lib/codemirror.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/comment/comment.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/selection/active-line.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/emacs.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/sublime.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/keymap/vim.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/hint/show-hint.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/mode/python/python.js')}}"></script> 
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/lint.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/lint/javascript-lint.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldcode.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/foldgutter.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/brace-fold.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/indent-fold.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/fold/comment-fold.js')}}"></script>
-    
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/closebrackets.js')}}"></script>
-    <script src="{{url_for('static', filename='assets/plugin/codemirror/addon/edit/matchbrackets.js')}}"></script>
-    
-    
+
     <!-- My Scripts -->
     <!-- Onload Script -->
     <script src="{{url_for('static', filename='assets/js/profilepage/onload.js')}}"></script>
@@ -268,5 +300,7 @@
     <script src="{{url_for('static', filename='assets/js/_floats.js')}}"></script>
     <!-- Page Scripts -->
     <script src="{{url_for('static', filename='assets/js/profilepage/content_header.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/profilepage/content/content.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/profilepage/content/profile.js')}}"></script>
 </body>
 </html>

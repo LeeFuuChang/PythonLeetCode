@@ -542,7 +542,7 @@ inner_footer_nav_random.addEventListener("click", function(){
     ).then(res => {
         return res.json();
     }).then(res => {
-        let problems = res["all"];
+        let problems = res["problem_list"];
         let randed = parseInt(Math.random() * problems.length-1);
         location.href = `/views/problems/${problems[randed]["id"]}`;
     })

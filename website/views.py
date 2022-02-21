@@ -27,6 +27,7 @@ def problem_list():
 
     start = int(Args.get("start", False))
     end = int(Args.get("end", False))
+    get = Args.get("get", False)
 
     with codecs.open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r", "utf-8") as f:
         problem_list = json.load(f)
@@ -42,8 +43,17 @@ def problem_list():
             result = []
             more = False
 
-    elif Args.get("get", False) == "all":
-        return {"all":problem_list["problem_list"]}
+    elif get == "all":
+        return {"problem_list":problem_list["problem_list"]}
+    elif get == "difficulty":
+        data = {
+            "Easy":[],
+            "Medium":[],
+            "Hard":[]
+        }
+        for problem in problem_list["problem_list"]:
+            data[problem["difficulty"]].append(problem)
+        return {"problem_list":data}
 
     return {"problem_list":result, "more":more}
 

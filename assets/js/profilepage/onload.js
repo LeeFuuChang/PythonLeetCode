@@ -7,8 +7,12 @@ window.onload = function(){
             content_header_info_email.innerText = USER["user_data"]["email"];
 
             content_header_frame_img.src = `/account/profile/${USER["user_data"]["username"]}/get_profile_img`;
+
+            LoadProfileProgress();
         }
     });
 }
 
-function LoginLoad(){}
+function LoginLoad(){
+    LoadProfileProgress();
+}
