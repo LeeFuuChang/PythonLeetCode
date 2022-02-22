@@ -351,13 +351,13 @@ const content_content_inner_discuss_header_nav_filter_option_item_function = {
                 let t1_st = t1_s.split(" ");
                 let t1_as = t1_st[0].split("/");
                 let t1_bs = t1_st[1].split(":");
-                let t1 = t1_as[0]*12*30*24*60 + t1_as[1]*30*24*60 + t1_as[2]*24*60 + t1_bs[0]*60 + t1_bs[1];
+                let t1 = parseInt(t1_as[0])*12*30*24*60 + parseInt(t1_as[1])*30*24*60 + parseInt(t1_as[2])*24*60 + parseInt(t1_bs[0])*60 + parseInt(t1_bs[1]);
                 
                 let t2_s = b.querySelector(".content-content-inner-discuss-post-footer-left-time").textContent;
                 let t2_st = t2_s.split(" ");
                 let t2_as = t2_st[0].split("/");
                 let t2_bs = t2_st[1].split(":");
-                let t2 = t2_as[0]*12*30*24*60 + t2_as[1]*30*24*60 + t2_as[2]*24*60 + t2_bs[0]*60 + t2_bs[1];
+                let t2 = parseInt(t2_as[0])*12*30*24*60 + parseInt(t2_as[1])*30*24*60 + parseInt(t2_as[2])*24*60 + parseInt(t2_bs[0])*60 + parseInt(t2_bs[1]);
                 
                 return t2 - t1;
             }
