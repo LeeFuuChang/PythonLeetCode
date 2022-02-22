@@ -78,7 +78,7 @@
                     <input type="file" id="content-header-frame-input" name="user_image_upload" accept="image/*" style="display:none">
                 </div>
                 <div id="content-header-info" class="df jcc">
-                    <h1 id="content-header-info-username">Username</h1>
+                    <h1 id="content-header-info-username">{{ username }}</h1>
                     <p id="content-header-info-email">User@email</p>
                 </div>
                 <div id="content-header-container" class="df aic">
@@ -100,7 +100,7 @@
                         <a id="content-inner-header-nav-posts" class="content-inner-header-nav-item">Posts</a>
                     </nav>
                 </header>
-                <div id="content-inner-profile" class="df aic content-inner-container active">
+                <div id="content-inner-profile" class="df aic content-inner-container">
                     <div id="content-inner-profile-progress">
                         <h2 id="content-inner-profile-progress-description" class="df">
                             <span id="content-inner-profile-progress-description-data" class="df jcc">
@@ -188,8 +188,84 @@
                         </div>
                     </div>
                 </div>
-                <div id="content-inner-submissions"></div>
-                <div id="content-inner-posts"></div>
+                <div id="content-inner-submissions" class="df aic">
+                    <table id="content-inner-submissions-table">
+                        <thead id="content-inner-submissions-table-thead">
+                            <tr class="content-inner-submissions-table-row">
+                                <th id="content-inner-submissions-table-thead-id" class="content-inner-submissions-table-column-id">#</th>
+                                <th id="content-inner-submissions-table-thead-title" class="content-inner-submissions-table-column-title">title</th>
+                                <th id="content-inner-submissions-table-thead-result" class="content-inner-submissions-table-column-result">result</th>
+                                <th id="content-inner-submissions-table-thead-time" class="content-inner-submissions-table-column-time">submit time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content-inner-submissions-table-tbody">
+                            <!-- <tr class="content-inner-submissions-table-row">
+                                <td class="content-inner-submissions-table-column-id">pid</td>
+                                <td class="content-inner-submissions-table-column-title">
+                                    <a class="content-inner-submissions-table-column-title-link" href="">
+                                        name
+                                    </a>
+                                </td>
+                                <td class="content-inner-submissions-table-column-result passed">srlt</td>
+                                <td class="content-inner-submissions-table-column-time">st</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="content-inner-posts" class="content-content-inner-type active">
+                    <header id="content-inner-posts-header">
+                        <nav id="content-inner-posts-header-nav" class="df aic">
+                            <input id="content-inner-posts-header-nav-search" type="text">
+                            <div id="content-inner-posts-header-nav-filter" class="df aic jcc">
+                                <div id="content-inner-posts-header-nav-filter-sort" class="df aic jcc content-inner-posts-header-nav-filter-item" aria-label="sort">
+                                    <a id="content-inner-posts-header-nav-filter-sort-button" class="df aic jcc content-inner-posts-header-nav-filter-button">
+                                        <span class="df aic content-inner-posts-header-nav-filter-button-text">排序</span>
+                                        <img class="content-inner-posts-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
+                                    </a>
+                                    <div id="content-inner-posts-header-nav-filter-sort-options" class="jcc content-inner-posts-header-nav-filter-options">
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-time" class="df aic content-inner-posts-header-nav-filter-options-item active" aria-label="nto">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">從新至舊</span>
+                                        </a>
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-vote" class="df aic content-inner-posts-header-nav-filter-options-item" aria-label="vote">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">最多喜歡</span>
+                                        </a>
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-view" class="df aic content-inner-posts-header-nav-filter-options-item" aria-label="view">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">最多觀看</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </header>
+                    <div id="content-inner-posts-container">
+                        <!-- <div class="df content-inner-posts-container-post">
+                            <a class="content-inner-posts-container-post-title">How to write an Interview Question post</a>
+                            <hr class="content-inner-posts-container-post-hr">
+                            <div class="df aic content-inner-posts-container-post-footer">
+                                <div class="df aic content-inner-posts-container-post-footer-left">
+                                    <a class="df aic content-inner-posts-container-post-footer-left-username">LEEPLAYMINECRAFT</a>
+                                    <span class="df aic content-inner-posts-container-post-footer-left-time">2024/02/10 03:24</span>
+                                </div>
+                                <div class="df aic content-inner-posts-container-post-footer-right">
+                                    <a class="df aic content-inner-posts-container-post-footer-right-id">
+                                        problem_1
+                                    </a>
+                                    <div class="df aic content-inner-posts-container-post-footer-right-likes">
+                                        <img class="content-inner-posts-container-post-footer-right-likes-icon" src="assets/images/svgs/caret-up-fill.svg" alt="">
+                                        <span class="content-inner-posts-container-post-footer-right-likes-text">1116</span>
+                                    </div>
+                                    <div class="df aic content-inner-posts-container-post-footer-right-views">
+                                        <img class="content-inner-posts-container-post-footer-right-views-icon" src="assets/images/svgs/eye-fill.svg" alt="">
+                                        <span class="content-inner-posts-container-post-footer-right-views-text">7744</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -258,7 +334,9 @@
     <script src="assets/js/_floats.js"></script>
     <!-- Page Scripts -->
     <script src="assets/js/profilepage/content_header.js"></script>
-    <script src="assets/js/profilepage/content/content.js"></script>
     <script src="assets/js/profilepage/content/profile.js"></script>
+    <script src="assets/js/profilepage/content/submissions.js"></script>
+    <script src="assets/js/profilepage/content/posts.js"></script>
+    <script src="assets/js/profilepage/content/content.js"></script>
 </body>
 </html>

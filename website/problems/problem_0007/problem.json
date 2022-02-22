@@ -21,17 +21,17 @@
     "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, t1, t2): #don't change function name",
     "example": {
         "ex1": {
-            "input": "t1 = \"2022/02/15 10:47\", t2 = \"2022/02/15 17:10\"",
+            "input": "t1 = \"2022/02/15 10:47\" | t2 = \"2022/02/15 17:10\"",
             "output": "380",
             "explain": null
         },
         "ex2": {
-            "input": "t1 = \"2022/02/01 00:00\", t2 = \"2022/07/30 23:59\"",
+            "input": "t1 = \"2022/02/01 00:00\" | t2 = \"2022/07/30 23:59\"",
             "output": "259199",
             "explain": null
         },
         "ex3": {
-            "input": "t1 = \"2022/01/01 00:00\", t2 = \"2023/01/01 00:00\"",
+            "input": "t1 = \"2022/01/01 00:00\" | t2 = \"2023/01/01 00:00\"",
             "output": "518400",
             "explain": null
         }

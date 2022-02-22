@@ -25,9 +25,9 @@ const content_inner_profile_progress_legends = [
 ]
 function LoadProfileProgress(){
     let user_have = [0, 0, 0];
-    Object.keys(USER["user_data"]["problems"]).forEach(id => {
-        if(!USER["user_data"]["problems"][id]["passed"])return;
-        switch(USER["user_data"]["problems"][id]["difficulty"]){
+    Object.keys(Profile_Owner["user_data"]["problems"]).forEach(id => {
+        if(!Profile_Owner["user_data"]["problems"][id]["passed"])return;
+        switch(Profile_Owner["user_data"]["problems"][id]["difficulty"]){
             case "Easy":
                 user_have[0]++;
                 break;
@@ -81,7 +81,7 @@ function LoadProfileActivity(){
         }
     )
     fetch(
-        `/account/get?get=recentsubmissions&username=${USER["user_data"]["username"]}`,
+        `/account/get?get=recentsubmissions&username=${Profile_Owner["user_data"]["username"]}`,
         {method:"GET"}
     ).then(res => {
         return res.json();
@@ -120,4 +120,13 @@ function LoadProfileActivity(){
         }
         content_inner_profile_activity_description_data.innerText = `${parseInt(not_zero / 7 * 100)}`;
     })
+}
+
+
+
+
+
+function LoadProfile(){
+    LoadProfileProgress();
+    LoadProfileActivity();
 }

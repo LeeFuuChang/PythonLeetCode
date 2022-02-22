@@ -276,7 +276,7 @@ content_content_inner_discuss.makePost = function(post_data){
             <hr class="content-content-inner-discuss-post-hr">
             <div class="df aic content-content-inner-discuss-post-footer">
                 <div class="df aic content-content-inner-discuss-post-footer-left">
-                    <a class="df aic content-content-inner-discuss-post-footer-left-username">${post_data["author"]}</a>
+                    <a class="df aic content-content-inner-discuss-post-footer-left-username" href="/account/profile/${post_data["author"]}">${post_data["author"]}</a>
                     <span class="df aic content-content-inner-discuss-post-footer-left-time">${post_data["time"]}</span>
                 </div>
                 <div class="df aic content-content-inner-discuss-post-footer-right">
@@ -284,11 +284,16 @@ content_content_inner_discuss.makePost = function(post_data){
                         ${post_data["question"]}
                     </a>
                     <div class="df aic content-content-inner-discuss-post-footer-right-likes">
-                        <img class="content-content-inner-discuss-post-footer-right-likes-icon" src="assets/images/svgs/caret-up-fill.svg" alt="">
+                        <svg class="content-content-inner-discuss-post-footer-right-likes-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-up-fill" viewBox="0 0 16 16">
+                            <path d="m7.247 4.86-4.796 5.481c-.566.647-.106 1.659.753 1.659h9.592a1 1 0 0 0 .753-1.659l-4.796-5.48a1 1 0 0 0-1.506 0z"/>
+                        </svg>
                         <span class="content-content-inner-discuss-post-footer-right-likes-text">${post_data["likes"].length}</span>
                     </div>
                     <div class="df aic content-content-inner-discuss-post-footer-right-views">
-                        <img class="content-content-inner-discuss-post-footer-right-views-icon" src="assets/images/svgs/eye-fill.svg" alt="">
+                        <svg class="content-content-inner-discuss-post-footer-right-views-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+                        </svg>
                         <span class="content-content-inner-discuss-post-footer-right-views-text">${post_data["views"].length}</span>
                     </div>
                 </div>

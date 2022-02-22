@@ -58,6 +58,35 @@ def get_account_data():
         recent_submissions = sorted(recent_submissions, key=lambda result:sum([num*[8640, 720, 24][idx] for idx, num in enumerate([int(_) for _ in result["submit_time"].split()[0].split("/")])]), reverse=True)
         return {"recentsubmissions":recent_submissions}
 
+    elif getting == "profile":
+        if username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
+        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), f"user_data.json"), "r", "utf-8") as f:
+            user_data = json.load(f)
+        data = {
+            "email": user_data["email"],
+            "username": user_data["username"],
+            "join": user_data["join"],
+            "like_problems": user_data["like_problems"],
+            "dislike_problems": user_data["dislike_problems"],
+            "favorite_problems": user_data["favorite_problems"],
+            "passed_problems": user_data["passed_problems"],
+            "problems": user_data["problems"]
+        }
+        return {"state":1, "profile_data":data}
+
+    elif getting == "posts":
+        if username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
+        with codecs.open(os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), f"user_data.json"), "r", "utf-8") as f:
+            user_data = json.load(f)
+        user_posts = []
+        for question_id in user_data["problems"]:
+            if not user_data["problems"][question_id]["passed"]: continue
+            for post_data in user_data["problems"][question_id]["discussions"].values()::
+                user_posts.append(post_data)
+        user_posts = sorted(user_posts, key=lambda post:sum([num*[8640, 720, 24][idx] for idx, num in enumerate([int(_) for _ in post["time"].split()[0].split("/")])]), reverse=True)
+        return {"user_posts":user_posts}
+
+
 
 
 
@@ -312,4 +341,4 @@ def profile(subpath):
         if subpath[1] == "get_profile_img":
             return send_from_directory("data", f"users/{username.lower()}/profile_img.jpg", as_attachment=True)
 
-    return render_template("profile_page.html")
+    return render_template("profile_page.html", username=username)

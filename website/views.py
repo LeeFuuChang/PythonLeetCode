@@ -30,32 +30,35 @@ def problem_list():
     get = Args.get("get", False)
 
     with codecs.open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r", "utf-8") as f:
-        problem_list = json.load(f)
+        __problem_list = json.load(f)
+        problem_list = list(__problem_list.values())
 
     if start and end:
-        if len(problem_list["problem_list"]) >= end:
-            result = problem_list["problem_list"][start-1:end]
+        if len(problem_list) >= end:
+            result = problem_list[start-1:end]
             more = True
-        elif len(problem_list["problem_list"]) >= start:
-            result = problem_list["problem_list"][start-1:]
+        elif len(problem_list) >= start:
+            result = problem_list[start-1:]
             more = False
         else:
             result = []
             more = False
+        return {"problem_list":result, "more":more}
 
     elif get == "all":
-        return {"problem_list":problem_list["problem_list"]}
+        return {"problem_list":problem_list}
     elif get == "difficulty":
         data = {
             "Easy":[],
             "Medium":[],
             "Hard":[]
         }
-        for problem in problem_list["problem_list"]:
+        for problem in problem_list:
             data[problem["difficulty"]].append(problem)
         return {"problem_list":data}
-
-    return {"problem_list":result, "more":more}
+    elif get == "byid":
+        return {"problem_list":__problem_list}
+    return {}
 
 
 
@@ -81,7 +84,8 @@ def question(subpath):
 
     with codecs.open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r", "utf-8") as f:
         problem_list = json.load(f)
-    problem_ids = sorted([problem["id"] for problem in problem_list["problem_list"]], key=lambda x:int(f"0x{x}", 16))
+        problem_list = list(problem_list.values())
+    problem_ids = sorted([problem["id"] for problem in problem_list], key=lambda x:int(f"0x{x}", 16))
 
     if problem_id in problem_ids:
         if len(paths)>1:

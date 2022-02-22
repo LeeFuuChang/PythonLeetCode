@@ -245,7 +245,7 @@ run_test_button.addEventListener("click", function(){
     run_test_float.classList.add("active");
     let testCases = run_test_content_cases.querySelectorAll(".run-test-content-cases-item-left-var-textarea");
     for(let i=0; i<3; i++){
-        testCases[i].value = QUESTION.example[`ex${i+1}`].input.split(", ").join("\n");
+        testCases[i].value = QUESTION.example[`ex${i+1}`].input.split(" | ").join("\n");
     }
     run_test_content_cases.querySelectorAll(".run-test-content-cases-item-right-title").forEach(title => {
         title.innerText = "Result";

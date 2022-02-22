@@ -410,7 +410,7 @@ const LoadRankings = function(rlist){
                         ${now_len+i+1}
                     </span>
                 </div>
-                <a class="df aic content-rankings-inner-item-left-username" href="/views/problems/">
+                <a class="df aic content-rankings-inner-item-left-username" href="/account/profile/${username}">
                     <span class="content-rankings-inner-item-left-username-text">
                         ${username}
                     </span>

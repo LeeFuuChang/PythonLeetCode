@@ -35,7 +35,8 @@ def Save_Submit_Result(problem_id, code, result, username):
                 "result": {},
                 "code": ""
             },
-            "recentSubmissions": []
+            "recentSubmissions": [],
+            "discussions":{}
         }
 
     user_data["problems"][f"{problem_id}"]["lastSubmission"]["code"] = code
@@ -44,6 +45,7 @@ def Save_Submit_Result(problem_id, code, result, username):
     user_data["problems"][f"{problem_id}"]["lastSubmission"]["result"] = result
     user_data["problems"][f"{problem_id}"]["recentSubmissions"].insert(0, result)
     user_data["problems"][f"{problem_id}"]["recentSubmissions"][0]["code"] = code
+    user_data["problems"][f"{problem_id}"]["recentSubmissions"][0]["problem_id"] = problem_id
 
     if result["result"] == states[1][0] and not user_data["problems"][f"{problem_id}"]["passed"]:
         user_data["problems"][f"{problem_id}"]["passed"] = True
@@ -51,14 +53,14 @@ def Save_Submit_Result(problem_id, code, result, username):
     if(len(user_data["problems"][f"{problem_id}"]["recentSubmissions"]) > 10):
         user_data["problems"][f"{problem_id}"]["recentSubmissions"] = user_data["problems"][f"{problem_id}"]["recentSubmissions"][:10]
 
-    with codecs.open(os.path.join(users_path, f"{username}.json"), "w", "utf-8") as f:
+    with codecs.open(os.path.join(users_path, username.lower(), "user_data.json"), "w", "utf-8") as f:
         json.dump(user_data, f, indent=4, ensure_ascii=False)
     
     if user_data["problems"][f"{problem_id}"]["passed"]:
-        DataUpdater__submit.Update_User_Passed(problem_id, user_data)
-        DataUpdater__submit.Update_User_List()
+        DataUpdater__submit.Update_User_Passed(problem_id, username)
+        DataUpdater__submit.Update_User_List(username=username)
     DataUpdater__submit.Update_Problem_Participants(problem_id, username, user_data["problems"][f"{problem_id}"]["passed"])
-    DataUpdater__submit.Update_Problem_List()
+    DataUpdater__submit.Update_Problem_List(question_id=problem_id)
 
     return {**result, "user_data":user_data}
 
@@ -198,9 +200,9 @@ def submit_submit():
     username = Args.get("username", None)
     problem_id = Args.get("id", None)
     submit_time = Args.get("st", None)
-    if not (code and username and problem_id and submit_time):
+    if not (code and username and problem_id and submit_time) or f"problem_{problem_id}" not in os.listdir(os.path.join(os.path.dirname(__file__), "problems")) or username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")):
         result = {
-            "time":0.0, "memory":0.0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
+            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
         }
         return Save_Submit_Result(problem_id, code, result, username)
 
