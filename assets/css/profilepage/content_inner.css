@@ -1,5 +1,6 @@
 #content #content-inner {
     flex-direction: column;
+    padding-bottom: 40px;
     width: 100%;
     height: min-content;
 }

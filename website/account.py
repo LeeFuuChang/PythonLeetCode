@@ -15,14 +15,18 @@ account = Blueprint("account", __name__)
 """
 USER_DEFAULT_JSON
 {
-    "email": "",
     "username": "",
+    "email": "",
     "password": "",
+    "join":"",
     "editor": {
         "font": "14",
         "theme": "eclipse",
         "bind": "sublime"
     },
+    "like_problems":[],
+    "dislike_problems":[],
+    "favorite_problems":[],
     "passed_problems":[],
     "problems": {}
 }
@@ -53,9 +57,23 @@ def get_account_data():
             user_data = json.load(f)
         recent_submissions = []
         for question_id in user_data["problems"]:
-            for submission in user_data["problems"][question_id]["recentSubmissions"]:
+            for submission in user_data["problems"][question_id]["recentSubmissions"][::-1]:
                 recent_submissions.append(submission)
-        recent_submissions = sorted(recent_submissions, key=lambda result:sum([num*[8640, 720, 24][idx] for idx, num in enumerate([int(_) for _ in result["submit_time"].split()[0].split("/")])]), reverse=True)
+        recent_submissions = sorted(
+            recent_submissions, 
+            key=lambda result:sum(
+                [
+                    num*[
+                        518400, 43200, 1440, 60, 1
+                    ][idx] for idx, num in enumerate(
+                        [
+                            int(_) for _ in result["submit_time"].split()[0].split("/") + result["submit_time"].split()[1].split(":")
+                        ]
+                    )
+                ]
+            ), 
+            reverse=True
+        )
         return {"recentsubmissions":recent_submissions}
 
     elif getting == "profile":
@@ -81,9 +99,23 @@ def get_account_data():
         user_posts = []
         for question_id in user_data["problems"]:
             if not user_data["problems"][question_id]["passed"]: continue
-            for post_data in user_data["problems"][question_id]["discussions"].values()::
-                user_posts.append(post_data)
-        user_posts = sorted(user_posts, key=lambda post:sum([num*[8640, 720, 24][idx] for idx, num in enumerate([int(_) for _ in post["time"].split()[0].split("/")])]), reverse=True)
+            for post_data in user_data["problems"][question_id]["discussions"].values():
+                user_posts.insert(0, post_data)
+        user_posts = sorted(
+            user_posts, 
+            key=lambda post:sum(
+                [
+                    num*[
+                        518400, 43200, 1440, 60, 1
+                    ][idx] for idx, num in enumerate(
+                        [
+                            int(_) for _ in post["time"].split()[0].split("/") + post["time"].split()[1].split(":")
+                        ]
+                    )
+                ]
+            ), 
+            reverse=True
+        )
         return {"user_posts":user_posts}
 
 
@@ -184,8 +216,8 @@ def signup():
         Handle_CSV.Write_CSV(Data_File=f, Titles=Column_Title, Rows=Current_Data)
 
     user_data = {
-        "email": email,
         "username": username,
+        "email": email,
         "password": password,
         "join":now_time.split()[0],
         "editor": {

@@ -24,39 +24,43 @@ const content_inner_profile_progress_legends = [
     content_inner_profile_progress_legends_hard
 ]
 function LoadProfileProgress(){
-    let user_have = [0, 0, 0];
-    Object.keys(Profile_Owner["user_data"]["problems"]).forEach(id => {
-        if(!Profile_Owner["user_data"]["problems"][id]["passed"])return;
-        switch(Profile_Owner["user_data"]["problems"][id]["difficulty"]){
-            case "Easy":
-                user_have[0]++;
-                break;
-            case "Medium":
-                user_have[1]++;
-                break;
-            case "Hard":
-                user_have[2]++;
-                break;
-        }
-    })
-    content_inner_profile_progress_description_data.innerText = user_have.reduce(function(a, b){return a+b}, 0);
     fetch(
         "/views/problem_list?get=difficulty",
         {method:"GET"}
     ).then(res => {
         return res.json();
     }).then(res => {
+        let user_have = [0, 0, 0];
         let problems = res["problem_list"];
         let difficulty_problems = [problems["Easy"].length, problems["Medium"].length, problems["Hard"].length];
+
+        let user_len = 0;
+        let problem_len = difficulty_problems.reduce(function(a, b){return a+b}, 0);
+        problems["Easy"].concat(problems["Medium"]).concat().forEach(problem => {
+            if(!Profile_Owner["user_data"]["problems"][problem["id"]] || !Profile_Owner["user_data"]["problems"][problem["id"]]["passed"])return;
+            switch(problem["difficulty"]){
+                case "Easy":
+                    user_have[0]++;
+                    break;
+                case "Medium":
+                    user_have[1]++;
+                    break;
+                case "Hard":
+                    user_have[2]++;
+                    break;
+            }
+            user_len++;
+        })
 
         for(let i=0; i<3; i++){
             let have = content_inner_profile_progress_legends[i].querySelector(".content-inner-profile-progress-legends-item-bottom-text-have");
             let total = content_inner_profile_progress_legends[i].querySelector(".content-inner-profile-progress-legends-item-bottom-text-total");
             have.innerText = user_have[i];
             total.innerText = difficulty_problems[i];
-            content_inner_profile_progress_bar[i].style.setProperty("--percent", `${parseInt(user_have[i] / difficulty_problems[i] * 100)}%`)
+            content_inner_profile_progress_bar[i].style.setProperty("--percent", `${parseInt(user_have[i] / problem_len * 100)}%`)
         }
-        content_inner_profile_progress_description_text.innerText = difficulty_problems.reduce(function(a, b){return a+b}, 0);
+        content_inner_profile_progress_description_data.innerText = user_len;
+        content_inner_profile_progress_description_text.innerText = problem_len;
     })
 }
 

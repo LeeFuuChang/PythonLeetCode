@@ -7,6 +7,7 @@ window.onload = function(){
         if(user_data){
             USER.login = true;
             USER["user_data"] = user_data;
+            document.querySelector("#pageheader-nav-right-user-nav-y-profile-username").innerText = USER["user_data"]["username"];
         }
     });
     
