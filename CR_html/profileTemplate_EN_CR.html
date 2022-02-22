@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="assets/css/_globals.css">
+    <link rel="stylesheet" href="assets/css/profilepage/globals.css">
+</head>
+<body>
+    <header id="pageheader">
+        <nav id="pageheader-nav" class="df aic">
+            <div id="pageheader-nav-left" class="df aic jcc">
+                <a id="pageheader-nav-left-logo"  class="df aic jcc pageheader-nav-left-logo" href="#">
+                    <img id="pageheader-nav-left-logo-img" src="assets/images/logo/logo.png" alt="">
+                </a>
+                <a id="pageheader-nav-left-problems" class="df aic jcc pageheader-nav-left-item" href="/views/problems">
+                    <span id="pageheader-nav-left-problems-text">Problems</span>
+                </a>
+                <a id="pageheader-nav-left-ranks" class="df aic jcc pageheader-nav-left-item" href="/views/rankings">
+                    <span id="pageheader-nav-left-ranks-text">Ranks</span>
+                </a>
+                <a id="pageheader-nav-left-submissions" class="df aic jcc pageheader-nav-left-item" href="/views/submissions">
+                    <span id="pageheader-nav-left-submissions-text">Submissions</span>
+                </a>
+            </div>
+            <div id="pageheader-nav-right" class="df aic jcc">
+                <div id="pageheader-nav-right-user" class="df aic jcc pageheader-nav-right-item">
+                    <img id="pageheader-nav-right-user-icon" src="assets/images/svgs/person-circle.svg" alt="">
+                    <div id="pageheader-nav-right-user-nav">
+                        <div id="pageheader-nav-right-user-nav-y" class="df">
+                            <a id="pageheader-nav-right-user-nav-y-profile" class="df aic">
+                                <img src="assets/images/svgs/person-circle.svg" alt="">
+                                <span id="pageheader-nav-right-user-nav-y-profile-username"></span>
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-favorite" class="df aic">
+                                <img src="assets/images/svgs/bookmark-heart.svg" alt="">
+                                My Favorite
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-y-submissions" class="df aic">
+                                <img src="assets/images/svgs/clock.svg" alt="">
+                                Submissions
+                            </a>
+                            <hr>
+                            <a id="pageheader-nav-right-user-nav-y-logout" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-left.svg" alt="">
+                                Logout
+                            </a>
+                        </div>
+                        <div id="pageheader-nav-right-user-nav-n" class="df">
+                            <a id="pageheader-nav-right-user-nav-n-login" class="df aic">
+                                <img src="assets/images/svgs/box-arrow-in-right.svg" alt="">
+                                Login
+                            </a>
+                            <a id="pageheader-nav-right-user-nav-n-signup" class="df aic">
+                                <img src="assets/images/svgs/person-plus-fill.svg" alt="">
+                                Sign UP
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+
+
+    <div id="container" class="df jcc">
+        <div id="content" class="df aic">
+            <header id="content-header" class="df aic">
+                <div id="content-header-frame" class="df aic jcc">
+                    <img id="content-header-frame-img" src="assets/images/default_profile_img.jpg" alt="">
+                    <input type="file" id="content-header-frame-input" name="user_image_upload" accept="image/jpg" style="display:none">
+                </div>
+                <div id="content-header-info" class="df jcc">
+                    <h1 id="content-header-info-username">{{ username }}</h1>
+                    <p id="content-header-info-email">User@email</p>
+                </div>
+            </header>
+            <div id="content-inner" class="df aic">
+                <header id="content-inner-header" class="df aic">
+                    <nav id="content-inner-header-nav" class="df aic">
+                        <a id="content-inner-header-nav-profile" class="content-inner-header-nav-item active">Profile</a>
+                        <a id="content-inner-header-nav-submissions" class="content-inner-header-nav-item">Submissions</a>
+                        <a id="content-inner-header-nav-posts" class="content-inner-header-nav-item">Posts</a>
+                    </nav>
+                </header>
+                <div id="content-inner-profile" class="df aic content-inner-container active">
+                    <div id="content-inner-profile-progress">
+                        <h2 id="content-inner-profile-progress-description" class="df">
+                            <span id="content-inner-profile-progress-description-data" class="df jcc">
+                                0
+                            </span>
+                            /
+                            <span id="content-inner-profile-progress-description-text">
+                                0
+                            </span>
+                            Solved
+                        </h2>
+                        <div id="content-inner-profile-progress-bar" class="df aic">
+                            <div id="content-inner-profile-progress-bar-easy" class="content-inner-profile-progress-bar-part easy" style="--percent:0%"></div>
+                            <div id="content-inner-profile-progress-bar-medium" class="content-inner-profile-progress-bar-part medium" style="--percent:0%"></div>
+                            <div id="content-inner-profile-progress-bar-hard" class="content-inner-profile-progress-bar-part hard" style="--percent:0%"></div>
+                        </div>
+                        <div id="content-inner-profile-progress-legends" class="df aic">
+                            <div id="content-inner-profile-progress-legends-easy" class="content-inner-profile-progress-legends-item easy">
+                                <h3 class="content-inner-profile-progress-legends-item-title">
+                                    Easy
+                                </h3>
+                                <div class="df aic content-inner-profile-progress-legends-item-bottom">
+                                    <span class="content-inner-profile-progress-legends-item-bottom-bullet easy"></span>
+                                    <h4 id="content-inner-profile-progress-legends-medium-text" class="content-inner-profile-progress-legends-item-bottom-text">
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-have">
+                                            0
+                                        </span>
+                                        /
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-total">
+                                            0
+                                        </span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div id="content-inner-profile-progress-legends-medium" class="content-inner-profile-progress-legends-item medium">
+                                <h3 class="content-inner-profile-progress-legends-item-title">
+                                    Medium
+                                </h3>
+                                <div class="df aic content-inner-profile-progress-legends-item-bottom">
+                                    <span class="content-inner-profile-progress-legends-item-bottom-bullet medium"></span>
+                                    <h4 id="content-inner-profile-progress-legends-medium-text" class="content-inner-profile-progress-legends-item-bottom-text">
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-have">
+                                            0
+                                        </span>
+                                        /
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-total">
+                                            0
+                                        </span>
+                                    </h4>
+                                </div>
+                            </div>
+                            <div id="content-inner-profile-progress-legends-hard" class="content-inner-profile-progress-legends-item hard">
+                                <h3 class="content-inner-profile-progress-legends-item-title">
+                                    Hard
+                                </h3>
+                                <div class="df aic content-inner-profile-progress-legends-item-bottom">
+                                    <span class="content-inner-profile-progress-legends-item-bottom-bullet hard"></span>
+                                    <h4 id="content-inner-profile-progress-legends-medium-text" class="content-inner-profile-progress-legends-item-bottom-text">
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-have">
+                                            0
+                                        </span>
+                                        /
+                                        <span class="content-inner-profile-progress-legends-item-bottom-text-total">
+                                            0
+                                        </span>
+                                    </h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-inner-profile-activity">
+                        <h2 id="content-inner-profile-activity-description" class="df">
+                            <span id="content-inner-profile-activity-description-title">Recent Activity</span>
+                            <span id="content-inner-profile-activity-description-data"></span>
+                            <span id="content-inner-profile-activity-description-symbol">%</span>
+                        </h2>
+                        <div id="content-inner-profile-activity-container" class="df aic jcc">
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                            <div class="content-inner-profile-activity-container-item"></div>
+                        </div>
+                    </div>
+                </div>
+                <div id="content-inner-submissions" class="df aic">
+                    <table id="content-inner-submissions-table">
+                        <thead id="content-inner-submissions-table-thead">
+                            <tr class="content-inner-submissions-table-row">
+                                <th id="content-inner-submissions-table-thead-id" class="content-inner-submissions-table-column-id">#</th>
+                                <th id="content-inner-submissions-table-thead-title" class="content-inner-submissions-table-column-title">title</th>
+                                <th id="content-inner-submissions-table-thead-result" class="content-inner-submissions-table-column-result">result</th>
+                                <th id="content-inner-submissions-table-thead-time" class="content-inner-submissions-table-column-time">submit time</th>
+                            </tr>
+                        </thead>
+                        <tbody id="content-inner-submissions-table-tbody">
+                            <!-- <tr class="content-inner-submissions-table-row">
+                                <td class="content-inner-submissions-table-column-id">pid</td>
+                                <td class="content-inner-submissions-table-column-title">
+                                    <a class="content-inner-submissions-table-column-title-link" href="">
+                                        name
+                                    </a>
+                                </td>
+                                <td class="content-inner-submissions-table-column-result passed">srlt</td>
+                                <td class="content-inner-submissions-table-column-time">st</td>
+                            </tr> -->
+                        </tbody>
+                    </table>
+                </div>
+                <div id="content-inner-posts" class="content-content-inner-type">
+                    <header id="content-inner-posts-header">
+                        <nav id="content-inner-posts-header-nav" class="df aic">
+                            <input id="content-inner-posts-header-nav-search" type="text">
+                            <div id="content-inner-posts-header-nav-filter" class="df aic jcc">
+                                <div id="content-inner-posts-header-nav-filter-sort" class="df aic jcc content-inner-posts-header-nav-filter-item" aria-label="sort">
+                                    <a id="content-inner-posts-header-nav-filter-sort-button" class="df aic jcc content-inner-posts-header-nav-filter-button">
+                                        <span class="df aic content-inner-posts-header-nav-filter-button-text">Sort</span>
+                                        <img class="content-inner-posts-header-nav-filter-button-icon" src="assets/images/svgs/caret-down-fill.svg" alt="">
+                                    </a>
+                                    <div id="content-inner-posts-header-nav-filter-sort-options" class="jcc content-inner-posts-header-nav-filter-options">
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-time" class="df aic content-inner-posts-header-nav-filter-options-item active" aria-label="nto">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">By Time</span>
+                                        </a>
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-vote" class="df aic content-inner-posts-header-nav-filter-options-item" aria-label="vote">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">By Like</span>
+                                        </a>
+                                        <a id="content-inner-posts-header-nav-filter-sort-options-view" class="df aic content-inner-posts-header-nav-filter-options-item" aria-label="view">
+                                            <span class="content-inner-posts-header-nav-filter-options-item-bullet"></span>
+                                            <span class="content-inner-posts-header-nav-filter-options-item-text">By View</span>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </nav>
+                    </header>
+                    <div id="content-inner-posts-container">
+                        <!-- <div class="df content-inner-posts-container-post">
+                            <a class="content-inner-posts-container-post-title">How to write an Interview Question post</a>
+                            <hr class="content-inner-posts-container-post-hr">
+                            <div class="df aic content-inner-posts-container-post-footer">
+                                <div class="df aic content-inner-posts-container-post-footer-left">
+                                    <a class="df aic content-inner-posts-container-post-footer-left-username">LEEPLAYMINECRAFT</a>
+                                    <span class="df aic content-inner-posts-container-post-footer-left-time">2024/02/10 03:24</span>
+                                </div>
+                                <div class="df aic content-inner-posts-container-post-footer-right">
+                                    <a class="df aic content-inner-posts-container-post-footer-right-id">
+                                        0001
+                                    </a>
+                                    <div class="df aic content-inner-posts-container-post-footer-right-likes">
+                                        <img class="content-inner-posts-container-post-footer-right-likes-icon" src="assets/images/svgs/caret-up-fill.svg" alt="">
+                                        <span class="content-inner-posts-container-post-footer-right-likes-text">1116</span>
+                                    </div>
+                                    <div class="df aic content-inner-posts-container-post-footer-right-views">
+                                        <img class="content-inner-posts-container-post-footer-right-views-icon" src="assets/images/svgs/eye-fill.svg" alt="">
+                                        <span class="content-inner-posts-container-post-footer-right-views-text">7744</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    <div id="login-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="login-float-content" class="df aic">
+                    <header id="login-float-content-header" class="df aic">
+                        <img id="login-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="login-float-content-logo" class="df aic jcc">
+                        <img id="login-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="login-float-content-username" type="text" placeholder="E-mail/Username">
+                    <input id="login-float-content-password" type="password" placeholder="Password">
+                    <a id="login-float-content-submit" class="df aic jcc">Sign In</a>
+                    <div id="login-float-content-noaccount" class="df">
+                        <a id="login-float-content-noaccount-forget">
+                            Forgot Password
+                        </a>
+                        <a id="login-float-content-noaccount-signup">
+                            Sign Up
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="signup-float" class="floatfixed">
+        <div class="df aic jcc floatfixed-dim">
+            <div class="floatfixed-dim-content">
+                <div id="signup-float-content" class="df aic">
+                    <header id="signup-float-content-header" class="df aic">
+                        <img id="signup-float-content-header-close" src="assets/images/svgs/x.svg" alt="">
+                    </header>
+                    <div id="signup-float-content-logo" class="df aic jcc">
+                        <img id="signup-float-content-logo-img" src="assets/images/logo/icon-logo.png" alt="">
+                    </div>
+                    <input id="signup-float-content-email" type="text" placeholder="E-mail">
+                    <input id="signup-float-content-username" type="text" placeholder="Username">
+                    <input id="signup-float-content-password" type="password" placeholder="Password">
+                    <input id="signup-float-content-confirm" type="password" placeholder="Password Again">
+                    <a id="signup-float-content-submit" class="df aic jcc">Sign Up</a>
+                    <div id="signup-float-content-noaccount" class="df">
+                        <a id="signup-float-content-noaccount-login">
+                            Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="assets/js/jquery-3.6.0.min.js"></script>
+    
+
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="assets/js/profilepage/onload.js"></script>
+    <!-- Global Scripts -->
+    <script src="assets/js/_onload.js"></script>
+    <script src="assets/js/_header.js"></script>
+    <script src="assets/js/_floats.js"></script>
+    <!-- Page Scripts -->
+    <script src="assets/js/profilepage/content_header.js"></script>
+    <script src="assets/js/profilepage/content/profile.js"></script>
+    <script src="assets/js/profilepage/content/submissions.js"></script>
+    <script src="assets/js/profilepage/content/posts.js"></script>
+    <script src="assets/js/profilepage/content/content.js"></script>
+</body>
+</html>

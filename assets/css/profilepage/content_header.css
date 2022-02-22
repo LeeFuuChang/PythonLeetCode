@@ -40,31 +40,3 @@
     height: min-content;
     font-size: 16px;
 }
-#content #content-header #content-header-container {
-    position: absolute;
-    justify-content: flex-end;
-    top: 0;
-    right: 0;
-    width: 100%;
-    height: min-content;
-}
-#content #content-header #content-header-container .content-header-container-button {
-    border: 2px solid #B4B4B4;
-    border-radius: 4px;
-    padding: 4px 8px;
-    margin-left: 8px;
-    width: max-content;
-    height: min-content;
-    background: #FFFFFF;
-    transition: 0.2s;
-    font-size: 14px;
-    font-family: 'Roboto', sans-serif;
-}
-#content #content-header #content-header-container .content-header-container-button:hover {
-    filter: invert(11%) sepia(1%) saturate(0%) hue-rotate(155deg) brightness(98%) contrast(92%);
-}
-#content #content-header #content-header-container .content-header-container-button img {
-    margin-right: 4px;
-    width: 14px;
-    height: 14px;
-}
