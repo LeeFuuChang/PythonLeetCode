@@ -1,7 +1,7 @@
 from .modules.DataUpdater import Updater; DataUpdater__submit = Updater()
 from .modules.CodeProcess import CodeProcessor
+from .modules.OnlineJudge import Judge
 from flask import Blueprint, request
-import tracemalloc as memoryTracer
 import time as Timer
 import codecs
 import json
@@ -12,6 +12,7 @@ import os
 
 submit = Blueprint("submit", __name__)
 states = {
+    0:("PD", "Pending"),
     1:("AC", "Accepted"), 
     2:("WA", "Wrong Answer"), 
     3:("TLE", "Time Limit Exceed"), 
@@ -24,6 +25,16 @@ states = {
 
 
 def Save_Submit_Result(problem_id, code, result, username):
+    submissions_file = os.path.join(os.path.dirname(__file__), "submissions", "submissions.json")
+    with codecs.open(submissions_file, "r", "utf-8") as f:
+        submissions_data = json.load(f)
+    submission = submissions_data["pending"][result["submit_id"]]
+    del submissions_data["pending"][result["submit_id"]]
+    submission["result"] = result["result"]
+    submissions_data["submissions"][result["submit_id"]] = submission
+    with codecs.open(submissions_file, "w", "utf-8") as f:
+        json.dump(submissions_data, f, indent=4, ensure_ascii=False)
+
     users_path = os.path.join(os.path.dirname(__file__), "data", "users")
     with codecs.open(os.path.join(users_path, username.lower(), "user_data.json"), "r", "utf-8") as f:
         user_data = json.load(f)
@@ -195,7 +206,7 @@ def submit_submit():
     Args = request.args.to_dict()
 
 
-    #args
+    #args checking
     code = Args.get("code", None)
     username = Args.get("username", None)
     problem_id = Args.get("id", None)
@@ -204,8 +215,32 @@ def submit_submit():
         result = {
             "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
         }
-        return Save_Submit_Result(problem_id, code, result, username)
+        return result
 
+
+    #submissions saving
+    with codecs.open(os.path.join(os.path.dirname(__file__), "submissions", "submissions.json"), "r", "utf-8") as f:
+        submissions_data = json.load(f)
+    all_ids = list(submissions_data["pending"].keys()) + list(submissions_data["submissions"].keys())
+    submit_id = 0
+    while(True):
+        if f"{submit_id:0>8}" not in all_ids:
+            submit_id = f"{submit_id:0>8}"
+            break
+        submit_id += 1
+    submissions_data["pending"][submit_id] = {
+        "problem_id":problem_id,
+        "submit_id":submit_id,
+        "username":username,
+        "submit_time":submit_time,
+        "result":states[0][0]
+    }
+    with codecs.open(os.path.join(os.path.dirname(__file__), "submissions", "submissions.json"), "w", "utf-8") as f:
+        json.dump(submissions_data, f, indent=4, ensure_ascii=False)
+    result = {"submit_id":submit_id, "submit_time":submit_time, "time":0.0, "memory":0.0}
+
+
+    #args processing
     with codecs.open(os.path.join(os.path.dirname(__file__), "storage", "replacement.json"), "r", "utf-8") as replacement:
         StringReplacement = json.load(replacement)
     for key, val in StringReplacement.items():
@@ -216,80 +251,43 @@ def submit_submit():
 
     #prevent evil imports
     if "import" in code:
-        result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[6][0], "output":f"{states[6][1]}: 'import' is not allowed"
-        }
+        result["result"] = states[6][0]
+        result["output"] = f"{states[6][1]}: 'import' is not allowed"
         return Save_Submit_Result(problem_id, code, result, username)
 
 
     #run imports and define inputs
     codeed = {}
     judger = {}
-    inputs = {}
     exec(f"from website.problems.problem_{problem_id}.judge import *", judger)
-    maxTime = float(judger["maxTime"])
-    maxMemory = float(judger["maxMemory"])
     try:
         fixed_code = CodeProcessor.Fix(code)
         exec(fixed_code, codeed)
     except Exception as e:
-        result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[6][0], "output":f"{states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"
-        }
+        result["result"] = states[6][0]
+        result["output"] = f"{states[6][1]}: {CE_RE_Error_CleanUP(str(e))}"
         return Save_Submit_Result(problem_id, code, result, username)
-    if "Solution" not in codeed.keys(): 
-        result = {
-            "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[5][0], "output":f"{states[5][1]}: 'Solution' is not defined"
-        }
+    if "Solution" not in codeed.keys():
+        result["result"] = states[5][0]
+        result["output"] = f"{states[5][1]}: 'Solution' is not defined"
         return Save_Submit_Result(problem_id, code, result, username)
 
 
     #run judge
-    CurrentMaxTime = 0
-    CurrentMaxMemory = 0
-    result = {}
-    for idx, case_input in enumerate(eval_cases):
-        print(result)
-        print("\n\n\nrunning case", idx)
-        inputs = judger["Input_Pre_Processor"](case_input)
-        result = {}
-        curT = Timer.time()
-        memoryTracer.start()
-        curMem = memoryTracer.get_traced_memory()[0] / 10**3
-        try:
-            setattr(codeed["Solution"], "_RuntimeStartTime", curT)
-            setattr(codeed["Solution"], "_RuntimeMaxTime", maxTime)
-            setattr(codeed["Solution"], "_GetTimeFunction", CodeProcessor._GetTimeFunction)
-            setattr(codeed["Solution"], "_KillTLE", CodeProcessor._KillTLE)
-            output = codeed["Solution"]().main(*inputs)
-        except Exception as e:
-            result = {
-                "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[5][0], "output":f"{states[5][1]}: {CE_RE_Error_CleanUP(str(e))}"
-            }
-            return Save_Submit_Result(problem_id, code, result, username)
-        endT = Timer.time()
-        endMem = memoryTracer.get_traced_memory()[0] / 10**3
-        memoryTracer.stop()
-
-        result["submit_time"] = submit_time
-        result["time"] = CurrentMaxTime = max(CurrentMaxTime, endT-curT)
-        result["memory"] = CurrentMaxMemory = max( CurrentMaxMemory, endMem-curMem + ( sys.getsizeof(code)/(1024**2) ) )
-
-        if result["time"] > maxTime:
-            result["result"] = states[3][0]
-            result["output"] = states[3][1]
-            return Save_Submit_Result(problem_id, code, result, username)
-        elif result["memory"] > maxMemory:
-            result["result"] = states[4][0]
-            result["output"] = states[4][1]
-            return Save_Submit_Result(problem_id, code, result, username)
-        else:
-            failed = not judger["Output_Classifier"](inputs, output)
-            result["result"] = states[failed+1][0]
-            result["output"] = states[failed+1][1]
-            if failed: return Save_Submit_Result(problem_id, code, result, username)
-
-    return Save_Submit_Result(problem_id, code, result, username)
+    Judger = Judge(
+        websitepath=os.path.dirname(__file__),
+        problem_id=problem_id,
+        code=code,
+        username=username,
+        init_result=result,
+        judger=judger,
+        compiled=codeed,
+        eval_cases=eval_cases
+    )
+    print("Judge Start", Judge)
+    result = Judger.RunJudge()
+    print("Judge End", Judge)
+    return result
 
 
 
@@ -356,8 +354,6 @@ def submit_test():
     inputs = judger["Input_Pre_Processor"](list(inputs.values())[1:])
     result = {}
     curT = Timer.time()
-    memoryTracer.start()
-    curMem = memoryTracer.get_traced_memory()[0] / 10**3
     try:
         setattr(codeed["Solution"], "_RuntimeStartTime", curT)
         setattr(codeed["Solution"], "_RuntimeMaxTime", maxTime)
@@ -370,11 +366,9 @@ def submit_test():
         }
         return result
     endT = Timer.time()
-    endMem = memoryTracer.get_traced_memory()[0] / 10**3
-    memoryTracer.stop()
 
     result["time"] = endT-curT
-    result["memory"] =  endMem-curMem + ( sys.getsizeof(code)/(1024**2) )
+    result["memory"] = sys.getsizeof(code)/(32**3)
 
     if(not result.get("result", False)):
         if result["time"] > maxTime:

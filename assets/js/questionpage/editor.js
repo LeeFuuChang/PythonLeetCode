@@ -96,7 +96,7 @@ submit_button.addEventListener("click", function(){
             clearInterval(pending_Interval);
             return res.json()
         }).then(res => {
-            USER["user_data"] = res["user_data"];
+            if(res["user_data"])USER["user_data"] = res["user_data"];
             let result = res.result;
             let output = res.output;
             let runtime = res.time;
