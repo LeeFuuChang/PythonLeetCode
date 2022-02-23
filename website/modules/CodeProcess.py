@@ -148,10 +148,10 @@ class CodeProcessor():
                 now += len(adding) + 3
         return code
 
-    def _GetTimeFunction(_):
+    def _GetTimeFunction(Solution_self):
         return time.time()
     
-    def _KillTLE(_):
+    def _KillTLE(Solution_self):
         class Time_Limit_Exceed(Exception):
             pass
         raise Time_Limit_Exceed("Time Limit Exceed")
