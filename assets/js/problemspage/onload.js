@@ -10,7 +10,7 @@ window.onload = function(){
         }
     }).then(function(v){
         fetch(
-            `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+            `/views/problem_list?start=${problem_list_start}&end=${problem_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();

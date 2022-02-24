@@ -64,19 +64,6 @@ def problem_list():
 
 
 
-@views.route("/rankings")
-def rankings():
-    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantHeader = f.read()
-    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantFloat = f.read()
-    return render_template("rankings_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
-
-
-
-
-
 @views.route("/problems/<path:subpath>")
 def question(subpath):
     paths = subpath.split("/")
@@ -106,4 +93,29 @@ def question(subpath):
 
     return abort(404)
 
+
+
+
+
+@views.route("/rankings")
+def rankings():
+    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantHeader = f.read()
+    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantFloat = f.read()
+    return render_template("rankings_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
+
+
+
+
+
+@views.route("/submissions")
+def submissions():
+    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantHeader = f.read()
+    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantFloat = f.read()
+    return render_template("submissions_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
 

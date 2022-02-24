@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Let's Py</title>
+
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/_globals.css')}}">
+    <link rel="stylesheet" href="{{url_for('static', filename='assets/css/submissionspage/globals.css')}}">
+</head>
+<body>
+    {{ constantHeader|safe }}
+
+
+
+    <div id="content" class="df jcc">
+        <div id="content-submissions" class="df aic">
+            <header id="content-submissions-header">
+                <nav id="content-submissions-header-nav" class="df aic">
+                    <input id="content-submissions-header-nav-search" type="text" placeholder="Search for ID or Title">
+                    <!-- <div id="content-submissions-header-nav-filter" class="df aic jcc">
+                        <div id="content-submissions-header-nav-filter-state" class="df aic jcc content-submissions-header-nav-filter-item" aria-label="state">
+                            <a id="content-submissions-header-nav-filter-state-button" class="df aic jcc content-submissions-header-nav-filter-button">
+                                <span class="df aic content-submissions-header-nav-filter-button-text">State</span>
+                                <img class="content-submissions-header-nav-filter-button-icon" src="{{url_for('static', filename='assets/images/svgs/caret-down-fill.svg')}}" alt="">
+                            </a>
+                            <div id="content-submissions-header-nav-filter-state-options" class="jcc content-submissions-header-nav-filter-options">
+                                <a id="content-submissions-header-nav-filter-state-options-time" class="df aic content-submissions-header-nav-filter-options-item" aria-label="1">
+                                    <span class="content-submissions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-submissions-header-nav-filter-options-item-icon passed" src="{{url_for('static', filename='assets/images/svgs/check-lg.svg')}}" alt="">
+                                    <span class="content-submissions-header-nav-filter-options-item-text passed">Passed</span>
+                                </a>
+                                <a id="content-submissions-header-nav-filter-state-options-vote" class="df aic content-submissions-header-nav-filter-options-item" aria-label="0">
+                                    <span class="content-submissions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-submissions-header-nav-filter-options-item-icon failed" src="{{url_for('static', filename='assets/images/svgs/activity.svg')}}" alt="">
+                                    <span class="content-submissions-header-nav-filter-options-item-text failed">Tried</span>
+                                </a>
+                                <a id="content-submissions-header-nav-filter-state-options-view" class="df aic content-submissions-header-nav-filter-options-item" aria-label="-1">
+                                    <span class="content-submissions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-submissions-header-nav-filter-options-item-icon" src="{{url_for('static', filename='assets/images/svgs/dash-lg.svg')}}" alt="">
+                                    <span class="content-submissions-header-nav-filter-options-item-text">Yet Tried</span>
+                                </a>
+                                <a id="content-submissions-header-nav-filter-state-options-default" class="df aic content-submissions-header-nav-filter-options-item active" aria-label="default">
+                                    <span class="content-submissions-header-nav-filter-options-item-bullet"></span>
+                                    <img class="content-submissions-header-nav-filter-options-item-icon" src="{{url_for('static', filename='assets/images/svgs/arrow-clockwise.svg')}}" alt="">
+                                    <span class="content-submissions-header-nav-filter-options-item-text">Default</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div> -->
+                </nav>
+            </header>
+            <div id="content-submissions-inner" class="df aic">
+                <header id="content-submissions-inner-header" class="df aic content-submissions-inner-item">
+                    <div class="df aic content-submissions-inner-item-left">
+                        <div id="content-submissions-inner-sort-id" class="df aic content-submissions-inner-item-left-id">
+                            <span class="content-submissions-inner-item-left-id-text">
+                                ID
+                            </span>
+                        </div>
+                        <div id="content-submissions-inner-sort-id" class="df aic content-submissions-inner-item-left-username">
+                            <span class="content-submissions-inner-item-left-username-text">
+                                用戶名稱
+                            </span>
+                        </div>
+                        <div class="df aic content-submissions-inner-item-left-title">
+                            <span class="content-submissions-inner-item-left-title-text">
+                                標題
+                            </span>
+                        </div>
+                    </div>
+                    <div class="df aic content-submissions-inner-item-right">
+                        <div id="content-submissions-inner-sort-difficulty" class="df aic content-submissions-inner-item-right-result">
+                            <span class="content-submissions-inner-item-right-result-text">
+                                提交結果
+                            </span>
+                        </div>
+                        <div id="content-submissions-inner-sort-join" class="df aic content-submissions-inner-item-right-join">
+                            <span class="content-submissions-inner-item-right-join-text">
+                                提交時間
+                            </span>
+                        </div>
+                    </div>
+                </header>
+            </div>
+            <footer id="content-submissions-footer" class="df aic jcc">
+                <a id="content-submissions-footer-more" class="df aic jcc">
+                    <span id="content-submissions-footer-more-text" class="df aic jcc">
+                        載入更多
+                    </span>
+                </a>
+            </footer>
+        </div>
+    </div>
+
+
+
+    <!-- floats (notification, askyesno, confirm. . . etc) -->
+    {{ constantFloat|safe }}
+
+
+
+    <!-- Scripts -->
+    <script src="{{url_for('static', filename='assets/js/jquery-3.6.0.min.js')}}"></script>
+    
+    <!-- My Scripts -->
+    <!-- Onload Script -->
+    <script src="{{url_for('static', filename='assets/js/submissionspage/onload.js')}}"></script>
+    <!-- Global Scripts -->
+    <script src="{{url_for('static', filename='assets/js/_onload.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_header.js')}}"></script>
+    <script src="{{url_for('static', filename='assets/js/_floats.js')}}"></script>
+    <!-- Page Scripts -->
+    <script src="{{url_for('static', filename='assets/js/submissionspage/content.js')}}"></script>
+</body>
+</html>

@@ -88,7 +88,7 @@ submit_button.addEventListener("click", function(){
         })
         code = codeEditor.removeComment(code);
         fetch(
-            `/submit/submit?username=${USER["user_data"]["username"]}&st=${submit_time}&id=${problem_id}&code=`+code,
+            `/submit/submit?username=${USER["user_data"]["username"]}&st=${submit_time}&title=${QUESTION.name}&id=${problem_id}&code=`+code,
             {
                 method:"GET"
             }

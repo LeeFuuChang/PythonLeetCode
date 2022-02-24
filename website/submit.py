@@ -92,9 +92,10 @@ def submit_submit():
     #args checking
     code = Args.get("code", None)
     username = Args.get("username", None)
+    problem_title = Args.get("title", None)
     problem_id = Args.get("id", None)
     submit_time = Args.get("st", None)
-    if not (code and username and problem_id and submit_time) or f"problem_{problem_id}" not in os.listdir(os.path.join(os.path.dirname(__file__), "problems")) or username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")):
+    if not (code and username and problem_title and problem_id and submit_time) or f"problem_{problem_id}" not in os.listdir(os.path.join(os.path.dirname(__file__), "problems")) or username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")):
         result = {
             "submit_time":submit_time, "time":0.0, "memory":0.0, "result":states[7][0], "output":f"{states[7][1]}: Missing Data"
         }
@@ -107,13 +108,14 @@ def submit_submit():
     all_ids = list(submissions_data["pending"].keys()) + list(submissions_data["submissions"].keys())
     submit_id = 0
     while(True):
-        if f"{submit_id:0>8}" not in all_ids:
-            submit_id = f"{submit_id:0>8}"
+        if f"{hex(submit_id)[2:]:0>8}" not in all_ids:
+            submit_id = f"{hex(submit_id)[2:]:0>8}"
             break
         submit_id += 1
     submissions_data["pending"][submit_id] = {
         "problem_id":problem_id,
         "submit_id":submit_id,
+        "problem_title":problem_title,
         "username":username,
         "submit_time":submit_time,
         "result":states[0][0]
@@ -268,7 +270,62 @@ def submit_test():
 
 
 
+@submit.route("/submissions", methods=["GET"])
+def submissions():
+    Args = request.args.to_dict()
 
+    start = int(Args.get("start", False))
+    end = int(Args.get("end", False))
+    get = Args.get("get", False)
+
+    with codecs.open(os.path.join(os.path.dirname(__file__), "submissions", "submissions.json"), "r", "utf-8") as f:
+        __submissions_list = json.load(f)
+        submissions_list = sorted([s for s in __submissions_list["submissions"].values()], key=lambda s:(
+                sum(
+                    [
+                        num*[
+                            518400, 43200, 1440, 60, 1
+                        ][idx] for idx, num in enumerate(
+                            [
+                                int(_) for _ in s["submit_time"].split()[0].split("/") + s["submit_time"].split()[1].split(":")
+                            ]
+                        )
+                    ]
+                ),
+                int(s["submit_id"], 16)
+            ), reverse=True
+        )
+        pending_list = sorted([s for s in __submissions_list["pending"].values()], key=lambda s:(
+                sum(
+                    [
+                        num*[
+                            518400, 43200, 1440, 60, 1
+                        ][idx] for idx, num in enumerate(
+                            [
+                                int(_) for _ in s["submit_time"].split()[0].split("/") + s["submit_time"].split()[1].split(":")
+                            ]
+                        )
+                    ]
+                ),
+                int(s["submit_id"], 16)
+            ), reverse=True
+        )
+        submissions = pending_list+submissions_list
+    if start and end:
+        if len(submissions) >= end:
+            result = submissions[start-1:end]
+            more = True
+        elif len(submissions) >= start:
+            result = submissions[start-1:]
+            more = False
+        else:
+            result = []
+            more = False
+        return {"submissions":result, "more":more}
+
+    elif get == "all":
+        return {"submissions":submissions}
+    return {}
 
 
 

@@ -485,7 +485,7 @@ content_questions_footer_more.addEventListener("click", function(){
         problem_list_start += 50;
         problem_list_end += 50;
         fetch(
-            `problem_list?start=${problem_list_start}&end=${problem_list_end}`,
+            `/views/problem_list?start=${problem_list_start}&end=${problem_list_end}`,
             {method:"GET"}
         ).then(res => {
             return res.json();
