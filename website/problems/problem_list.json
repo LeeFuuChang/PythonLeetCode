@@ -54,5 +54,21 @@
         "time": "2022/02/15",
         "participants": [],
         "passed_participants": []
+    },
+    "0008": {
+        "id": "0008",
+        "name": "Leap year?",
+        "difficulty": "Easy",
+        "time": "2022/02/25",
+        "participants": [],
+        "passed_participants": []
+    },
+    "0009": {
+        "id": "0009",
+        "name": "2D Sorting",
+        "difficulty": "Easy",
+        "time": "2022/02/25",
+        "participants": [],
+        "passed_participants": []
     }
 }

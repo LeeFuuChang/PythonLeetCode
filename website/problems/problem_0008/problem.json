@@ -1,0 +1,43 @@
+{
+    "id": "0008",
+    "name": "Leap year?",
+    "difficulty": "Easy",
+    "likes": [],
+    "dislikes": [],
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/02/25",
+    "description": [
+        "給定一個整數【y】，代表一個西元年分，請判斷該年是否為閏年",
+        "",
+        "輸入說明：<br>題目會傳入一個整數【y】代表一個西元年分",
+        "",
+        "輸出說明：<br>回傳這一年是否為閏年，如是請回傳 True ，否則回傳 False<br>（西元年被4整除且不被100整除，或被400整除者即為閏年）"
+    ],
+    "var": [
+        "y"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, y): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "y = 1977",
+            "output": "False",
+            "explain": null
+        },
+        "ex2": {
+            "input": "y = 1980",
+            "output": "True",
+            "explain": null
+        },
+        "ex3": {
+            "input": "y = 2020",
+            "output": "True",
+            "explain": null
+        }
+    },
+    "constraints": [
+        "1000 <= y <= 3000"
+    ],
+    "discussions": {}
+}

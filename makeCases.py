@@ -2,23 +2,13 @@ import random
 import json
 
 cases = {
-    "cases":[
-        [[0, 0], 0],
-        [[3,3], 6],
-        [[3,2,4], 6],
-        [[2,7,11,15], 9],
-    ]
+    "cases":[]
 }
 
-for i in range(1, 7):
-    _len = random.randint(2, int(10**i**(1/2)))
-    picked = random.sample(range(_len), 2)
-    nums = [
-        random.randint(-10**9, 10**9) for j in range(_len)
-    ]
+for i in range(1, 10):
+    l = random.randint(2, 10)
     now = [
-        nums,
-        nums[picked[0]]+nums[picked[1]]
+        [[random.randint(-20000, 20000) for j in range(l)] for k in range(random.randint(2, 10))]
     ]
     cases["cases"].append(now)
 

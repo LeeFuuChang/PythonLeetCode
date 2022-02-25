@@ -1,0 +1,47 @@
+{
+    "id": "0009",
+    "name": "2D Sorting",
+    "difficulty": "Easy",
+    "likes": [],
+    "dislikes": [],
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/02/25",
+    "description": [
+        "給定一個二維列表【lst】，將其排序後回傳",
+        "",
+        "輸入說明：<br>題目會傳入一個二維列表【lst】，lst:list(list(int))",
+        "",
+        "輸出說明：<br>回傳排序好的列表<br>排序規則如下：<br>　　1. 將每個列表依照index=0的大小由大到小排序<br>　　2. 將依照index=0排序好的列表再依照index=1由大到小排序<br>　　3. 以此類推"
+    ],
+    "var": [
+        "lst"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, lst): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "lst = [ [ 1, 4, 7 ], [ 8, 5, 2 ], [ 3, 9, 6 ] ]",
+            "output": "[ [ 8, 5, 2 ], [ 3, 9, 6 ], [ 1, 4, 7 ] ]",
+            "explain": null
+        },
+        "ex2": {
+            "input": "lst = [ [ 1, 2 ], [ 1, 3 ], [ 2, 2 ], [ 2, 3 ] ]",
+            "output": "[ [ 2, 3 ], [ 2, 2 ], [ 1, 3 ], [ 1, 2 ] ]",
+            "explain": null
+        },
+        "ex3": {
+            "input": "lst = [ [ 3, 3, 5 ], [ 3, 4, 2 ], [ 3, 4, 4 ] ]",
+            "output": "[ [ 3, 4, 4 ], [ 3, 4, 2 ], [ 3, 3, 5 ] ]",
+            "explain": null
+        }
+    },
+    "constraints": [
+        "每筆測資 lst[i] 不會重複",
+        "每筆測資 lst[i] 的長度固定",
+        "-20000 <= lst[i][j] <= 20000",
+        "10 <= len(lst[i]) <= 2000",
+        "10 <= len(lst) <= 200"
+    ],
+    "discussions": {}
+}
