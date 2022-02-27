@@ -12,10 +12,10 @@
         "",
         "輸入說明：<br>題目會傳入一個整數【c】代表一直角三角形的斜邊長",
         "",
-        "輸出說明：<br>回傳此直角三角形的兩股的長度是否有可能皆為非零正整數 ( a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup> )"
+        "輸出說明：<br>回傳此直角三角形的兩股的長度是否有可能皆為非零正整數 ( a^2 + b^2 = c^2 )"
     ],
     "var": [
-        "lst"
+        "c"
     ],
     "predefine": "",
     "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, c): #don't change function name",

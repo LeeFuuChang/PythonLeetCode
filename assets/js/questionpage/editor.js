@@ -21,6 +21,11 @@ codeEditor.render = function(_font, _theme, _bind, _text){
         autoCloseBrackets: true,
         styleActiveLine: true,
     })
+    codeEditor.renderedEditor.setOption("extraKeys", {
+        Tab: function(cm) {
+            cm.replaceSelection(Array(cm.getOption("indentUnit") + 1).join(" "));
+        }
+    });
     codeEditor.renderedEditor.setOption("value", _text);
     document.querySelectorAll(".CodeMirror").forEach(ele => {
         ele.style.fontSize = _font + "px";

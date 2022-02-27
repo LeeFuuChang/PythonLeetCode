@@ -1,5 +1,6 @@
 from .modules.DataUpdater import Updater; DataUpdater__account = Updater()
 from flask import Blueprint, render_template, request, abort, send_from_directory
+from . import __Constants as CONSTANT
 from .modules import Handle_CSV
 from .modules import Handle_IP
 from io import StringIO
@@ -373,4 +374,9 @@ def profile(subpath):
         if subpath[1] == "get_profile_img":
             return send_from_directory("data", f"users/{username.lower()}/profile_img.jpg", as_attachment=True)
 
-    return render_template("profile_page.html", username=username)
+    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
+    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantHeader = f.read()
+    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
+        constantFloat = f.read()
+    return render_template("profile_page.html", username=username, constantHeader=constantHeader, constantFloat=constantFloat)
