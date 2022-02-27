@@ -31,7 +31,7 @@ def problem_list():
 
     with codecs.open(os.path.join(os.path.dirname(__file__), "problems", "problem_list.json"), "r", "utf-8") as f:
         __problem_list = json.load(f)
-        problem_list = list(__problem_list.values())
+        problem_list = sorted(list(__problem_list.values()), key=lambda p:int(p["id"], 16))
 
     if start and end:
         if len(problem_list) >= end:

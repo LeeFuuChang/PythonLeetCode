@@ -1,0 +1,45 @@
+{
+    "id": "000a",
+    "name": "Right Triangle checking",
+    "difficulty": "Medium",
+    "likes": [],
+    "dislikes": [],
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/02/28",
+    "description": [
+        "給定一個整數代表一直角三角形的斜邊長【c】，請檢查其兩股的長度是否有可能皆為非零正整數。",
+        "",
+        "輸入說明：<br>題目會傳入一個整數【c】代表一直角三角形的斜邊長",
+        "",
+        "輸出說明：<br>回傳此直角三角形的兩股的長度是否有可能皆為非零正整數 ( a<sup>2</sup> + b<sup>2</sup> = c<sup>2</sup> )"
+    ],
+    "var": [
+        "lst"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, c): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "c = 5",
+            "output": "True",
+            "explain": "3^2 + 4^2 = 5^2"
+        },
+        "ex2": {
+            "input": "c = 25",
+            "output": "True",
+            "explain": "7^2 + 24^2 = 25^2"
+        },
+        "ex3": {
+            "input": "c = 7",
+            "output": "False",
+            "explain": null
+        }
+    },
+    "constraints": [
+        "5 <= c <= 100",
+        "0 < a",
+        "0 < b"
+    ],
+    "discussions": {}
+}
