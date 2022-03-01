@@ -12,12 +12,7 @@ views = Blueprint("views", __name__)
 
 @views.route("/problems")
 def problems():
-    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantHeader = f.read()
-    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantFloat = f.read()
-    return render_template("problem_list.html", constantHeader=constantHeader, constantFloat=constantFloat)
+    return render_template("problem_list.html", constantHeader=CONSTANT.HTMLconstantHeader, constantFloat=CONSTANT.HTMLconstantFloat)
 
 
 
@@ -84,12 +79,7 @@ def question(subpath):
                 question["next"] = problem_ids[idx+1] if idx!=len(problem_ids)-1 else None 
                 return {"question":question}
 
-        constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-        with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-            constantHeader = f.read()
-        with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-            constantFloat = f.read()
-        return render_template("question_page.html", problem_id=problem_id, constantHeader=constantHeader, constantFloat=constantFloat)
+        return render_template("question_page.html", problem_id=problem_id, constantHeader=CONSTANT.HTMLconstantHeader, constantFloat=CONSTANT.HTMLconstantFloat)
 
     return abort(404)
 
@@ -99,12 +89,7 @@ def question(subpath):
 
 @views.route("/rankings")
 def rankings():
-    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantHeader = f.read()
-    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantFloat = f.read()
-    return render_template("rankings_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
+    return render_template("rankings_page.html", constantHeader=CONSTANT.HTMLconstantHeader, constantFloat=CONSTANT.HTMLconstantFloat)
 
 
 
@@ -112,10 +97,5 @@ def rankings():
 
 @views.route("/submissions")
 def submissions():
-    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantHeader = f.read()
-    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantFloat = f.read()
-    return render_template("submissions_page.html", constantHeader=constantHeader, constantFloat=constantFloat)
+    return render_template("submissions_page.html", constantHeader=CONSTANT.HTMLconstantHeader, constantFloat=CONSTANT.HTMLconstantFloat)
 

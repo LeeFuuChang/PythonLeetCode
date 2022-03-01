@@ -19,6 +19,8 @@ window.onload = function(){
             problem_list_more = res["more"];
             if(!problem_list_more){
                 content_questions_footer_more.style.display = "none";
+            }else{
+                content_questions_footer_more.style.display = "flex";
             }
         })
     })

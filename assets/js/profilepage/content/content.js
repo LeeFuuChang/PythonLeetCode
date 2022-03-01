@@ -1,4 +1,3 @@
-
 const content_inner_pairs = [
     [content_inner_header_nav_profile,content_inner_profile, LoadProfile],
     [content_inner_header_nav_submissions,content_inner_submissions, LoadSubmissions],

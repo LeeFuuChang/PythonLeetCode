@@ -2,7 +2,6 @@ var user_list_more = false;
 var user_list_start = 1;
 var user_list_end = 50;
 window.onload = function(){
-    content_rankings_footer_more.style.display = "none";
     GetIPLoginAccount(function(user_data){
         if(user_data){
             USER.login = true;
@@ -18,7 +17,9 @@ window.onload = function(){
         }).then(res => {
             LoadRankings(res["user_list"]);
             user_list_more = res["more"];
-            if(user_list_more){
+            if(!user_list_more){
+                content_rankings_footer_more.style.display = "none";
+            }else{
                 content_rankings_footer_more.style.display = "flex";
             }
         })

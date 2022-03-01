@@ -62,6 +62,7 @@ pageheader_nav_right_user_nav_y_favorite.addEventListener("click", function(){
 
 const pageheader_nav_right_user_nav_y_submissions = pageheader_nav_right_user_nav_y.querySelector("#pageheader-nav-right-user-nav-y-submissions");
 pageheader_nav_right_user_nav_y_submissions.addEventListener("click", function(){
+    location = `/account/profile/${USER["user_data"]["username"]}/submissions`;
     pageheader_nav_right_user_nav_y.classList.remove("active");
 })
 

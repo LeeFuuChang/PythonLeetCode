@@ -258,7 +258,7 @@ def editor():
     Args = request.args.to_dict()
 
     username = Args.get("username", None)
-    if not username or username.lower() not in os.path.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
+    if not username or username.lower() not in os.listdir(os.path.join(os.path.dirname(__file__), "data", "users")): return {"state":0}
     users_path = os.path.join(os.path.dirname(__file__), "data", "users", username.lower(), "user_data.json")
     with codecs.open(users_path, "r", "utf-8") as f:
         user_data = json.load(f)
@@ -370,13 +370,13 @@ def profile(subpath):
         users = json.load(f)
     if username.lower() not in users.keys(): return abort(404)
 
+    init_contentID = 0
     if len(subpath)>1:
         if subpath[1] == "get_profile_img":
             return send_from_directory("data", f"users/{username.lower()}/profile_img.jpg", as_attachment=True)
+        elif subpath[1] == "submissions":
+            init_contentID = 1
+        elif subpath[1] == "posts":
+            init_contentID = 2
 
-    constant_html_path = os.path.join(os.path.dirname(__file__), "templates", "constant_html")
-    with codecs.open(os.path.join(constant_html_path, f"__header_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantHeader = f.read()
-    with codecs.open(os.path.join(constant_html_path, f"__float_{CONSTANT.lang}.html"), "r", "utf-8") as f:
-        constantFloat = f.read()
-    return render_template("profile_page.html", username=username, constantHeader=constantHeader, constantFloat=constantFloat)
+    return render_template("profile_page.html", username=username, init_contentID=init_contentID, constantHeader=CONSTANT.HTMLconstantHeader, constantFloat=CONSTANT.HTMLconstantFloat)

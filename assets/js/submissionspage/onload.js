@@ -21,6 +21,8 @@ window.onload = function(){
             submissions_more = res["more"];
             if(!submissions_more){
                 content_submissions_footer_more.style.display = "none";
+            }else{
+                content_submissions_footer_more.style.display = "flex";
             }
             submissions_reloading = false;
             submissions_reload = setInterval(ReloadSubmissionList, 60000);
