@@ -35,7 +35,8 @@ codeEditor.render(14, "eclipse", "sublime", codeEditor.default);
 
 codeEditor.StringReplacement = {
     "\n":";1;",
-    "+":";2;"
+    "+":";2;",
+    "%":";3;"
 }
 
 codeEditor.removeComment = function(s){
