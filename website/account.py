@@ -248,7 +248,7 @@ def signup():
     with codecs.open(os.path.join(os.path.dirname(users_path), "current.json"), "w", "utf-8") as f:
         json.dump(current, f, indent=4, ensure_ascii=False)
 
-    DataUpdater__account.Update_User_List()
+    DataUpdater__account.Update_User_List(username=username)
     return {"state":1, "user_data":user_data}
 
 
