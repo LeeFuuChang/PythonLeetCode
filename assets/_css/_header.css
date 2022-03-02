@@ -1,0 +1,124 @@
+#pageheader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 43px;
+    box-shadow: 0 2px 8px #0000004d, 0 1px 2px #0000001a;
+    z-index: 2000;
+}
+#pageheader nav {
+    justify-content: space-between;
+    width: 100%;
+    height: 100%;
+    background: #FFFFFF;
+}
+
+
+
+#pageheader nav #pageheader-nav-left {
+    width: min-content;
+    height: 100%;
+}
+#pageheader nav #pageheader-nav-left #pageheader-nav-left-logo {
+    width: 172px;
+    height: 43px;
+}
+#pageheader nav #pageheader-nav-left #pageheader-nav-left-logo #pageheader-nav-left-logo-img {
+    height: 60%;
+}
+#pageheader nav #pageheader-nav-left .pageheader-nav-left-item {
+    margin: 7px;
+    width: 72px;
+    height: 29px;
+    transition: 0.2s;
+    color: #546E7A;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#pageheader nav #pageheader-nav-left .pageheader-nav-left-item:hover {
+    color: #263238;
+}
+
+
+
+#pageheader nav #pageheader-nav-right {
+    width: min-content;
+    height: 100%;
+}
+#pageheader nav #pageheader-nav-right .pageheader-nav-right-item {
+    width: 43px;
+    height: 43px;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-icon {
+    cursor: pointer;
+    margin-right: 25px;
+    height: 56%;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    width: min-content;
+    height: min-content;
+    color: #000000;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    z-index: 2000;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-y {
+    display: none;
+    flex-direction: column;
+    padding: 0 12px;
+    border-radius: 4px;
+    border: 1px solid #90a4ae;
+    width: 200px;
+    height: min-content;
+    background: #FFFFFF;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-y.active {
+    display: flex;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-y a {
+    margin: 8px 0;
+    width: 100%;
+    height: 30px;
+    transition: 0.2s;
+    filter: invert(53%) sepia(14%) saturate(593%) hue-rotate(155deg) brightness(94%) contrast(87%);
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-y a:hover {
+    filter: invert(16%) sepia(17%) saturate(685%) hue-rotate(155deg) brightness(97%) contrast(92%);
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-y a img {
+    margin: 0 12px;
+    width: 20px;
+    height: 20px;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-n {
+    display: none;
+    flex-direction: column;
+    padding: 0 12px;
+    border-radius: 4px;
+    border: 1px solid #90a4ae;
+    width: 160px;
+    height: min-content;
+    background: #FFFFFF;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-n.active {
+    display: flex;
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-n a {
+    margin: 8px 0;
+    width: 100%;
+    height: 30px;
+    transition: 0.2s;
+    filter: invert(53%) sepia(14%) saturate(593%) hue-rotate(155deg) brightness(94%) contrast(87%);
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-n a:hover {
+    filter: invert(16%) sepia(17%) saturate(685%) hue-rotate(155deg) brightness(97%) contrast(92%);
+}
+#pageheader nav #pageheader-nav-right #pageheader-nav-right-user #pageheader-nav-right-user-nav #pageheader-nav-right-user-nav-n a img {
+    margin: 0 12px;
+    width: 20px;
+    height: 20px;
+}

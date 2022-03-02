@@ -1,0 +1,61 @@
+#content-inner-submissions {
+    width: 100%;
+    display: none;
+}
+#content-inner-submissions.active {
+    display: flex;
+}
+
+#content-inner-submissions #content-inner-submissions-table {
+    margin-top: 12px;
+    width: 100%;
+}
+#content-inner-submissions #content-inner-submissions-table tr {
+    width: 100%;
+    height: 40px;
+}
+#content-inner-submissions #content-inner-submissions-table tr th,td {
+    padding: 5px 10px;
+    font-weight: 500;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-id {
+    width: 4%;
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-title {
+    width: 45%;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-title .content-inner-submissions-table-column-title-link {
+    width: max-content;
+    padding: 4px 0;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+    transition: 0.2s;
+    color: #328df4;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-title .content-inner-submissions-table-column-title-link:hover {
+    color: #144EAC;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-result {
+    width: 26%;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-result.passed {
+    color: var(--case-passed-green);
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-result.failed {
+    color: var(--case-failed-red);
+}
+#content-inner-submissions #content-inner-submissions-table .content-inner-submissions-table-column-time {
+    width: 24%;
+    text-align: left;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}

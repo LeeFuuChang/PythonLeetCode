@@ -1,0 +1,20 @@
+@import url("content.css");
+@import url("content_header.css");
+@import url("content_inner.css");
+@import url("content/profile.css");
+@import url("content/submissions.css");
+@import url("content/posts.css");
+table, th, td {
+    color: #424242;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #C4C4C4;
+    border-collapse: collapse;
+}
+th {
+    color: #212121;
+
+}
+td {
+    color: #424242;
+}

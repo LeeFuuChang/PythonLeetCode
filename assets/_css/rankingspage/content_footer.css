@@ -1,0 +1,15 @@
+#content #content-rankings #content-rankings-footer {
+    margin: 10px 0;
+    padding: 4px 8px;
+    width: 100%;
+    height: min-content;
+}
+#content #content-rankings #content-rankings-footer #content-rankings-footer-more {
+    border: 1px solid #E3E3E3;
+    border-radius: 4px;
+    width: 100%;
+    height: 36px;
+    transition: 0.2s;
+    font-size: 14px;
+    font-family: 'Roboto', sans-serif;
+}
