@@ -1,0 +1,39 @@
+{
+    "id": "000b",
+    "name": "Valid Parentheses",
+    "difficulty": "Easy",
+    "likes": [],
+    "dislikes": [],
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/03/15",
+    "description": [
+        "給定一個包含　'(' 、 ')' 、 '{' 、 '}' 、 '[' 、 ']'　的字串【s】，請檢查此字串是否符合本題所定義之【有效字串】",
+        "",
+        "有效字串須符合以下兩點：<br>　　１、開啟的括號需要被同一配對的括號關閉，存在的配對有：'()'、'{}'、'[]'<br>　　２、關閉括號的順序必須為【後開先關】"
+    ],
+    "var": [
+        "s"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, s): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "s = '()'",
+            "output": "True"
+        },
+        "ex2": {
+            "input": "s = '()[]{}'",
+            "output": "True"
+        },
+        "ex3": {
+            "input": "s = '(]'",
+            "output": "False"
+        }
+    },
+    "constraints": [
+        "1 <= len(s) <= 10<sup>4</sup>",
+        "s 中只會包含 '(' 、 ')' 、 '{' 、 '}' 、 '[' 、 ']'"
+    ],
+    "discussions": {}
+}

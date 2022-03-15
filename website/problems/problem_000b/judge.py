@@ -5,13 +5,16 @@ maxMemory = 15
 def Input_Pre_Processor(inputs):
     return inputs
 
-def Problem_Solver(t1, t2):
-    def d(s):
-        s = s.split()
-        s = [int(_) for _ in s[0].split("/") + s[1].split(":")]
-        s = s[0]*12*30*24*60 + s[1]*30*24*60 + s[2]*24*60 + s[3]*60 + s[4]
-        return s
-    return d(t2) - d(t1)
+def Problem_Solver(s):
+    Waiting = []
+    pair = {"(":")", "{":"}", "[":"]"}
+    for c in s:
+        if c in "({[":
+            Waiting.append(pair[c])
+        else:
+            if Waiting and c == Waiting.pop(-1):continue
+            return False
+    return len(Waiting) == 0
 
 def Output_Pre_Processor(output):
     return output

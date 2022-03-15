@@ -21,5 +21,4 @@ def Output_Pre_Processor(output):
 
 def Output_Classifier(inputs, output):
     answer = Output_Pre_Processor(Problem_Solver(*inputs))
-    print(answer, Output_Pre_Processor(output))
     return answer == Output_Pre_Processor(output)
