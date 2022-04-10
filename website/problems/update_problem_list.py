@@ -2,9 +2,7 @@ import codecs
 import json
 import os
 
-problem_list = {
-    "problem_list":[]
-}
+problem_list = {}
 
 for folder_name in os.listdir(os.path.dirname(__file__)):
     if "." in folder_name: continue
@@ -18,12 +16,10 @@ for folder_name in os.listdir(os.path.dirname(__file__)):
         "name":problem_data["name"],
         "difficulty":problem_data["difficulty"],
         "time":problem_data["time"],
-        "likes":problem_data["likes"],
-        "dislikes":problem_data["dislikes"],
         "participants":problem_data["participants"],
         "passed_participants":problem_data["passed_participants"]
     }
-    problem_list["problem_list"].append(now)
+    problem_list[problem_data["id"]] = now
 
     list_file = os.path.join(os.path.dirname(__file__), "problem_list.json")
     with codecs.open(list_file, "w", "utf-8") as f:

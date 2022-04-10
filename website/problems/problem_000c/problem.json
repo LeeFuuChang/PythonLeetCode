@@ -1,0 +1,42 @@
+{
+    "id": "000c",
+    "name": "Remove Islands",
+    "difficulty": "Medium",
+    "likes": [],
+    "dislikes": [],
+    "participants": [],
+    "passed_participants": [],
+    "time": "2022/03/19",
+    "description": [
+        "輸入說明：<br>給定一個二維陣列【matrix】，代表一個地圖，其中包含整數 0 或 1 ，分別代表海洋與陸地。",
+        "",
+        "題目定義：<br>「孤島」即沒有與任何島嶼相連，並且也沒有與邊界相鄰的陸地。<br>「島嶼」即多個相連的陸地。",
+        "",
+        "輸出說明：<br>移除地圖上所有的孤島並回傳新的地圖。"
+    ],
+    "var": [
+        "matrix"
+    ],
+    "predefine": "",
+    "default": "#start coding below\nclass Solution(): #don't change class name\n    def main(self, s): #don't change function name",
+    "example": {
+        "ex1": {
+            "input": "matrix = [<br>　[1, 0, 0, 0, 0, 0],<br>　[0, 1, 0, 1, 1, 1],<br>　[0, 0, 1, 0, 1, 0],<br>　[1, 1, 0, 0, 1, 0],<br>　[1, 0, 1, 1, 0, 0],<br>　[1, 0, 0, 0, 0, 1]<br>]",
+            "output": "[<br>　[1, 0, 0, 0, 0, 0],<br>　[0, 0, 0, 1, 1, 1],<br>　[0, 0, 0, 0, 1, 0],<br>　[1, 1, 0, 0, 1, 0],<br>　[1, 0, 0, 0, 0, 0],<br>　[1, 0, 0, 0, 0, 1]<br>]"
+        },
+        "ex2": {
+            "input": "s = '()[]{}'",
+            "output": "True"
+        },
+        "ex3": {
+            "input": "s = '(]'",
+            "output": "False"
+        }
+    },
+    "constraints": [
+        "1 <= len(matrix) <= 10<sup>4</sup>",
+        "1 <= len(matrix[0]) <= 10<sup>4</sup>",
+        "matrix 中只會包含 整數 0 與 1。"
+    ],
+    "discussions": {}
+}

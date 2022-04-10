@@ -70,5 +70,29 @@
         "time": "2022/02/25",
         "participants": [],
         "passed_participants": []
+    },
+    "000a": {
+        "id": "000a",
+        "name": "Right Triangle checking",
+        "difficulty": "Medium",
+        "time": "2022/02/28",
+        "participants": [],
+        "passed_participants": []
+    },
+    "000b": {
+        "id": "000b",
+        "name": "Valid Parentheses",
+        "difficulty": "Easy",
+        "time": "2022/03/15",
+        "participants": [],
+        "passed_participants": []
+    },
+    "000c": {
+        "id": "000c",
+        "name": "Remove Islands",
+        "difficulty": "Medium",
+        "time": "2022/03/19",
+        "participants": [],
+        "passed_participants": []
     }
 }
